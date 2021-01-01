@@ -4,6 +4,11 @@ const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).ca
 const csrfProtection = csrf({ cookie: true });
 const db = require('./db/models/');
 
+const checkUser = (req, res, next) => {
+  res.locals.user = req.session.user;
+  next();
+}
+
 const userValidator = [
   check('username')
     .exists({ checkFalsy: true })
@@ -65,4 +70,4 @@ const loginValidator = [
   .withMessage('Please provide a valid password')
 ]
 
-module.exports = { asyncHandler, csrfProtection, userValidator, loginValidator };
+module.exports = { asyncHandler, csrfProtection, userValidator, loginValidator, checkUser};

@@ -53,7 +53,26 @@ router.post('/login',csrfProtection,loginValidator, asyncHandler(async(req, res)
   const errors = []
 
   const validatorErrors = validationResult(req);
-  
+  if(validatorErrors.isEmpty){
+    const user = await User.findOne({ where : { email }});
+    if(user !== null){
+      const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+      if(passwordMatch){
+        req.session.user = {id: user.id, email: user.email, username: user.username};
+        res.redirect('/');
+      }
+    } else {
+      errors.push("Login failed for the provided email address. Please try again");
+    }
+  } else {
+    errors = validatorErrors.array.map((error) => error.msg);
+    res.render('user-login', {
+      title: 'Login',
+      email,
+      errors,
+      csrfToken: req.csrfToken(),
+    });
+  }
 }))
 
 module.exports = router;

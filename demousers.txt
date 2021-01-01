@@ -1,2 +1,3 @@
 u: demouser
+email: demo@demo.com
 pw: Password1!
