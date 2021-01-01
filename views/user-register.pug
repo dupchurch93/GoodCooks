@@ -1,0 +1,12 @@
+extends layout.pug
+include utils.pug
+
+block content
+  form(action='/users', method='post')
+    input(type='hidden', name= '_csrf', value=csrfToken)
+    +field('User Name', 'username', user.username)
+    +field('Email Address', 'email', user.email)
+    +field('Password', 'password', user.password, 'password')
+    +field('Confirm Password', 'confirmPassword', '', 'password')
+    div
+      button(type='submit') Register
