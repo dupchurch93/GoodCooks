@@ -33,6 +33,7 @@ const userValidator = [
         }
       });
     }),
+
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a password.')
@@ -55,4 +56,13 @@ const userValidator = [
     }),
 ];
 
-module.exports = { asyncHandler, csrfProtection, userValidator };
+const loginValidator = [
+  check('email')
+  .exists({ checkFalsy: true })
+  .withMessage('Please provide a valid email'),
+  check('password')
+  .exists({checkFalsy:true})
+  .withMessage('Please provide a valid password')
+]
+
+module.exports = { asyncHandler, csrfProtection, userValidator, loginValidator };
