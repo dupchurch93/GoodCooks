@@ -96,4 +96,7 @@ router.post('/logout', (req, res) => {
   res.redirect('/');
 });
 
+//TO DO
+// router.get('/users/:id')
+
 module.exports = router;

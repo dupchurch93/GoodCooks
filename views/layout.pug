@@ -1,17 +1,23 @@
 doctype html
 html
   head
-      block head
-        title GoodCooks - #{title}
-        link(rel='stylesheet' href='/stylesheets/reset.css')
+    block head
+      title GoodCooks - #{title}
+      link(rel='stylesheet', href='/stylesheets/home.css')
+      link(rel='stylesheet', href='/stylesheets/reset.css')
+  header
+      nav(class='navbar')
+        a(class='navbar__logo navbar__link', href='/')
+          img(alt='GoodCooks Logo', width='50px', height='50px', src='')
+        if locals.authenticated
+          div Welcome #{user.username}!
+          a(class='navbar__link', href='/') Home
+          a(class='navbar__link', href='/recipes') Browse
+          a(class='navbar__link', href='/users') My Recipes
+          form(action='/users/logout', method='post')
+            button(class='navbar__link', type='submit') Logout
+        else
+          a(class='navbar__link', href='/users/register') Register
+          a(class='navbar__link', href='/users/login') Login
   body
-    if locals.authenticated
-      div= user.id
-      div= user.username
-      div= user.email
-      form(action='/users/logout', method='post')
-        button(type='submit') Logout
-    else
-      a(href='/users/register') Register
-      a(href='/users/login') Login
     block content
