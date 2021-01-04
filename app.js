@@ -9,6 +9,8 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const {checkUser} = require('./utils');
+const { sessionSecret } = require('./config');
+const { restoreUser } = require('./auth');
 
 const app = express();
 
@@ -18,21 +20,21 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(checkUser);
-
-// set up session middleware
+app.use(cookieParser(sessionSecret));
 const store = new SequelizeStore({ db: sequelize });
-
 app.use(
   session({
-    secret: 'superSecret',
+    secret: sessionSecret,
     store,
     saveUninitialized: false,
     resave: false,
   })
 );
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(restoreUser);
+
+// set up session middleware
+
 
 // create Session table if it doesn't already exist
 store.sync();

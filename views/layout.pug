@@ -5,7 +5,8 @@ html
         title GoodCooks - #{title}
         link(rel='stylesheet' href='/stylesheets/reset.css')
   body
-    if user
+    if locals.authenticated
+      div Test
       div= user.id
       div= user.username
       div= user.email
