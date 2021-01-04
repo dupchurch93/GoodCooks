@@ -1,0 +1,34 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px;
+  padding: 10px;
+  align-content: center;
+}
+
+.navbar__text {
+  font-size: 24px;
+  margin: 10px;
+}
+
+.navbar__link {
+  font-size: 24px;
+  margin: 10px;
+}
+
+.navbar__container {
+  display: flex;
+  margin: 15px;
+  padding: 10px;
+  align-items: center;
+}
+
+.navbar__container-left {
+  display: flex;
+  justify-content: start;
+}
+
+.navbar__container-right {
+  display: flex;
+  justify-content: end;
+}
