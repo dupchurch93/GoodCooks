@@ -1,6 +1,8 @@
+const db = require('./db/models');
+
 const loginUser = (req, res, user) => {
     //saves the user to the session and sets the user id to the primary user key of the database
-    req.session.user = {
+    req.session.auth = {
         userId: user.id
     };
 }

@@ -47,6 +47,7 @@ router.get('/login', csrfProtection, asyncHandler(async (req, res) => {
     title: 'login',
     csrfToken: req.csrfToken()
   })
+  // console.log(user);
 }))
 
 router.post('/login',csrfProtection,loginValidator, asyncHandler(async(req, res)=> {
