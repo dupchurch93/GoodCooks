@@ -9,4 +9,9 @@ html
       div= user.id
       div= user.username
       div= user.email
+      form(action='/users/logout', method='post')
+        button(type='submit') Logout
+    else
+      a(href='/users/register') Register
+      a(href='/users/login') Login
     block content
