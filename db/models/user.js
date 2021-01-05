@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   User.associate = function(models) {
     // associations can be defined here
-    User.belongsTo(models.Cupboard, { foreignKey: 'userId' })
+    User.hasMany(models.Cupboard, { foreignKey: 'userId' })
     User.hasMany(models.Rating, { foreignKey: 'userId' });
     
   };
