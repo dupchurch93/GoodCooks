@@ -25,7 +25,7 @@ block content
         h4=recipe.name
         div=recipe.description
         img(class='recipeImage', alt='burrito', src='./images/buritos.jpg')
-        button(type='submit' class='mainBody__saveButton') Save To Cupboard
+        button(type='submit' class='mainBody__saveButton', id=`saveRecipe${recipe.id}`) Save To Cupboard
         //- To do - Set up ajax to save recipe to cupboard and change button to "unsave" when clicked
     div(class='mainBody__newsColumn mainBody__mainColumn coreDisplay')
       h3 Best Recipes, cooks and more!
