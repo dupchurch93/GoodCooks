@@ -1,9 +1,11 @@
+/* background layout */
 .body {
-  background-color: #ffa384;
+  background-color: white;
 }
 
+/*navbar styles*/
 .navbar {
-  background-color: #74bdcb;
+  background-color: #f2e9eb;
   display: flex;
   justify-content: space-between;
   margin: 10px;
@@ -72,6 +74,35 @@
 #searchIcon {
   box-sizing: border-box;
   height: 28px;
+  box-shadow: 1px 1px 2px 1px rgba(10, 128, 238, 0.25);
   /* position: relative;
   right: 22px; */
+}
+
+/*main section styling*/
+.mainBody {
+  display: grid;
+  grid-template-columns: 1fr, 2fr, 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "userCol recipeCol newsCol";
+}
+
+.userColumn {
+  grid-area: userCol;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px
+}
+
+.recipeColumn {
+  grid-area: recipeCol;
+  display: flex;
+  flex-direction: column;
+}
+
+.newsColumn {
+  grid-area: newsCol;
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px
 }
