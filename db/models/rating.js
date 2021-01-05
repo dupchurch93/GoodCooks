@@ -1,13 +1,22 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Rating = sequelize.define('Rating', {
-    userId: DataTypes.INTEGER,
-    content: DataTypes.TEXT,
-    starRating: DataTypes.INTEGER
-  }, {});
+  const Rating = sequelize.define(
+    "Rating",
+    {
+      userId: DataTypes.INTEGER,
+      content: DataTypes.TEXT,
+      starRating: { type: DataTypes.INTEGER,
+      validate: {
+        min: 1,
+        max: 5,
+      },
+    }
+    },
+    {}
+  );
   Rating.associate = function(models) {
     // associations can be defined here
-    Rating.hasMany(models.User, { foreignKey: 'userId' })
+    Rating.belongsTo(models.User, { foreignKey: 'userId' })
     const columnMapping = {
       through: "Recipe_Rating",
       foreignKey: "ratingId",

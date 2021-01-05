@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function(models) {
     // associations can be defined here
     User.belongsTo(models.Cupboard, { foreignKey: 'userId' })
-    User.belongsTo(models.Rating, { foreignKey: 'userId' });
+    User.hasMany(models.Rating, { foreignKey: 'userId' });
     
   };
   return User;
