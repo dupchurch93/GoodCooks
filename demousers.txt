@@ -1,3 +1,7 @@
 u: demouser
 email: demo@demo.com
 pw: Password1!
+
+u: demouser2
+email: demo2@demo.com
+pw: Password2!

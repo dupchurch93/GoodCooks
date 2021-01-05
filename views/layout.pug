@@ -1,12 +1,33 @@
 doctype html
 html
   head
-      block head
-        title GoodCooks - #{title}
-        link(rel='stylesheet' href='/stylesheets/reset.css')
-  body
-    if locals.authenticated
-      div= user.id
-      div= user.username
-      div= user.email
+    block head
+      title GoodCooks - #{title}
+      link(rel='stylesheet', href='/stylesheets/home.css')
+      link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.css')
+      link(rel='stylesheet', href='/stylesheets/reset.css')
+  header(class='header')
+      nav(class='navbar')
+        div(class='navbar__container navbar__container-left')
+          a(class='navbar__logo navbar__link', href='/')
+            img(alt='GoodCooks Logo', width='100px', height='100px', src='/images/logo.jpeg')
+          if locals.authenticated
+            div(class='navbar__text') Welcome #{user.username}!
+        if locals.authenticated
+          div(class='navbar__container navbar__container-middle')
+            form(class='searchForm' action="/recipes/search")
+              input(class='navbar__link searchbar',type='text',id='searchBar' placeholder='Search Recipes')
+              button(class='navbar__link searchbar', id='searchIcon',type='submit')
+                i(class="fas fa-search")
+          div(class='navbar__container navbar__container-right')
+            a(class='navbar__link', href='/') Home
+            a(class='navbar__link', href='/recipes') Browse
+            a(class='navbar__link', href='/users') My Recipes
+            form(action='/users/logout', method='post')
+              button(class='navbar__link', type='submit') Logout
+        else
+          div(class='navbar__container navbar__container-right')
+            a(class='navbar__link', href='/users/register') Register
+            a(class='navbar__link', href='/users/login') Login
+  body(class='body')
     block content
