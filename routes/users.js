@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler, csrfProtection, userValidator, loginValidator } = require('../utils');
 const { validationResult } = require('express-validator');
-const { User } = require('../db/models/');
+const { User, Cupboard } = require('../db/models/');
 const bcrypt = require('bcryptjs');
 const { loginUser, logoutUser } = require('../auth');
+
 
 /* GET user registration form */
 router.get('/register', csrfProtection, function (req, res, next) {
@@ -32,6 +33,7 @@ router.post(
       const hashedPassword = await bcrypt.hash(password, 10);
       user.hashedPassword = hashedPassword;
       await user.save();
+      await Cupboard.create({ userId: user.id, name: 'default'})
       loginUser(req, res, user);
       res.redirect('/');
     } else {

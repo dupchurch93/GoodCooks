@@ -14,6 +14,11 @@ block content
       div And this?
       img(class='recipeImage', alt='burrito', src='./images/buritos.jpg')
       div Updates
+      if locals.authenticated
+        div Todo saved cupboard
+        div Todo cooked cupboard
+        div Todo favorites cupboard
+
     div(class='mainBody__recipeColumn mainBody__mainColumn coreDisplay')
       h3 Try out these great recipes below...
       each recipe in recipes
@@ -27,3 +32,4 @@ block content
       div Recipe of 2020
       div Worst recipe of 2020? Find out here
       div Our editor's favorite chefs
+  script(src='./saveRecipe.js')
