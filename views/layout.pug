@@ -7,10 +7,10 @@ html
       link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.css')
       link(rel='stylesheet', href='/stylesheets/reset.css')
   header(class='header')
-      nav(class='navbar coreDisplay')
+      nav(class='navbar core-display')
         div(class='navbar__container navbar__container-left')
           a(class='navbar__logo navbar__link', href='/')
-            img(alt='GoodCooks Logo', width='100px', height='100px', src='/images/logo.jpeg')
+            img(alt='GoodCooks Logo', width='200px', height='200px', src='/images/goodcookslogo.png')
           if locals.authenticated
             div(class='navbar__text') Welcome #{user.username}!
         div(class='navbar__container navbar__container-middle')
@@ -31,3 +31,4 @@ html
             a(class='navbar__link', href='/users/login') Login
   body(class='body')
     block content
+  footer(class='footer core-display')
