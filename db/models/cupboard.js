@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
   Cupboard.associate = function(models) {
     // associations can be defined here
 
-    Cupboard.hasMany(models.User, { foreignKey: 'userId'})
     const columnMapping = {
       through: 'Cupboard_Recipe',
       foreignKey: 'cupboardId',
