@@ -77,7 +77,7 @@ module.exports = {
          updatedAt: new Date("2014-09-03"),
        },
        {
-         name: "Grileld cheese",
+         name: "Grilled cheese",
          description:
            "Great simple grilled cheese recipe that is ready to eat in 10 minutes",
          ingredients: `3 ounces about 2/3 to 1 cup shredded cheddar, swiss, jack, or fontina cheese,
