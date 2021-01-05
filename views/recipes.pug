@@ -1,0 +1,8 @@
+extends layout.pug
+block content
+  each recipe in recipes
+    h4(class='browseRecipesRecipe')=recipe.name
+      div=recipe.description
+      //- To do: include pictures of each recipe
+    //-   img(class='browseRecipesRecipe_image', alt='burrito', src='./images/buritos.jpg')
+      button(type='submit' class='mainBody__saveButton') Save To Cupboard

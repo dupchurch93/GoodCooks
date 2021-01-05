@@ -9,23 +9,21 @@ append head
 block content
   div(class='mainBody')
     div(class='mainBody__userColumn mainBody__mainColumn coreDisplay')
-      h4 Find your favorite recipes and check out what is in your cupboards.
+      h3 Find your favorite recipes and check out what is in your cupboards.
       div Which direction does this go?
       div And this?
       img(class='recipeImage', alt='burrito', src='./images/buritos.jpg')
       div Updates
     div(class='mainBody__recipeColumn mainBody__mainColumn coreDisplay')
-      h4 Try out these great recipes below...
-      div Recipe 1
-      img(class='recipeImage', alt='burrito', src='./images/buritos.jpg')
-      div Recipe 2
-      img(class='recipeImage', alt='burrito', src='./images/buritos.jpg')
-      div Recipe 3
-      img(class='recipeImage', alt='burrito', src='./images/buritos.jpg')
-      div Recipe 4
-      img(class='recipeImage', alt='burrito', src='./images/buritos.jpg')
+      h3 Try out these great recipes below...
+      each recipe in recipes
+        h4=recipe.name
+        div=recipe.description
+        img(class='recipeImage', alt='burrito', src='./images/buritos.jpg')
+        button(type='submit' class='mainBody__saveButton') Save To Cupboard
+        //- To do - Set up ajax to save recipe to cupboard and change button to "unsave" when clicked
     div(class='mainBody__newsColumn mainBody__mainColumn coreDisplay')
-      h4 Best Recipes, cooks and more!
+      h3 Best Recipes, cooks and more!
       div Recipe of 2020
       div Worst recipe of 2020? Find out here
       div Our editor's favorite chefs
