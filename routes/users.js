@@ -22,7 +22,7 @@ router.post(
   csrfProtection,
   userValidator,
   asyncHandler(async (req, res) => {
-    console.log('req.body', req.body);
+    // console.log('req.body', req.body);
     const { username, email, password } = req.body;
     const user = User.build({ username, email });
 
