@@ -7,15 +7,14 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  h1= title
-  p Welcome to your Project Skeleton
   div(class='mainBody')
-    div(class='userColumn mainColumn')
+    div(class='mainBody__userColumn mainBody__mainColumn coreDisplay')
       h4 Find your favorite recipes and check out what is in your cupboards.
       div Which direction does this go?
       div And this?
       img(class='recipeImage', alt='burrito', src='./images/buritos.jpg')
-    div(class='recipeColumn mainColumn')
+      div Updates
+    div(class='mainBody__recipeColumn mainBody__mainColumn coreDisplay')
       h4 Try out these great recipes below...
       div Recipe 1
       img(class='recipeImage', alt='burrito', src='./images/buritos.jpg')
@@ -25,7 +24,7 @@ block content
       img(class='recipeImage', alt='burrito', src='./images/buritos.jpg')
       div Recipe 4
       img(class='recipeImage', alt='burrito', src='./images/buritos.jpg')
-    div(class='newsColumn mainColumn')
+    div(class='mainBody__newsColumn mainBody__mainColumn coreDisplay')
       h4 Best Recipes, cooks and more!
       div Recipe of 2020
       div Worst recipe of 2020? Find out here

@@ -5,16 +5,16 @@
 
 /*navbar styles*/
 .navbar {
-  background-color: #f2e9eb;
   display: flex;
   justify-content: space-between;
-  margin: 10px;
+  /* margin: 10px; */
   padding: 10px;
   align-content: center;
   height: 120px;
-  border: 1px solid grey;
-  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 1);
-  border-radius: 10px;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.25);
+  /* border-bottom: 1px solid grey; */
+  /* box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 1); */
+  /* border-radius: 10px; */
   /* background-color: rgb(46, 1, 1); */
 }
 
@@ -75,8 +75,8 @@
   box-sizing: border-box;
   height: 28px;
   box-shadow: 1px 1px 2px 1px rgba(10, 128, 238, 0.25);
-  /* position: relative;
-  right: 22px; */
+  background-color: #d54215;
+  font-weight: bold;
 }
 
 /*main section styling*/
@@ -87,35 +87,34 @@
   grid-template-areas: "userCol recipeCol newsCol";
 }
 
-.mainColumn {
+.mainBody__mainColumn {
   display: flex;
   flex-direction: column;
-  border: 2px solid grey;
-  margin: 40px;
+  margin: 10px 15px 1px 15px;
   padding: 10px;
-  border-radius: 20px;
+  align-items: center;
 }
 
-.userColumn {
+.mainBody__userColumn {
   grid-area: userCol;
   padding-left: 20px
 }
 
-.recipeColumn {
+.mainBody__recipeColumn {
   grid-area: recipeCol;
 }
 
-.newsColumn {
+.mainBody__newsColumn {
   grid-area: newsCol;
   padding-right: 20px
 }
 
-.userColumn > .recipeImage {
+.mainBody__userColumn > .recipeImage {
   height:auto;
   width: 75%;
 }
 
-.recipeColumn > .recipeImage {
+.mainBody__recipeColumn > .recipeImage {
   height:auto;
   width: 50%;
 }

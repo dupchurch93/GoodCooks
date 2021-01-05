@@ -26,3 +26,11 @@ body, header, nav {
 h1 {
   font-size: 2rem;
 }
+
+.navbar__button {
+  background-color: #d54215;
+}
+
+.coreDisplay {
+  background-color:#f4f2f3;
+}
