@@ -7,9 +7,9 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  div(class='mainBody')
-    div(class='mainBody__userColumn mainBody__mainColumn coreDisplay')
-      h3 Find your favorite recipes and check out what is in your cupboards.
+  div(class='main-body')
+    div(class='main-body__user-column main-body__main-column core-display')
+      h4 Find your favorite recipes and check out what is in your cupboards.
       div Which direction does this go?
       div And this?
       img(class='recipe-image', alt='burrito', src='./images/buritos.jpg')
@@ -24,7 +24,7 @@ block content
             h1: a(class='recipe recipe-title', href=`/recipes/${recipe.id}`)= recipe.name
             h2 by #{recipe.author}
             p(class='recipe recipe-description', width= '500px', height= '400px',)= recipe.description
-            button(class='recipe-save button', id=`recipe${recipe.id}`,type='submit') Save
+            button(class='recipe-save button', type='submit') Save
     div(class='main-body__news-column main-body__main-column core-display')
       h4 Best Recipes, cooks and more!
       div Recipe of 2020
