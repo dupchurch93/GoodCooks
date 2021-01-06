@@ -4,7 +4,7 @@ append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/index.css")
   //- add page specific js
-  script(src="/javascripts/index.js" type="module" defer)
+  //- script(src="/javascripts/index.js" type="module" defer)
 
 block content
   div(id='errors')
@@ -26,10 +26,10 @@ block content
             h2 by #{recipe.author}
             p(class='recipe recipe-description', width= '500px', height= '400px',)= recipe.description
             if locals.authenticated
-              button(class='recipe-save button', id=`recipe:${recipe.id}.user:${user.id}`, type='submit') Save
+              button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Save
     div(class='main-body__news-column main-body__main-column core-display')
       h4 Best Recipes, cooks and more!
       div Recipe of 2020
       div Worst recipe of 2020? Find out here
       div Our editor's favorite chefs
-  script(src='/javascripts/saveRecipe.js' type="module")
+  script(src='/javascripts/saveRecipe.js' type="module" defer)

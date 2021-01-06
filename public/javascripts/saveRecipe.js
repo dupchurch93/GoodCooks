@@ -1,7 +1,5 @@
-const { User, Cupboard, Cupboard_Recipe } = require('../../db/models');
-
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('dom content loaded');
+  // console.log('dom content loaded');
   //grab save buttons and add event listeners to them
   const saveButtons = document.querySelectorAll('.recipe-save');
 
@@ -13,12 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // 'recipe:1'
       // ['recipe', '1'][1] = '1'
       const recipeId = parseInt(ids[0].split(':')[1], 10);
-      const userId = parseInt(ids[1].split(':')[1], 10);
-      //get the cupboardId for the current User
-      const cupboard = await Cupboard.findOne({ where: { userId: userId } });
-      const cupboardId = cupboard.id;
+      const cupboardId = parseInt(ids[1].split(':')[1], 10);
       //save to the cupboard
-      const res = saveRecipe(cupboardId, recipeId);
+      const res = await saveRecipe(cupboardId, recipeId);
+      console.log("fetch result", res);
       if (res) {
         event.target.innerText = 'Unsave';
       } else {
@@ -30,19 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const saveRecipe = async (cupboardId, recipeId) => {
   try {
-    const res = await fetch(`/api/recipes/${recipeId}/cupboards/${cupboardId}`, {
+    console.log('inside save recipe')
+    const res = await fetch(`/api/recipes/saveRecipe`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application.json',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({}),
+      body: JSON.stringify({cupboardId, recipeId}),
     });
     if (!res.ok) {
       throw res;
     }
     const data = await res.json();
     return data;
-  } catch {
-    console.error(err);
+  } catch(err) {
+    console.log('in the catch block')
+    console.error('error', err);
   }
 };
