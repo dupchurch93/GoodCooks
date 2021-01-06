@@ -24,7 +24,7 @@ block content
             h1: a(class='recipe recipe-title', href=`/recipes/${recipe.id}`)= recipe.name
             h2 by #{recipe.author}
             p(class='recipe recipe-description', width= '500px', height= '400px',)= recipe.description
-            button(class='recipe-save button', type='submit') Save
+            button(class='recipe-save button', id=`recipe${recipe.id}:user${user.id}`, type='submit') Save
     div(class='main-body__news-column main-body__main-column core-display')
       h4 Best Recipes, cooks and more!
       div Recipe of 2020
