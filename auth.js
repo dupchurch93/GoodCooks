@@ -14,10 +14,11 @@ const restoreUser = async (req, res, next) => {
     const { userId } = req.session.auth;
     //looks for the user in the database and sets the authentication to true if the database finds the user, otherwise throws an error
     try {
-      const user = await db.User.findByPk(userId);
+      const user = await db.User.findOne({where: {id: userId}, include: db.Cupboard});
       if (user) {
         res.locals.authenticated = true;
         res.locals.user = user;
+        // console.log(user.Cupboards[0].id);
         next();
       }
     } catch (err) {
