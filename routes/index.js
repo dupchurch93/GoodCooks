@@ -12,7 +12,7 @@ router.get(
       order: sequelize.random(),
       limit: 4,
     });
-    console.log(recipes[0].name, recipes[0].link);
+
     res.render('index', { title: 'a/A Express Skeleton Home', recipes });
   })
 );

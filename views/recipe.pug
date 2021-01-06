@@ -1,0 +1,7 @@
+extends layout.pug
+
+block content
+  div(class='recipe-page core-display')
+    div(class='recipe-page__recipe-list')
+      h1(class='recipe-list__recipe-title')=recipe.name
+      img(class='recipe-list__recipe-image', alt=`Photo of ${recipe.name}`, src=recipe.link)
