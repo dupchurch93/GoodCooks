@@ -17,7 +17,7 @@ block content
       div Updates
     div(class='main-body__recipe-column main-body__main-column core-display')
       h4 Try out these great recipes below...
-      each recipe in recipes
+      each recipe in normalizedRecipes
         div(class='recipe recipe-card recipe-title')
           a(class='recipe recipe-image', href=`/recipes/${recipe.id}`)
             img(class='recipe', width= '500px', height= '400px', alt= recipe.name, src= recipe.link)
@@ -25,6 +25,7 @@ block content
             h1: a(class='recipe recipe-title', href=`/recipes/${recipe.id}`)= recipe.name
             h2 by #{recipe.author}
             p(class='recipe recipe-description', width= '500px', height= '400px',)= recipe.description
+            div=recipe.isSaved
             if locals.authenticated
               button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Save
               div(class='rating')
