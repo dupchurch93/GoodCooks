@@ -2,16 +2,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // console.log('dom content loaded');
   //grab save buttons and add event listeners to them
 
+  const getId = (element) => {
+    //grab the recipe id from the target id (we set this up in index.pug for the save button to have the recipe id)
+    const ids = element.id.split('.');
+    // [recipe:1, user:1]
+    // 'recipe:1'
+    // ['recipe', '1'][1] = '1'
+    const recipeId = parseInt(ids[0].split(':')[1], 10);
+    const cupboardId = parseInt(ids[1].split(':')[1], 10);
+
+    return {recipeId, cupboardId}
+  }
+
   //Save event listeners
   document.querySelectorAll('.recipe-save').forEach(async (button) => {
     button.addEventListener('click', async (event) => {
-      //grab the recipe id from the target id (we set this up in index.pug for the save button to have the recipe id)
-      const ids = event.target.id.split('.');
-      // [recipe:1, user:1]
-      // 'recipe:1'
-      // ['recipe', '1'][1] = '1'
-      const recipeId = parseInt(ids[0].split(':')[1], 10);
-      const cupboardId = parseInt(ids[1].split(':')[1], 10);
+      const { recipeId, cupboardId } = getId(event.target)
       //save or unsave to the cupboard if it's already saved or not
       if (event.target.innerText === 'Unsave Recipe') {
         const res = await unsaveRecipe(cupboardId, recipeId);
@@ -36,11 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //Add to Cooked event listeners
   document.querySelectorAll('.recipe-cooked').forEach(async (button) => {
     button.addEventListener('click', async (event) => {
-      //grab the recipe id from the target id (we set this up in index.pug for the save button to have the recipe id)
-      console.log('in the add to cooked route!');
-      const ids = event.target.id.split('.');
-      const recipeId = parseInt(ids[0].split(':')[1], 10);
-      const cupboardId = parseInt(ids[1].split(':')[1], 10);
+      const { recipeId, cupboardId } = getId(event.target)
       //save or unsave to the cupboard if it's already saved or not
       const saveButton = document.getElementById(`recipe:${recipeId}.cupboard:${cupboardId}`);
       if (saveButton.innerText === 'Save Recipe') {
@@ -70,11 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //Favorite event listeners
   document.querySelectorAll('.recipe-favorited').forEach(async (button) => {
     button.addEventListener('click', async (event) => {
-      //grab the recipe id from the target id (we set this up in index.pug for the save button to have the recipe id)
-      console.log('in the add to cooked route!');
-      const ids = event.target.id.split('.');
-      const recipeId = parseInt(ids[0].split(':')[1], 10);
-      const cupboardId = parseInt(ids[1].split(':')[1], 10);
+      const { recipeId, cupboardId } = getId(event.target)
       //save or unsave to the cupboard if it's already saved or not
       const saveButton = document.getElementById(`recipe:${recipeId}.cupboard:${cupboardId}`);
       if (saveButton.innerText === 'Save Recipe') {
