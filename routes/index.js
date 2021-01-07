@@ -25,6 +25,7 @@ router.get(
           return {
             id: cupboard.id,
             name: cupboard.name,
+            saved: cupboard.userId === res.locals.user.id
           }
         })
       }
