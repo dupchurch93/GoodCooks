@@ -27,8 +27,8 @@ block content
             p(class='recipe recipe-description', width= '500px', height= '400px',)= recipe.description
             div=recipe.isSaved
             if locals.authenticated
-              div(class='rating')
               button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Save
+              div(class='rating')
                 span ☆
                 span ☆
                 span ☆
