@@ -28,6 +28,7 @@ router.get(
         saved: (() => {
           let saved = false;
           for (let cupboard of recipe.Cupboards) {
+            console.log(cupboard.Cupboard_Recipe)
             if (res.locals.user) {
               let saved = (cupboard.userId === res.locals.user.id)
               if (saved === true) return saved;
