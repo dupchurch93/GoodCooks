@@ -48,6 +48,7 @@ router.patch(
     res.json(recordsUpdated);
   })
 );
+
 router.patch(
   '/recipes/uncookRecipe',
   asyncHandler(async (req, res) => {
@@ -64,6 +65,7 @@ router.patch(
     res.json(recordsUpdated);
   })
 );
+
 router.patch(
   '/recipes/favoriteRecipe',
   asyncHandler(async (req, res) => {
@@ -80,6 +82,7 @@ router.patch(
     res.json(recordsUpdated);
   })
 );
+
 router.patch(
   '/recipes/unfavoriteRecipe',
   asyncHandler(async (req, res) => {
