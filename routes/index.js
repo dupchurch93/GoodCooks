@@ -14,6 +14,7 @@ router.get(
       limit: 4,
       include: [Cupboard]
     });
+
     // Need: everything from recipe. cupboardId (eventually favorite and cooked from joins table)
     const normalizedRecipes = recipes.map((recipe) => {
       return {
@@ -21,39 +22,27 @@ router.get(
         name: recipe.name,
         description: recipe.description,
         link: recipe.link,
+        //saved: We are loading all cupboards for the associated recipe
+        //Must look at each cupboard and look at userId to compare to current user
+        //If user is the same as current for any cupboard, mark saved as true
+        saved: (() => {
+          let saved = false;
+          for (let cupboard of recipe.Cupboards) {
+            if (res.locals.user) {
+              let saved = (cupboard.userId === res.locals.user.id)
+              if (saved === true) return saved;
+            }
+          }
+          return saved;
+        })(),
         cupboards: recipe.Cupboards.map((cupboard) => {
           return {
             id: cupboard.id,
             name: cupboard.name,
-            saved: cupboard.userId === res.locals.user.id
           }
         })
       }
     });
-
-    // if (res.locals.user) {
-    //   const cupboardId = res.locals.user.Cupboards[0].id;
-    //   //change to a regular for loop or using map and check each instance in the recipes array
-    //   recipes.forEach(async (recipe) => {
-    //     const joinRecord = await Cupboard_Recipe.findOne({
-    //       where: {
-    //         cupboardId: cupboardId,
-    //         recipeId: recipe.id,
-    //       },
-    //     });
-    //     if(joinRecord){
-    //       recipe.isSaved = true;
-    //     } else {
-    //       recipe.isSaved = false;
-    //     }
-    //     // console.log('SAVED', recipe.name, recipe.isSaved);
-    //   });
-    // }
-    // recipes.forEach((recipe) => {
-    //   console.log(recipe.name, recipe.isSaved)
-    // })
-    console.log(normalizedRecipes)
-    // console.log(recipes[0].Cupboards[0])
     res.render('index', { title: 'a/A Express Skeleton Home', normalizedRecipes });
   })
 );

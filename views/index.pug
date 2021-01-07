@@ -25,7 +25,7 @@ block content
             h1: a(class='recipe recipe-title', href=`/recipes/${recipe.id}`)= recipe.name
             h2 by #{recipe.author}
             p(class='recipe recipe-description', width= '500px', height= '400px',)= recipe.description
-            div=recipe.isSaved
+            div=recipe.saved
             if locals.authenticated
               button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Save
     div(class='main-body__news-column main-body__main-column core-display')
