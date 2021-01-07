@@ -14,7 +14,6 @@ router.get(
       limit: 4,
       include: [Cupboard]
     });
-
     // Need: everything from recipe. cupboardId (eventually favorite and cooked from joins table)
     const normalizedRecipes = recipes.map((recipe) => {
       return {
