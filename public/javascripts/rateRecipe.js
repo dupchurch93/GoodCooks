@@ -28,6 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const handleResponse = async (res) => {
+    if (!res.ok) {
+      throw res;
+    }
+    const data = await res.json();
+    return data;
+  };
+
   document.querySelectorAll('.rating__button').forEach((button) => {
     button.addEventListener('click', async (event) => {
       const { recipeId, starRating } = getRecipeIdAndStarRating(event.target);
@@ -60,11 +68,7 @@ const rateRecipe = async (recipeId, starRating, content = null) => {
       },
       body: JSON.stringify({ recipeId, starRating, content }),
     });
-    if (!res.ok) {
-      throw res;
-    }
-    const data = await res.json();
-    return data;
+    return await handleResponse(res);
   } catch (err) {
     console.error('error', err);
   }
@@ -79,11 +83,7 @@ const updateRateRecipe = async (recipeId, starRating) => {
       },
       body: JSON.stringify({ recipeId, starRating }),
     });
-    if (!res.ok) {
-      throw res;
-    }
-    const data = await res.json();
-    return data;
+    return await handleResponse(res);
   } catch (err) {
     console.error('error', err);
   }
