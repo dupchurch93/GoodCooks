@@ -6,7 +6,6 @@ html
       link(rel='stylesheet', href='/stylesheets/home.css')
       link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.css')
       link(rel='stylesheet', href='/stylesheets/reset.css')
-      link(rel='stylesheet', href='/stylesheets/recipe.css')
   header(class='header')
       nav(class='navbar core-display')
         div(class='navbar__container navbar__container-left')
@@ -28,8 +27,8 @@ html
               button(class='navbar__link navbar__button', type='submit') Logout
         else
           div(class='navbar__container navbar__container-right')
-            a(class='navbar__link', href='/users/register') Register
-            a(class='navbar__link', href='/users/login') Login
+            a(class='navbar__link navbar__button', href='/users/register') Register
+            a(class='navbar__link navbar__button', href='/users/login') Login
   body(class='body')
     block content
   footer(class='footer core-display')
