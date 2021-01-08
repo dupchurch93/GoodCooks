@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const { asyncHandler } = require('../utils');
-const { Recipe, sequelize, Cupboard_Recipe, Cupboard } = require('../db/models');
+const { Recipe, sequelize, Rating, Cupboard } = require('../db/models');
 const { BandwidthLimitExceeded } = require('http-errors');
 const cupboard = require('../db/models/cupboard');
 
@@ -12,8 +12,9 @@ router.get(
     const recipes = await Recipe.findAll({
       order: sequelize.random(),
       limit: 4,
-      include: [Cupboard],
+      include: [Cupboard, Rating],
     });
+    console.log('RECIPE', recipes[0].Ratings);
     // Need: everything from recipe. cupboardId (eventually favorite and cooked from joins table)
     const normalizedRecipes = recipes.map((recipe) => {
       return {
@@ -22,25 +23,12 @@ router.get(
         author: recipe.author,
         description: recipe.description,
         link: recipe.link,
-        //saved: We are loading all cupboards for the associated recipe
-        //Must look at each cupboard and look at userId to compare to current user
-        //If user is the same as current for any cupboard, mark saved as true
-        // saved: (() => {
-        //   let saved = false;
-        //   for (let cupboard of recipe.Cupboards) {
-        //     console.log(cupboard.Cupboard_Recipe)
-        //     if (res.locals.user) {
-        //       let saved = (cupboard.userId === res.locals.user.id)
-        //       if (saved === true) return saved;
-        //     }
-        //   }
-        //   return saved;
-        // })(),
         status: (() => {
           const status = {
             saved: false,
             cooked: false,
             favorited: false,
+            starRating: false,
           };
           if (res.locals.user) {
             for (let cupboard of recipe.Cupboards) {
@@ -51,6 +39,13 @@ router.get(
                 }
                 if (cupboard.Cupboard_Recipe.favorited) {
                   status.favorited = true;
+                }
+              }
+            }
+            if (recipe.Ratings.length) {
+              for (let rating of recipe.Ratings) {
+                if (rating.userId === res.locals.user.id) {
+                  status.starRating = rating.starRating;
                 }
               }
             }
