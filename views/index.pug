@@ -38,18 +38,25 @@ block content
                 button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Unfavorite
               else
                 button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Favorite
-              div(class='rating')
-                span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:5`)
-                span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:4`)
-                span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:3`)
-                span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:2`)
-                span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:1`)
               if recipe.status.starRating
                 div
-                  - let n = 1
-                  ul
-                    while n <= recipe.status.starRating
-                      li star
+                  - let n = 5
+                  div(class='rating')
+                    span(class='rating__button rating__delete fa fa-minus-circle', id=`recipe:${recipe.id}`)
+                    while n > recipe.status.starRating
+                      span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:${n}`)
+                      - n--
+                    - let m = recipe.status.starRating
+                      while m >= 1
+                        span(class='rating__button fa fa-star checked', id=`recipe:${recipe.id}.star:${m}`)
+                        - m--
+              else
+                div(class='rating')
+                  span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:5`)
+                  span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:4`)
+                  span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:3`)
+                  span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:2`)
+                  span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:1`)
     div(class='main-body__news-column main-body__main-column core-display')
       h4 Best Recipes, cooks and more!
       div Recipe of 2020
