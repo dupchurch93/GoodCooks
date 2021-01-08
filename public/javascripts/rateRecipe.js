@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const res = await rateRecipe( recipeId, starRating);
             if(res){
                 //fill in corresponding star
+                console.log(res)
             } else {
                 alert('Something went wrong. Please try again');
             }
@@ -35,6 +36,6 @@ const rateRecipe = async (recipeId, starRating, content = null) => {
         const data = await res.json();
         return data;
     } catch (err) {
-        console.log("error", err)
+        console.error("error", err)
     }
 }

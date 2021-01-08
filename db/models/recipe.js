@@ -19,12 +19,8 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'recipeId',
       otherKey: 'cupboardId',
     };
-    const columnMapping2 = {
-      through: 'Recipe_Rating',
-      foreignKey: 'recipeId',
-      otherKey: 'ratingId',
-    };
-    Recipe.belongsToMany(models.Rating, columnMapping2);
+
+    Recipe.hasMany(models.Rating, { foreignKey: 'recipeId'});
     Recipe.belongsToMany(models.Cupboard, columnMapping);
   };
   return Recipe;
