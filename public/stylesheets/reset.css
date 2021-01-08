@@ -60,6 +60,7 @@ h1 {
 
 button{
   background-color: #ec4c4c;
+  border-radius: 5px;
 }
 
 .core-display {
