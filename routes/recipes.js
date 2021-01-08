@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { asyncHandler, csrfProtection } = require('../utils');
+const { asyncHandler, csrfProtection, normalizeRecipes } = require('../utils');
 const { User, Recipe, sequelize, Cupboard } = require('../db/models/');
 
 router.get(
@@ -8,8 +8,15 @@ router.get(
   asyncHandler(async (req, res) => {
     const recipes = await Recipe.findAll({
       order: sequelize.random(),
+      include: [Cupboard]
     });
-    res.render('recipes', { title: 'Browse Recipes', recipes });
+    let normalizedRecipes;
+    if(res.locals.user){
+      normalizedRecipes = await normalizeRecipes(recipes, res.locals.user.id);
+    } else {
+      normalizedRecipes = await normalizeRecipes(recipes);
+    }
+    res.render('recipes', { title: 'Browse Recipes', normalizedRecipes });
   })
 );
 
@@ -40,7 +47,7 @@ router.get('/:id(\\d+)', csrfProtection,
     })();
     recipe.status = status;
     recipe.ingredients = splitIngredients(recipe);
-    recipe.instructions = splitIngredients(recipe);
+    console.log(recipe.ingredients)
     res.render('recipe', {
       title: recipe.name,
       recipe,
@@ -53,7 +60,3 @@ module.exports = router;
 const splitIngredients = (recipe) => {
   return recipe.ingredients.split(',');
 };
-
-const splitInstructions = (recipe) => {
-  const instructions = recipe.instructions.split()
-}

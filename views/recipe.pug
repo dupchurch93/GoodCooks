@@ -1,6 +1,10 @@
 extends layout.pug
 include utils.pug
 
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/recipe.css")
+
 block content
   div(class='recipe-page core-display')
     div(class='recipe-page__recipe-list recipe-list')
@@ -15,7 +19,9 @@ block content
       div(class='recipe-description__recipe-description recipe-list')=recipe.description
     div(class='recipe-ingredients')
       h3(class='recipe-header') Ingredients
-      div(class='recipe-description__recipe-description')=recipe.ingredients
+      div(class='recipe-description__recipe-description')
+      each ingredient in recipe.ingredients
+        div - #{ingredient}
     div(class='recipe-instructions')
       h3(class='recipe-header recipe-list') Instructions
       div(class='recipe-description__recipe-description recipe-list')=recipe.instructions

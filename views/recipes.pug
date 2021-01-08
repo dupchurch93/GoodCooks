@@ -1,8 +1,21 @@
 extends layout.pug
+include utils.pug
+
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/recipes.css")
+
 block content
-  each recipe in recipes
-    h4(class='browseRecipesRecipe')=recipe.name
-      div=recipe.description
-      //- To do: include pictures of each recipe
-    //-   img(class='browseRecipesRecipe_image', alt='burrito', src='./images/buritos.jpg')
-      button(type='submit' class='mainBody__saveButton') Save To Cupboard
+  div(class='main-body core-display')
+    each recipe in normalizedRecipes
+      div(class='recipe recipe-card recipe-title')
+        div(class='image-link__container')
+          a(class='recipe recipe-image', href=`/recipes/${recipe.id}`)
+            img(class='recipe', width= '500px', height= '400px', alt= recipe.name, src= recipe.link)
+          +saveButtons(recipe)
+          +ratingButtons(recipe)
+        div(class='recipe recipe-content')
+          h1: a(class='recipe recipe-title', href=`/recipes/${recipe.id}`)= recipe.name
+          h2 by #{recipe.author}
+          p(class='recipe recipe-description', width= '500px', height= '400px',)= recipe.description
+        //- To do: include pictures of each recipe
