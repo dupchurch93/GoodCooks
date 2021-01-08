@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const recipeId = parseInt(ids[0].split(':')[1], 10);
     const cupboardId = parseInt(ids[1].split(':')[1], 10);
 
-    return {recipeId, cupboardId}
+    return {recipeId, cupboardId};
   }
 
   //Save event listeners

@@ -56,6 +56,46 @@ const userValidator = [
     }),
 ];
 
+const normalizeRecipes = async (recipes, resUserId = undefined) => {
+  const normalized = recipes.map((recipe) => {
+    return {
+      id: recipe.id,
+      name: recipe.name,
+      author: recipe.author,
+      description: recipe.description,
+      link: recipe.link,
+      status: (() => {
+        const status = {
+          saved: false,
+          cooked: false,
+          favorited: false,
+        };
+        if (resUserId) {
+          for (let cupboard of recipe.Cupboards) {
+            if (cupboard.userId === resUserId.id) {
+              status.saved = true;
+              if (cupboard.Cupboard_Recipe.cooked) {
+                status.cooked = true;
+              }
+              if (cupboard.Cupboard_Recipe.favorited) {
+                status.favorited = true;
+              }
+            }
+          }
+        }
+        return status;
+      })(),
+      cupboards: recipe.Cupboards.map((cupboard) => {
+        return {
+          id: cupboard.id,
+          name: cupboard.name,
+        };
+      }),
+    };
+  });
+  return normalized;
+}
+
 const loginValidator = [
   check('email')
   .exists({ checkFalsy: true })
@@ -65,4 +105,4 @@ const loginValidator = [
   .withMessage('Please provide a valid password')
 ]
 
-module.exports = { asyncHandler, csrfProtection, userValidator, loginValidator};
+module.exports = { asyncHandler, csrfProtection, userValidator, loginValidator, normalizeRecipes};

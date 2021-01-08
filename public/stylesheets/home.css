@@ -184,11 +184,18 @@
   position: relative;
   width: 1.1em;
 }
+
+.rating__button {
+  color: grey;
+}
+
 .rating > span:hover:before,
 .rating > span:hover ~ span:before {
-   content: "\2605";
-   position: absolute;
+   /* content: "\2605";
+   position: absolute; */
+   color: #ec4c4c;
 }
+
 .footer__div {
   width: 25%;
   padding: 20px;
