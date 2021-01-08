@@ -1,30 +1,13 @@
 extends layout.pug
+include utils.pug
 
 block content
   div(class='recipe-page core-display')
     div(class='recipe-page__recipe-list recipe-list')
       h1(class='recipe-list__recipe-title recipe-list')=recipe.name
       img(class='recipe-list__recipe-image recipe-list', alt=`Photo of ${recipe.name}`, src=recipe.link)
-        mixin saveButtons()
-  if locals.authenticated
-    if recipe.status.saved
-      button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Unsave Recipe
-    else
-      button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Save Recipe
-    if recipe.status.cooked
-      button(class='recipe-cooked button', id=`cookedrecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Remove from Cooked
-    else
-      button(class='recipe-cooked button', id=`cookedrecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Add to Cooked
-    if recipe.status.favorited
-      button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Unfavorite
-    else
-      button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Favorite
-    div(class='rating')
-      span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:5`)
-      span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:4`)
-      span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:3`)
-      span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:2`)
-      span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:1`)
+      div(class='save-button-container')
+      +saveButtons
       h3(class='recipe-header recipe-list') Description
       div(class='recipe-description__recipe-description recipe-list')=recipe.description
     div(class='recipe-ingredients')
