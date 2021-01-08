@@ -33,7 +33,7 @@ router.post(
       const hashedPassword = await bcrypt.hash(password, 10);
       user.hashedPassword = hashedPassword;
       await user.save();
-      await Cupboard.create({ userId: user.id, name: 'default'})
+      await Cupboard.create({ userId: user.id, name: 'default' })
       loginUser(req, res, user);
       res.redirect('/');
     } else {
@@ -97,6 +97,13 @@ router.post('/logout', (req, res) => {
   logoutUser(req, res);
   res.redirect('/');
 });
+
+router.get('/login/demo', asyncHandler(async (req, res) => {
+  const user = await User.findOne({ where: { id: 1 } });
+  console.log('hello')
+  loginUser(req, res, user);
+  res.redirect('/');
+}));
 
 //TO DO
 // router.get('/users/:id')

@@ -1,7 +1,8 @@
 mixin field(labelText, fieldName, fieldValue, fieldType = "text")
   div
-    label(for=fieldName)= labelText
-    input(type=fieldType, id=fieldName, name=fieldName, value=fieldValue)
+    label(class='form-label', for=fieldName)= labelText
+  div
+    input(class='form-input', type=fieldType, id=fieldName, name=fieldName, value=fieldValue)
 
 mixin saveButtons(recipe)
   if locals.authenticated
