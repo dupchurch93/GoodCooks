@@ -39,10 +39,37 @@ h1 {
 }
 
 .navbar__button,
-.button {
+.registration-form button,
+.login-form button {
   background-color: #ec4c4c;
+  margin: 5px;
+  border: 1px solid black;
+  text-decoration: none;
+  height: 30px;
+  padding: 4px;
+  border-radius: 5px;
+  font-size: 20px;
 }
 
 .core-display {
   background-color: #f4f2f3;
+}
+
+form{
+  padding: 12px 0px;
+  margin: 8px;
+  box-sizing: border-box;
+}
+
+.form-label{
+  width: 20%;
+  box-sizing: border-box;
+  margin: 8px 0px 8px 0px;
+}
+
+.form-input{
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0px 8px 0px;
+  box-sizing: border-box;
 }
