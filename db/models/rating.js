@@ -10,19 +10,18 @@ module.exports = (sequelize, DataTypes) => {
         min: 1,
         max: 5,
       },
-    }
+    },
+      recipeId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      }
     },
     {}
   );
   Rating.associate = function(models) {
     // associations can be defined here
     Rating.belongsTo(models.User, { foreignKey: 'userId' })
-    const columnMapping = {
-      through: "Recipe_Rating",
-      foreignKey: "ratingId",
-      otherKey: "recipeId",
-    };
-    Rating.belongsToMany(models.Recipe, columnMapping);
+    Rating.belongsTo(models.Recipe, { foreignKey: 'recipeId' });
   };
   return Rating;
 };

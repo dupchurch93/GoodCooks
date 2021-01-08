@@ -39,11 +39,11 @@ block content
               else
                 button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Favorite
               div(class='rating')
-                span ☆
-                span ☆
-                span ☆
-                span ☆
-                span ☆
+                span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:5`)
+                span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:4`)
+                span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:3`)
+                span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:2`)
+                span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:1`)
     div(class='main-body__news-column main-body__main-column core-display')
       h4 Best Recipes, cooks and more!
       div Recipe of 2020
