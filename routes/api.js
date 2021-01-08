@@ -45,7 +45,7 @@ router.patch(
         },
       }
     );
-    res.json(recordsUpdated);
+    res.json({recordsUpdated});
   })
 );
 
@@ -62,7 +62,7 @@ router.patch(
         },
       }
     );
-    res.json(recordsUpdated);
+    res.json({recordsUpdated});
   })
 );
 
@@ -79,7 +79,7 @@ router.patch(
         },
       }
     );
-    res.json(recordsUpdated);
+    res.json({recordsUpdated});
   })
 );
 
@@ -96,8 +96,20 @@ router.patch(
         },
       }
     );
-    res.json(recordsUpdated);
+    res.json({recordsUpdated});
   })
 );
 
+//Rating recipes
+router.post('/recipes/rateRecipe', asyncHandler(async(req, res) => {
+  const { recipeId, starRating, content } = req.body;
+  const userId = res.locals.user.id
+  const ratingsCreated = await Rating.create({
+    recipeId,
+    starRating,
+    content,
+    userId
+  });
+  res.json({ratingsCreated});
+}))
 module.exports = router;
