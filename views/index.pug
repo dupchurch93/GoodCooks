@@ -25,9 +25,19 @@ block content
             h1: a(class='recipe recipe-title', href=`/recipes/${recipe.id}`)= recipe.name
             h2 by #{recipe.author}
             p(class='recipe recipe-description', width= '500px', height= '400px',)= recipe.description
-            div=recipe.isSaved
             if locals.authenticated
-              button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Save
+              if recipe.status.saved
+                button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Unsave Recipe
+              else
+                button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Save Recipe
+              if recipe.status.cooked
+                button(class='recipe-cooked button', id=`cookedrecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Remove from Cooked
+              else
+                button(class='recipe-cooked button', id=`cookedrecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Add to Cooked
+              if recipe.status.favorited
+                button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Unfavorite
+              else
+                button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Favorite
               div(class='rating')
                 span ☆
                 span ☆
@@ -40,3 +50,4 @@ block content
       div Worst recipe of 2020? Find out here
       div Our editor's favorite chefs
   script(src='/javascripts/saveRecipe.js' type="module" defer)
+  script(src='/javascripts/rateRecipe.js' type="module" defer)
