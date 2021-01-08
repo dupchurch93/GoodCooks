@@ -17,14 +17,18 @@ document.addEventListener('DOMContentLoaded', () => {
     return false;
   };
 
-  const fillStars = (recipeId, starRating) => {
-    for (let i = 1; i <= starRating; i++) {
-      const star = document.getElementById(`recipe:${recipeId}.star:${i}`);
-      star.classList.add('checked');
-    }
-    for (let i = starRating + 1; i <= 5; i++) {
-      const star = document.getElementById(`recipe:${recipeId}.star:${i}`);
-      star.classList.remove('checked');
+  const fillStars = (res, recipeId, starRating) => {
+    if (res) {
+      for (let i = 1; i <= 5; i++) {
+        const star = document.getElementById(`recipe:${recipeId}.star:${i}`);
+        if (i <= starRating) {
+          star.classList.add('checked');
+        } else {
+          star.classList.remove('checked');
+        }
+      }
+    } else {
+      alert('Something went wrong. Please try again');
     }
   };
 
@@ -33,36 +37,35 @@ document.addEventListener('DOMContentLoaded', () => {
       const { recipeId, starRating } = getRecipeIdAndStarRating(event.target);
       if (event.target.classList.contains('checked') || anyIsChecked(recipeId, starRating)) {
         const res = await updateRateRecipe(recipeId, starRating);
-        if (res) {
-          fillStars(recipeId, starRating);
-        } else {
-          alert('Something went wrong. Please try again');
-        }
+        fillStars(res, recipeId, starRating);
       } else {
         const res = await rateRecipe(recipeId, starRating);
-        if (res) {
-          //fill in corresponding star
-          fillStars(recipeId, starRating);
-        } else {
-          alert('Something went wrong. Please try again');
-        }
+        fillStars(res, recipeId, starRating);
+      }
+    });
+  });
+
+  document.querySelector('.rating__delete').forEach((button) => {
+    button.addEventListener('click', async (event) => {
+      const recipeId = event.target.id.split(':')[1];
+      const res = await deleteRateRecipe(recipeId);
+
+      if (res) {
+        fillStars(recipeId, 0);
+      } else {
+        alert('Something went wrong. Please try again');
       }
     });
   });
 });
 
-document.querySelector(".rating__delete").forEach((button) =>{
-    button.addEventListener('click', async (event) => {
-        const recipeId  = event.target.id.split(':')[1]
-        const res = await deleteRateRecipe(recipeId);
-
-        if(res) {
-            fillStars(recipeId, 0)
-        } else {
-            alert("Something went wrong. Please try again");
-        }
-    })
-})
+const handleResponse = async (res) => {
+  if (!res.ok) {
+    throw res;
+  }
+  const data = await res.json();
+  return data;
+};
 
 const rateRecipe = async (recipeId, starRating, content = null) => {
   try {
@@ -73,11 +76,7 @@ const rateRecipe = async (recipeId, starRating, content = null) => {
       },
       body: JSON.stringify({ recipeId, starRating, content }),
     });
-    if (!res.ok) {
-      throw res;
-    }
-    const data = await res.json();
-    return data;
+    return await handleResponse(res);
   } catch (err) {
     console.error('error', err);
   }
@@ -92,24 +91,22 @@ const updateRateRecipe = async (recipeId, starRating) => {
       },
       body: JSON.stringify({ recipeId, starRating }),
     });
-    if (!res.ok) {
-      throw res;
-    }
-    const data = await res.json();
-    return data;
+    return await handleResponse(res);
   } catch (err) {
     console.error('error', err);
   }
 };
 
 const deleteRateRecipe = async (recipeId) => {
-    try {
-        const res = await fetch("/api/recipes/deleteRateRecipe", {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ recipeId }),
-        });
-    }
-}
+  try {
+    const res = await fetch('/api/recipes/deleteRateRecipe', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ recipeId }),
+    });
+  } catch (err) {
+    console.error('error', err);
+  }
+};

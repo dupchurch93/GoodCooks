@@ -1,4 +1,5 @@
-extends layout
+extends layout.pug
+include utils.pug
 
 append head
   //- add page specific styles by appending to the head
@@ -25,38 +26,8 @@ block content
             h1: a(class='recipe recipe-title', href=`/recipes/${recipe.id}`)= recipe.name
             h2 by #{recipe.author}
             p(class='recipe recipe-description', width= '500px', height= '400px',)= recipe.description
-            if locals.authenticated
-              if recipe.status.saved
-                button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Unsave Recipe
-              else
-                button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Save Recipe
-              if recipe.status.cooked
-                button(class='recipe-cooked button', id=`cookedrecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Remove from Cooked
-              else
-                button(class='recipe-cooked button', id=`cookedrecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Add to Cooked
-              if recipe.status.favorited
-                button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Unfavorite
-              else
-                button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Favorite
-              if recipe.status.starRating
-                div
-                  - let n = 5
-                  div(class='rating')
-                    span(class='rating__button rating__delete fa fa-minus-circle', id=`delete:${recipe.id}`)
-                    while n > recipe.status.starRating
-                      span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:${n}`)
-                      - n--
-                    - let m = recipe.status.starRating
-                      while m >= 1
-                        span(class='rating__button fa fa-star checked', id=`recipe:${recipe.id}.star:${m}`)
-                        - m--
-              else
-                div(class='rating')
-                  span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:5`)
-                  span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:4`)
-                  span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:3`)
-                  span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:2`)
-                  span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:1`)
+            +saveButtons(recipe)
+            +ratingButtons(recipe)
     div(class='main-body__news-column main-body__main-column core-display')
       h4 Best Recipes, cooks and more!
       div Recipe of 2020
