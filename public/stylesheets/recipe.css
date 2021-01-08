@@ -1,38 +1,86 @@
 .recipe-page {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: 'recipe-list recipe-ingredients';
-    width: 50%;
-    margin: auto;
-    margin-top: 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'recipe-list recipe-ingredients'
+    'recipe-instructions recipe-instructions';
+  width: 50%;
+  margin: auto;
+  margin-top: 40px;
 }
 
 .recipe-page__recipe-list {
-    grid-area: recipe-list;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 20px 20px 20px 20px;
-    padding: 20px 20px 0px 20px;
+  grid-area: recipe-list;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px 20px 20px 20px;
+  padding: 20px 20px 0px 20px;
 }
 
-.recipe-list__recipe-title{
-    font-weight: bold;
-    font-size: 36px;
-    text-decoration: underline;
-    margin: 5px 0px 5px 0px;
-    color: rgb(46, 46, 46);
+.recipe-ingredients {
+  grid-area: recipe-ingredients;
+  margin: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
+  border: 1px solid grey;
 }
 
-.recipe-list__recipe-image{
-    width: 85%;
-    height: auto;
+.recipe-instructions {
+  grid-area: recipe-instructions;
+  margin: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
 }
 
-.recipe-list__recipe-description-title{
-    font-size: 28px;
-    font-weight: bold;
-    text-decoration: underline;
-    margin: 10px 0px 10px 0px;
+.recipe-list__recipe-title {
+  display: flex;
+  font-weight: bold;
+  font-size: 36px;
+  text-decoration: underline;
+  margin: 5px 0px 5px 0px;
+  color: rgb(46, 46, 46);
+}
+
+.recipe-list__recipe-image {
+  width: 85%;
+  height: auto;
+}
+
+.recipe-header {
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 10px 0px 10px 0px;
+}
+
+.recipe-ratings {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'title title'
+    'user rating'
+    'user rating';
+  width: 50%;
+  margin: auto;
+  margin-top: 40px;
+}
+.recipe-ratings-title {
+  grid-area: title;
+}
+.recipe-user {
+  grid-area: user;
+}
+.recipe-rating {
+  grid-area: rating;
+}
+
+.recipe-page__buttons-container{
+  display: flex;
+  justify-content: space-around;
+}
+
+.save-buttons-container > button{
+  font-size: 18px;
+  border-radius: 5px;
 }

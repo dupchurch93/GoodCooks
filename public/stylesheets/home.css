@@ -188,7 +188,9 @@
 .rating__button {
   color: grey;
 }
-
+.checked {
+  color: #ec4c4c;
+}
 .rating > span:hover:before,
 .rating > span:hover ~ span:before {
    /* content: "\2605";
