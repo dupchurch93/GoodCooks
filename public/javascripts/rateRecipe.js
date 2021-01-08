@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const res = await rateRecipe( recipeId, starRating);
             if(res){
                 //fill in corresponding star
+                for(let i=1; i <= starRating; i++) {
+                    const star = document.getElementById(
+                      `recipe:${recipeId}.star:${i}`
+                    );
+                    star.classList.add('checked')
+                }
                 console.log(res)
             } else {
                 alert('Something went wrong. Please try again');

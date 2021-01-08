@@ -104,13 +104,12 @@ router.patch(
 router.post('/recipes/rateRecipe', asyncHandler(async(req, res) => {
   const { recipeId, starRating, content } = req.body;
   const userId = res.locals.user.id
-  console.log(recipeId, starRating, )
   const ratingsCreated = await Rating.create({
     recipeId,
     starRating,
     content,
     userId
   });
-  res.json({ratingsCreated});
+  res.json({starRating});
 }))
 module.exports = router;
