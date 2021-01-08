@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require('../utils');
-const { User, Recipe, sequelize, Cupboard_Recipe } = require('../db/models/');
+const { User, Recipe, sequelize, Cupboard_Recipe, Rating } = require('../db/models/');
 
 router.post(
   '/recipes/saveRecipe',
@@ -104,6 +104,7 @@ router.patch(
 router.post('/recipes/rateRecipe', asyncHandler(async(req, res) => {
   const { recipeId, starRating, content } = req.body;
   const userId = res.locals.user.id
+  console.log(recipeId, starRating, )
   const ratingsCreated = await Rating.create({
     recipeId,
     starRating,
