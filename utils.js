@@ -69,6 +69,7 @@ const normalizeRecipes = async (recipes, resUserId = undefined) => {
           saved: false,
           cooked: false,
           favorited: false,
+          starRating: false,
         };
         if (resUserId) {
           for (let cupboard of recipe.Cupboards) {
@@ -79,6 +80,13 @@ const normalizeRecipes = async (recipes, resUserId = undefined) => {
               }
               if (cupboard.Cupboard_Recipe.favorited) {
                 status.favorited = true;
+              }
+            }
+          }
+          if (recipe.Ratings.length) {
+            for (let rating of recipe.Ratings) {
+              if (rating.userId === resUserId) {
+                status.starRating = rating.starRating;
               }
             }
           }
@@ -94,15 +102,11 @@ const normalizeRecipes = async (recipes, resUserId = undefined) => {
     };
   });
   return normalized;
-}
+};
 
 const loginValidator = [
-  check('email')
-  .exists({ checkFalsy: true })
-  .withMessage('Please provide a valid email'),
-  check('password')
-  .exists({checkFalsy:true})
-  .withMessage('Please provide a valid password')
-]
+  check('email').exists({ checkFalsy: true }).withMessage('Please provide a valid email'),
+  check('password').exists({ checkFalsy: true }).withMessage('Please provide a valid password'),
+];
 
-module.exports = { asyncHandler, csrfProtection, userValidator, loginValidator, normalizeRecipes};
+module.exports = { asyncHandler, csrfProtection, userValidator, loginValidator, normalizeRecipes };

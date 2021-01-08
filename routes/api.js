@@ -45,7 +45,7 @@ router.patch(
         },
       }
     );
-    res.json({recordsUpdated});
+    res.json({ recordsUpdated });
   })
 );
 
@@ -62,7 +62,7 @@ router.patch(
         },
       }
     );
-    res.json({recordsUpdated});
+    res.json({ recordsUpdated });
   })
 );
 
@@ -79,7 +79,7 @@ router.patch(
         },
       }
     );
-    res.json({recordsUpdated});
+    res.json({ recordsUpdated });
   })
 );
 
@@ -88,7 +88,7 @@ router.patch(
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId } = req.body;
     const recordsUpdated = await Cupboard_Recipe.update(
-      { favoriteded: false },
+      { favorited: false },
       {
         where: {
           recipeId,
@@ -96,21 +96,42 @@ router.patch(
         },
       }
     );
-    res.json({recordsUpdated});
+    res.json({ recordsUpdated });
   })
 );
 
 //Rating recipes
-router.post('/recipes/rateRecipe', asyncHandler(async(req, res) => {
-  const { recipeId, starRating, content } = req.body;
-  const userId = res.locals.user.id
-  console.log(recipeId, starRating, )
-  const ratingsCreated = await Rating.create({
-    recipeId,
-    starRating,
-    content,
-    userId
-  });
-  res.json({ratingsCreated});
-}))
+router.post(
+  '/recipes/rateRecipe',
+  asyncHandler(async (req, res) => {
+    const { recipeId, starRating, content } = req.body;
+    const userId = res.locals.user.id;
+    const ratingsCreated = await Rating.create({
+      recipeId,
+      starRating,
+      content,
+      userId,
+    });
+    res.json({ starRating });
+  })
+);
+
+router.patch(
+  '/recipes/updateRateRecipe',
+  asyncHandler(async (req, res) => {
+    const { recipeId, starRating } = req.body;
+    const userId = res.locals.user.id;
+    const udpatedRating = await Rating.update(
+      { starRating: starRating },
+      {
+        where: {
+          recipeId,
+          userId,
+        },
+      }
+    );
+    res.json({ starRating });
+  })
+);
+
 module.exports = router;

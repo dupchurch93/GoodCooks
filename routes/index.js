@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const { asyncHandler, normalizeRecipes } = require('../utils');
-const { Recipe, sequelize, Cupboard_Recipe, Cupboard } = require('../db/models');
+const { Recipe, sequelize, Cupboard_Recipe, Cupboard, Rating } = require('../db/models');
 
 /* GET home page. */
 router.get(
@@ -10,16 +10,16 @@ router.get(
     const recipes = await Recipe.findAll({
       order: sequelize.random(),
       limit: 4,
-      include: [Cupboard],
+      include: [Cupboard, Rating],
     });
     let normalizedRecipes;
     // Need: everything from recipe. cupboardId (eventually favorite and cooked from joins table)
-    if(res.locals.user){
-      normalizedRecipes = await normalizeRecipes(recipes, res.locals.user.id)
+    if (res.locals.user) {
+      normalizedRecipes = await normalizeRecipes(recipes, res.locals.user.id);
     } else {
       normalizedRecipes = await normalizeRecipes(recipes);
     }
-    console.log(normalizeRecipes)
+    console.log(normalizeRecipes);
     res.render('index', { title: 'a/A Express Skeleton Home', normalizedRecipes });
   })
 );
