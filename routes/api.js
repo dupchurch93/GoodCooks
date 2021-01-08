@@ -6,13 +6,12 @@ const { User, Recipe, sequelize, Cupboard_Recipe } = require('../db/models/');
 router.post(
   '/recipes/saveRecipe',
   asyncHandler(async (req, res) => {
-    const { recipeId } = req.body;
-    const { cupboardId } = req.body;
+    const { recipeId, cupboardId, cooked, favorited } = req.body;
     const recordsCreated = await Cupboard_Recipe.create({
       recipeId,
       cupboardId,
-      cooked: false,
-      favorited: false
+      cooked,
+      favorited,
     });
     res.json({ recordsCreated });
   })
@@ -26,9 +25,78 @@ router.delete(
     const recordsDestroyed = await Cupboard_Recipe.destroy({
       where: {
         cupboardId,
-        recipeId
-      }});
+        recipeId,
+      },
+    });
     res.json({ recordsDestroyed });
+  })
+);
+
+router.patch(
+  '/recipes/cookRecipe',
+  asyncHandler(async (req, res) => {
+    const { recipeId, cupboardId } = req.body;
+    const recordsUpdated = await Cupboard_Recipe.update(
+      { cooked: true },
+      {
+        where: {
+          recipeId,
+          cupboardId,
+        },
+      }
+    );
+    res.json(recordsUpdated);
+  })
+);
+
+router.patch(
+  '/recipes/uncookRecipe',
+  asyncHandler(async (req, res) => {
+    const { recipeId, cupboardId } = req.body;
+    const recordsUpdated = await Cupboard_Recipe.update(
+      { cooked: false },
+      {
+        where: {
+          recipeId,
+          cupboardId,
+        },
+      }
+    );
+    res.json(recordsUpdated);
+  })
+);
+
+router.patch(
+  '/recipes/favoriteRecipe',
+  asyncHandler(async (req, res) => {
+    const { recipeId, cupboardId } = req.body;
+    const recordsUpdated = await Cupboard_Recipe.update(
+      { favorited: true },
+      {
+        where: {
+          recipeId,
+          cupboardId,
+        },
+      }
+    );
+    res.json(recordsUpdated);
+  })
+);
+
+router.patch(
+  '/recipes/unfavoriteRecipe',
+  asyncHandler(async (req, res) => {
+    const { recipeId, cupboardId } = req.body;
+    const recordsUpdated = await Cupboard_Recipe.update(
+      { favoriteded: false },
+      {
+        where: {
+          recipeId,
+          cupboardId,
+        },
+      }
+    );
+    res.json(recordsUpdated);
   })
 );
 
