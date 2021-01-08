@@ -40,7 +40,8 @@ h1 {
 
 .navbar__button,
 .registration-form button,
-.login-form button {
+.login-form button,
+.login-form .button {
   background-color: #ec4c4c;
   margin: 5px;
   border: 1px solid black;
@@ -49,6 +50,16 @@ h1 {
   padding: 4px;
   border-radius: 5px;
   font-size: 20px;
+}
+
+.recipe-cooked,
+.recipe-saved,
+.recipe-favorited {
+  border-radius: 5px;
+}
+
+button{
+  background-color: #ec4c4c;
 }
 
 .core-display {
