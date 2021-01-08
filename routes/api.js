@@ -21,18 +21,4 @@ router.post(
   })
 );
 
-// router.post(
-//   '/recipes/:recipeId(//d+)/cupboards/:cupboardId(//d+)',
-//   asyncHandler(async (req, res) => {
-//     const recipeId = req.params.recipeId;
-//     const cupboardId = req.params.cupboardId;
-//     console.log(recipeId, cupboardId)
-//     const recordsCreated = await Cupboard_Recipe.create({
-//       recipeId,
-//       cupboardId,
-//     });
-//     res.json({ recordsCreated });
-//   })
-// );
-
 module.exports = router;
