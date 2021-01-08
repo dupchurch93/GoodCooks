@@ -17,14 +17,18 @@ document.addEventListener('DOMContentLoaded', () => {
     return false;
   };
 
-  const fillStars = (recipeId, starRating) => {
-    for (let i = 1; i <= starRating; i++) {
-      const star = document.getElementById(`recipe:${recipeId}.star:${i}`);
-      star.classList.add('checked');
-    }
-    for (let i = starRating + 1; i <= 5; i++) {
-      const star = document.getElementById(`recipe:${recipeId}.star:${i}`);
-      star.classList.remove('checked');
+  const fillStars = (res, recipeId, starRating) => {
+    if (res) {
+      for (let i = 1; i <= 5; i++) {
+        const star = document.getElementById(`recipe:${recipeId}.star:${i}`);
+        if (i <= starRating) {
+          star.classList.add('checked');
+        } else {
+          star.classList.remove('checked');
+        }
+      }
+    } else {
+      alert('Something went wrong. Please try again');
     }
   };
 
@@ -33,19 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const { recipeId, starRating } = getRecipeIdAndStarRating(event.target);
       if (event.target.classList.contains('checked') || anyIsChecked(recipeId, starRating)) {
         const res = await updateRateRecipe(recipeId, starRating);
-        if (res) {
-          fillStars(recipeId, starRating);
-        } else {
-          alert('Something went wrong. Please try again');
-        }
+        fillStars(res, recipeId, starRating);
       } else {
         const res = await rateRecipe(recipeId, starRating);
-        if (res) {
-          //fill in corresponding star
-          fillStars(recipeId, starRating);
-        } else {
-          alert('Something went wrong. Please try again');
-        }
+        fillStars(res, recipeId, starRating);
       }
     });
   });

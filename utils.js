@@ -56,13 +56,57 @@ const userValidator = [
     }),
 ];
 
-const loginValidator = [
-  check('email')
-  .exists({ checkFalsy: true })
-  .withMessage('Please provide a valid email'),
-  check('password')
-  .exists({checkFalsy:true})
-  .withMessage('Please provide a valid password')
-]
+const normalizeRecipes = async (recipes, resUserId = undefined) => {
+  const normalized = recipes.map((recipe) => {
+    return {
+      id: recipe.id,
+      name: recipe.name,
+      author: recipe.author,
+      description: recipe.description,
+      link: recipe.link,
+      status: (() => {
+        const status = {
+          saved: false,
+          cooked: false,
+          favorited: false,
+          starRating: false,
+        };
+        if (resUserId) {
+          for (let cupboard of recipe.Cupboards) {
+            if (cupboard.userId === resUserId.id) {
+              status.saved = true;
+              if (cupboard.Cupboard_Recipe.cooked) {
+                status.cooked = true;
+              }
+              if (cupboard.Cupboard_Recipe.favorited) {
+                status.favorited = true;
+              }
+            }
+          }
+          if (recipe.Ratings.length) {
+            for (let rating of recipe.Ratings) {
+              if (rating.userId === resUserId) {
+                status.starRating = rating.starRating;
+              }
+            }
+          }
+        }
+        return status;
+      })(),
+      cupboards: recipe.Cupboards.map((cupboard) => {
+        return {
+          id: cupboard.id,
+          name: cupboard.name,
+        };
+      }),
+    };
+  });
+  return normalized;
+};
 
-module.exports = { asyncHandler, csrfProtection, userValidator, loginValidator};
+const loginValidator = [
+  check('email').exists({ checkFalsy: true }).withMessage('Please provide a valid email'),
+  check('password').exists({ checkFalsy: true }).withMessage('Please provide a valid password'),
+];
+
+module.exports = { asyncHandler, csrfProtection, userValidator, loginValidator, normalizeRecipes };
