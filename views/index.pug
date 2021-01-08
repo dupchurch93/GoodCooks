@@ -42,7 +42,7 @@ block content
                 div
                   - let n = 5
                   div(class='rating')
-                    span(class='rating__button rating__delete fa fa-minus-circle', id=`recipe:${recipe.id}`)
+                    span(class='rating__button rating__delete fa fa-minus-circle', id=`delete:${recipe.id}`)
                     while n > recipe.status.starRating
                       span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:${n}`)
                       - n--

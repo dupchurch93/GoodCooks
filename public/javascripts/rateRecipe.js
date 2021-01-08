@@ -51,6 +51,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+document.querySelector(".rating__delete").forEach((button) =>{
+    button.addEventListener('click', async (event) => {
+        const recipeId  = event.target.id.split(':')[1]
+        const res = await deleteRateRecipe(recipeId);
+
+        if(res) {
+            fillStars(recipeId, 0)
+        } else {
+            alert("Something went wrong. Please try again");
+        }
+    })
+})
+
 const rateRecipe = async (recipeId, starRating, content = null) => {
   try {
     const res = await fetch('/api/recipes/rateRecipe', {
@@ -88,3 +101,15 @@ const updateRateRecipe = async (recipeId, starRating) => {
     console.error('error', err);
   }
 };
+
+const deleteRateRecipe = async (recipeId) => {
+    try {
+        const res = await fetch("/api/recipes/deleteRateRecipe", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ recipeId }),
+        });
+    }
+}

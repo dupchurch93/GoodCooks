@@ -133,5 +133,19 @@ router.patch(
     res.json({ starRating });
   })
 );
+router.delete(
+  "/recipes/deleteRateRecipe",
+  asyncHandler(async (req, res) => {
+    const { recipeId } = req.body;
+    const userId = res.locals.user.id;
+    const deleteRating = await Rating.destroy({
+      where: {
+        recipeId,
+        userId
+      },
+    });
+    res.json({ deleteRating });
+  })
+);
 
 module.exports = router;
