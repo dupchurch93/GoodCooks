@@ -94,12 +94,12 @@
 }
 
 .main-body__user-column {
-  grid-area: userCol;
+  grid-area: 'userCol';
   padding-left: 20px;
 }
 
 .main-body__recipe-column {
-  grid-area: recipeCol;
+  grid-area: 'recipeCol';
   display: flex;
   justify-content: center;
 }
@@ -184,18 +184,11 @@
   position: relative;
   width: 1.1em;
 }
-
-.rating__button {
-  color: grey;
-}
-
 .rating > span:hover:before,
 .rating > span:hover ~ span:before {
-   /* content: "\2605";
-   position: absolute; */
-   color: #ec4c4c;
+   content: "\2605";
+   position: absolute;
 }
-
 .footer__div {
   width: 25%;
   padding: 20px;
