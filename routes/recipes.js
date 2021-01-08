@@ -39,6 +39,8 @@ router.get('/:id(\\d+)', csrfProtection,
       return status;
     })();
     recipe.status = status;
+    recipe.ingredients = splitIngredients(recipe);
+    recipe.instructions = splitIngredients(recipe);
     res.render('recipe', {
       title: recipe.name,
       recipe,
@@ -47,3 +49,11 @@ router.get('/:id(\\d+)', csrfProtection,
   }));
 
 module.exports = router;
+
+const splitIngredients = (recipe) => {
+  return recipe.ingredients.split(',');
+};
+
+const splitInstructions = (recipe) => {
+  const instructions = recipe.instructions.split()
+}

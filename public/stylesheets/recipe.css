@@ -74,3 +74,13 @@
 .recipe-rating {
   grid-area: rating;
 }
+
+.recipe-page__buttons-container{
+  display: flex;
+  justify-content: space-around;
+}
+
+.save-buttons-container > button{
+  font-size: 18px;
+  border-radius: 5px;
+}

@@ -6,8 +6,11 @@ block content
     div(class='recipe-page__recipe-list recipe-list')
       h1(class='recipe-list__recipe-title recipe-list')=recipe.name
       img(class='recipe-list__recipe-image recipe-list', alt=`Photo of ${recipe.name}`, src=recipe.link)
-      div(class='save-button-container')
-      +saveButtons
+      div(class='recipe-page__buttons-container')
+        div(class='save-buttons-container')
+          +saveButtons(recipe)
+        div(class='rating-buttons-container')
+          +ratingButtons(recipe)
       h3(class='recipe-header recipe-list') Description
       div(class='recipe-description__recipe-description recipe-list')=recipe.description
     div(class='recipe-ingredients')
@@ -21,3 +24,5 @@ block content
     h3(class='recipe-ratings-title') User Ratings
     div(class='recipe-user') User
     div(class='recipe-rating') Rating
+  script(src='/javascripts/saveRecipe.js' type="module" defer)
+  script(src='/javascripts/rateRecipe.js' type="module" defer)
