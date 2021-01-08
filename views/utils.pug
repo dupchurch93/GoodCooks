@@ -1,22 +1,24 @@
 mixin field(labelText, fieldName, fieldValue, fieldType = "text")
   div
-    label(for=fieldName)= labelText
-    input(type=fieldType, id=fieldName, name=fieldName, value=fieldValue)
+    label(class='form-label', for=fieldName)= labelText
+  div
+    input(class='form-input', type=fieldType, id=fieldName, name=fieldName, value=fieldValue)
 
 mixin saveButtons(recipe)
   if locals.authenticated
-    if recipe.status.saved
-      button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Unsave Recipe
-    else
-      button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Save Recipe
-    if recipe.status.cooked
-      button(class='recipe-cooked button', id=`cookedrecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Remove from Cooked
-    else
-      button(class='recipe-cooked button', id=`cookedrecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Add to Cooked
-    if recipe.status.favorited
-      button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Unfavorite
-    else
-      button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Favorite
+    div(class='save-cook-favorite-buttons')
+      if recipe.status.saved
+        button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Unsave Recipe
+      else
+        button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Save Recipe
+      if recipe.status.cooked
+        button(class='recipe-cooked button', id=`cookedrecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Remove from Cooked
+      else
+        button(class='recipe-cooked button', id=`cookedrecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Add to Cooked
+      if recipe.status.favorited
+        button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Unfavorite
+      else
+        button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Favorite
 
 mixin ratingButtons(recipe)
   if recipe.status.starRating

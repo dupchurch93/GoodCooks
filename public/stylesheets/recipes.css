@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 70%;
+  width: 85%;
   margin: auto;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -16,43 +16,60 @@
 
 .recipe-title {
   color: black;
-  font-size: 30px;
+  font-size: 20px;
   text-decoration: none;
+  font-weight: bolder;
 }
 
 .recipe-card {
   display: grid;
-  height: 270px;
+  height: 300px;
   width: 30%;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 3fr 2fr;
   grid-template-rows: auto;
   grid-template-areas:
     'recipeImg recipeTxt'
-    'recipeImg recipeTxt'
-    'recipeImg recipeTxt'
-    'recipeImg recipeSave';
 }
 
-.image-link__container {
+.image-container {
   grid-area: recipeImg;
-  margin: 10px;
+  margin: 10px 0px 0px 0px;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.image-container__recipe-save > .rating {
+  display: flex;
+  justify-content: center;
+}
+
+.image-container__recipe-save > .save-cook-favorite-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .recipe-image > img{
-  width: 100%;
+  width: 90%;
   height: auto;
 }
 
 .recipe-content {
   grid-area: recipeTxt;
-  margin: 10px;
-  padding: 10px;
-  overflow: hidden;
+  margin: 5px;
+  padding: 5px;
+  overflow:auto;
 }
 .recipe-description {
   text-align: left;
 }
-.recipe-save {
+/* .image-container__recipe-save {
   grid-area: recipeSave;
+} */
+
+.recipe-content__recipe-author {
+  margin: 4px;
 }
