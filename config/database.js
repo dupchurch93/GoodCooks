@@ -16,9 +16,5 @@ module.exports = {
     use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
     seederStorage: 'sequelize',
-<<<<<<< HEAD
   },
-=======
-  }
->>>>>>> c337ff26bd6f01c9ebcda9652b8db1f091b38fdc
 };

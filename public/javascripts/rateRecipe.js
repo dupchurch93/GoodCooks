@@ -28,14 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const handleResponse = async (res) => {
-    if (!res.ok) {
-      throw res;
-    }
-    const data = await res.json();
-    return data;
-  };
-
   document.querySelectorAll('.rating__button').forEach((button) => {
     button.addEventListener('click', async (event) => {
       const { recipeId, starRating } = getRecipeIdAndStarRating(event.target);
@@ -58,6 +50,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+const handleResponse = async (res) => {
+  if (!res.ok) {
+    throw res;
+  }
+  const data = await res.json();
+  return data;
+};
 
 const rateRecipe = async (recipeId, starRating, content = null) => {
   try {
