@@ -13,6 +13,7 @@ const { sessionSecret } = require('./config');
 const { restoreUser } = require('./auth');
 const recipesRouter = require('./routes/recipes');
 const apiRouter = require('./routes/api');
+const cupboardsRouter = require('./routes/cupboards');
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/recipes', recipesRouter);
 app.use('/api', apiRouter);
+app.use('/cupboards', cupboardsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
