@@ -12,10 +12,12 @@ block content
   div(class='main-body')
     div(class='main-body__user-column main-body__main-column core-display')
       h4 Find your favorite recipes and check out what is in your cupboards.
-      div Which direction does this go?
-      div And this?
-      img(class='recipe-image', alt='burrito', src='./images/buritos.jpg')
-      div Updates
+      img(class='cupboard-image', alt='burrito', src='https://www.fix.com/assets/content/15713/pantry-power-open-graph.jpg')
+      div(class='main-body__cupboards-container')
+        div: a(href='/cupboards/saved') View All Saved Recipes
+        div: a(href='/cupboards/uncooked') View All Uncooked Recipes
+        div: a(href='/cupboards/cooked') View All Cooked Recipes
+        div: a(href='/cupboards/favorited') View All Favorited Recipes
     div(class='main-body__recipe-column main-body__main-column core-display')
       h4 Try out these great recipes below...
       each recipe in normalizedRecipes

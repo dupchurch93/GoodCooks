@@ -7,6 +7,14 @@ a {
   color: #00b7ff;
 }
 
+a:hover{
+  color: #ec4c4c;
+}
+
+.navbar__button:hover {
+  color: white;
+}
+
 * {
   box-sizing: border-box;
 }
