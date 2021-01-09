@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  document.querySelectorAll('.rating__button').forEach((button) => {
+  document.querySelectorAll('.fa-star').forEach((button) => {
     button.addEventListener('click', async (event) => {
       const { recipeId, starRating } = getRecipeIdAndStarRating(event.target);
       if (event.target.classList.contains('checked') || anyIsChecked(recipeId, starRating)) {
@@ -45,13 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.querySelector('.rating__delete').forEach((button) => {
+  document.querySelectorAll('.rating__delete').forEach((button) => {
     button.addEventListener('click', async (event) => {
+        console.log(event.target)
       const recipeId = event.target.id.split(':')[1];
       const res = await deleteRateRecipe(recipeId);
 
       if (res) {
-        fillStars(recipeId, 0);
+        fillStars(res, recipeId, 0);
       } else {
         alert('Something went wrong. Please try again');
       }
