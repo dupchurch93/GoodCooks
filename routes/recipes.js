@@ -58,6 +58,15 @@ router.get(
   })
 );
 
+
+router.get('/:id(\\d+)/review', asyncHandler(async (req, res) => {
+
+  })
+);
+
+
+
+
 module.exports = router;
 
 const splitIngredients = (recipe) => {
