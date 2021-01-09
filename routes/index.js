@@ -19,7 +19,6 @@ router.get(
     } else {
       normalizedRecipes = await normalizeRecipes(recipes);
     }
-    console.log(normalizeRecipes);
     res.render('index', { title: 'a/A Express Skeleton Home', normalizedRecipes });
   })
 );
