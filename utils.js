@@ -109,7 +109,7 @@ const getSavedRecipes = async (userId) => {
     where: {
       userId,
     },
-    include: [db.Recipe],
+    include: { model: db.Recipe, include: {model: db.Rating}},
   });
   const savedRecipes = new Set();
   cupboards.forEach((cupboard) => {
@@ -119,6 +119,33 @@ const getSavedRecipes = async (userId) => {
   });
   return Array.from(savedRecipes);
 };
+
+const normalizeRecipesFromUser = (recipes, resUserId) => {
+  const normalizedSavedRecipes = recipes.map((recipe) => {
+    const normalized = {
+      id: recipe.id,
+      name: recipe.name,
+      author: recipe.author,
+      description: recipe.description,
+      link: recipe.link,
+      status: {
+        saved: true,
+        cooked: recipe.Cupboard_Recipe.cooked,
+        favorited: recipe.Cupboard_Recipe.favorited,
+        starRating: false
+      }
+    };
+    if (recipe.Ratings.length) {
+      for (let rating of recipe.Ratings) {
+        if (rating.userId === resUserId) {
+          normalized.status.starRating = rating.starRating;
+        }
+      }
+    }
+    return normalized;
+  });
+  return normalizedSavedRecipes;
+}
 
 const loginValidator = [
   check('email').exists({ checkFalsy: true }).withMessage('Please provide a valid email'),
@@ -132,4 +159,5 @@ module.exports = {
   loginValidator,
   normalizeRecipes,
   getSavedRecipes,
+  normalizeRecipesFromUser,
 };

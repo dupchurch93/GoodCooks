@@ -1,14 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const { asyncHandler, getSavedRecipes } = require('../utils');
-const { User, Cupboard, Recipe } = require('../db/models/');
+const { asyncHandler, getSavedRecipes, normalizeRecipes, normalizeRecipesFromUser } = require('../utils');
+const { User, Cupboard, Recipe, Cupboard_Recipe, Rating } = require('../db/models/');
 
 router.get(
   '/saved',
   asyncHandler(async (req, res) => {
     //query for user's cupboards
     const savedRecipes = await getSavedRecipes(res.locals.user.id);
-    console.log(savedRecipes);
+    const normalizedSavedRecipes =  normalizeRecipesFromUser(savedRecipes, res.locals.user.id)
+    // console.log(normalizedSavedRecipes)
+    normalizedSavedRecipes.forEach(recipe => {
+      console.log(recipe.status)
+    });
     res.send('Hello');
   })
 );
