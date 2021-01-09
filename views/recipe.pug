@@ -15,6 +15,7 @@ block content
           +saveButtons(normalizedRecipe)
         div(class='rating-buttons-container')
           +ratingButtons(normalizedRecipe)
+        a(href=`/recipes/${normalizedRecipe.id}/review`) Leave A Review!
       h3(class='recipe-header recipe-list') Description
       div(class='recipe-description__recipe-description recipe-list')=normalizedRecipe.description
     div(class='recipe-ingredients')

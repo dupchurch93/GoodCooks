@@ -27,8 +27,7 @@ router.get(
     const recipeId = parseInt(req.params.id, 10);
     const recipe = await Recipe.findOne({ where: { id: recipeId }, include: [Cupboard, Rating] });
     const normalizedRecipe = normalizeRecipe(recipe, res.locals.user.id);
-    console.log(normalizedRecipe.status)
-    normalizeRecipe.ingredients = splitIngredients(normalizedRecipe, ',');
+    normalizedRecipe.ingredients = splitIngredients(normalizedRecipe, ',');
     res.render('recipe', {
       title: normalizeRecipe.name,
       normalizedRecipe,
@@ -38,8 +37,18 @@ router.get(
 );
 
 
-router.get('/:id(\\d+)/review', asyncHandler(async (req, res) => {
-
+router.get('/:id(\\d+)/review',
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    const recipeId = parseInt(req.params.id, 10);
+    const recipe = await Recipe.findOne({ where: { id: recipeId }, include: [Cupboard, Rating] });
+    const normalizedRecipe = normalizeRecipe(recipe, res.locals.user.id);
+    normalizedRecipe.ingredients = splitIngredients(normalizedRecipe, ',');
+    res.render('recipe-review', {
+      title: normalizedRecipe.name,
+      normalizedRecipe,
+      csrfToken: req.csrfToken(),
+    });
   })
 );
 

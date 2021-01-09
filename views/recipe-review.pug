@@ -1,8 +1,18 @@
 extends layout.pug
 include utils.pug
 
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/review.css")
+
 block content
-  div(class='review__container')
-    div(class='review__image')
-      img(src=recipe.link)
+  div(class='review__container core-display')
+    div(class='review-image-container')
+      img(class='image review-image', src=normalizedRecipe.link)
     div(class='review-form')
+      div
+        label(for='review-content__label') What did you think?
+      div
+        textarea(class='review-content__textarea', name='review-content')
+  script(src='/javascripts/saveRecipe.js' type="module" defer)
+  script(src='/javascripts/rateRecipe.js' type="module" defer)
