@@ -6,18 +6,18 @@ module.exports = {
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
 
-      Example:*/
-    // userId, content, starRating, createdAt, updatedAt, recipeId
+      Example:
+      */
     return queryInterface.bulkInsert(
-      'Ratings',
+      'Cupboard_Recipes',
       [
         {
-          userId: 1,
-          content: 'Tasted like food from the gods',
-          starRating: 5,
+          cupboardId: 1,
+          recipeId: 1,
+          cooked: false,
+          favorited: false,
           createdAt: new Date(),
           updatedAt: new Date(),
-          recipeId: 5,
         },
       ],
       {}
@@ -31,6 +31,6 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.bulkDelete('Ratings', null, {});
+    return queryInterface.bulkDelete('Cupboard_Recipes', null, {});
   },
 };
