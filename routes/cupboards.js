@@ -1,19 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { asyncHandler, csrfProtection, userValidator, loginValidator } = require('../utils');
+const { asyncHandler, getSavedRecipes } = require('../utils');
 const { User, Cupboard, Recipe } = require('../db/models/');
 
 router.get(
   '/saved',
   asyncHandler(async (req, res) => {
     //query for user's cupboards
-    const cupboards = await Cupboard.findAll({
-      where: {
-        userId: res.locals.user.id,
-      },
-      include: [Recipe],
-    });
-    console.log(cupboards);
+    const savedRecipes = await getSavedRecipes(res.locals.user.id);
+    console.log(savedRecipes);
     res.send('Hello');
   })
 );
