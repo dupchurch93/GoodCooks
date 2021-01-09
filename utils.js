@@ -73,7 +73,7 @@ const normalizeRecipes = async (recipes, resUserId = undefined) => {
         };
         if (resUserId) {
           for (let cupboard of recipe.Cupboards) {
-            if (cupboard.userId === resUserId.id) {
+            if (cupboard.userId === resUserId) {
               status.saved = true;
               if (cupboard.Cupboard_Recipe.cooked) {
                 status.cooked = true;
@@ -104,9 +104,60 @@ const normalizeRecipes = async (recipes, resUserId = undefined) => {
   return normalized;
 };
 
+const getSavedRecipes = async (userId) => {
+  const cupboards = await db.Cupboard.findAll({
+    where: {
+      userId,
+    },
+    include: { model: db.Recipe, include: {model: db.Rating}},
+  });
+  const savedRecipes = new Set();
+  cupboards.forEach((cupboard) => {
+    cupboard.Recipes.forEach((recipe) => {
+      savedRecipes.add(recipe);
+    });
+  });
+  return Array.from(savedRecipes);
+};
+
+const normalizeRecipesFromUser = (recipes, resUserId) => {
+  const normalizedSavedRecipes = recipes.map((recipe) => {
+    const normalized = {
+      id: recipe.id,
+      name: recipe.name,
+      author: recipe.author,
+      description: recipe.description,
+      link: recipe.link,
+      status: {
+        saved: true,
+        cooked: recipe.Cupboard_Recipe.cooked,
+        favorited: recipe.Cupboard_Recipe.favorited,
+        starRating: false
+      }
+    };
+    if (recipe.Ratings.length) {
+      for (let rating of recipe.Ratings) {
+        if (rating.userId === resUserId) {
+          normalized.status.starRating = rating.starRating;
+        }
+      }
+    }
+    return normalized;
+  });
+  return normalizedSavedRecipes;
+}
+
 const loginValidator = [
   check('email').exists({ checkFalsy: true }).withMessage('Please provide a valid email'),
   check('password').exists({ checkFalsy: true }).withMessage('Please provide a valid password'),
 ];
 
-module.exports = { asyncHandler, csrfProtection, userValidator, loginValidator, normalizeRecipes };
+module.exports = {
+  asyncHandler,
+  csrfProtection,
+  userValidator,
+  loginValidator,
+  normalizeRecipes,
+  getSavedRecipes,
+  normalizeRecipesFromUser,
+};
