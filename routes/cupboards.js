@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { asyncHandler, getSavedRecipes, normalizeRecipes, normalizeRecipesFromUser } = require('../utils');
+const {
+  asyncHandler,
+  getSavedRecipes,
+  normalizeRecipes,
+  normalizeRecipesFromUser,
+} = require('../utils');
 const { User, Cupboard, Recipe, Cupboard_Recipe, Rating } = require('../db/models/');
 
 router.get(
@@ -8,12 +13,12 @@ router.get(
   asyncHandler(async (req, res) => {
     //query for user's cupboards
     const savedRecipes = await getSavedRecipes(res.locals.user.id);
-    const normalizedSavedRecipes =  normalizeRecipesFromUser(savedRecipes, res.locals.user.id)
+    const normalizedSavedRecipes = normalizeRecipesFromUser(savedRecipes, res.locals.user.id);
     // console.log(normalizedSavedRecipes)
-    normalizedSavedRecipes.forEach(recipe => {
-      console.log(recipe.status)
-    });
-    res.send('Hello');
+    // normalizedSavedRecipes.forEach(recipe => {
+    //   console.log(recipe.status)
+    // });
+    res.render('saved-recipes', { title: 'Saved Recipes', normalizedSavedRecipes });
   })
 );
 
