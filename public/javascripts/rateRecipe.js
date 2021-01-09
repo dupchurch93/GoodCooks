@@ -45,18 +45,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.querySelector('.rating__delete').forEach((button) => {
-    button.addEventListener('click', async (event) => {
-      const recipeId = event.target.id.split(':')[1];
-      const res = await deleteRateRecipe(recipeId);
+  // document.querySelector('.rating__delete').forEach((button) => {
+  //   button.addEventListener('click', async (event) => {
+  //     const recipeId = event.target.id.split(':')[1];
+  //     const res = await deleteRateRecipe(recipeId);
 
-      if (res) {
-        fillStars(recipeId, 0);
-      } else {
-        alert('Something went wrong. Please try again');
-      }
-    });
-  });
+  //     if (res) {
+  //       fillStars(recipeId, 0);
+  //     } else {
+  //       alert('Something went wrong. Please try again');
+  //     }
+  //   });
+  // });
 });
 
 const handleResponse = async (res) => {

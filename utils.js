@@ -64,6 +64,8 @@ const normalizeRecipes = async (recipes, resUserId = undefined) => {
       author: recipe.author,
       description: recipe.description,
       link: recipe.link,
+      ingredients: recipe.ingredients,
+      instructions: recipe.instructions,
       status: (() => {
         const status = {
           saved: false,
@@ -104,6 +106,54 @@ const normalizeRecipes = async (recipes, resUserId = undefined) => {
   return normalized;
 };
 
+const normalizeRecipe = (recipe, resUserId = undefined) => {
+  const normalized = {
+      id: recipe.id,
+      name: recipe.name,
+      author: recipe.author,
+      description: recipe.description,
+      link: recipe.link,
+      ingredients: recipe.ingredients,
+      instructions: recipe.instructions,
+      status: (() => {
+        const status = {
+          saved: false,
+          cooked: false,
+          favorited: false,
+          starRating: false,
+        };
+        if (resUserId) {
+          for (let cupboard of recipe.Cupboards) {
+            if (cupboard.userId === resUserId) {
+              status.saved = true;
+              if (cupboard.Cupboard_Recipe.cooked) {
+                status.cooked = true;
+              }
+              if (cupboard.Cupboard_Recipe.favorited) {
+                status.favorited = true;
+              }
+            }
+          }
+          if (recipe.Ratings.length) {
+            for (let rating of recipe.Ratings) {
+              if (rating.userId === resUserId) {
+                status.starRating = rating.starRating;
+              }
+            }
+          }
+        }
+        return status;
+      })(),
+      cupboards: recipe.Cupboards.map((cupboard) => {
+        return {
+          id: cupboard.id,
+          name: cupboard.name,
+        };
+      }),
+    };
+  return normalized;
+};
+
 const getSavedRecipes = async (userId) => {
   const cupboards = await db.Cupboard.findAll({
     where: {
@@ -127,6 +177,8 @@ const normalizeRecipesFromUser = (recipes, resUserId) => {
       name: recipe.name,
       author: recipe.author,
       description: recipe.description,
+      ingredients: recipe.ingredients,
+      instructions: recipe.instructions,
       link: recipe.link,
       status: {
         saved: true,
@@ -142,6 +194,7 @@ const normalizeRecipesFromUser = (recipes, resUserId) => {
         }
       }
     }
+    console.log(normalized)
     return normalized;
   });
   return normalizedSavedRecipes;
@@ -160,4 +213,5 @@ module.exports = {
   normalizeRecipes,
   getSavedRecipes,
   normalizeRecipesFromUser,
+  normalizeRecipe
 };

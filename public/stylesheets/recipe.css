@@ -78,9 +78,11 @@
 .recipe-page__buttons-container{
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 .save-buttons-container > button{
   font-size: 18px;
   border-radius: 5px;
+
 }

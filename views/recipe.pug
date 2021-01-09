@@ -8,23 +8,23 @@ append head
 block content
   div(class='recipe-page core-display')
     div(class='recipe-page__recipe-list recipe-list')
-      h1(class='recipe-list__recipe-title recipe-list')=recipe.name
-      img(class='recipe-list__recipe-image recipe-list', alt=`Photo of ${recipe.name}`, src=recipe.link)
+      h1(class='recipe-list__recipe-title recipe-list')=normalizedRecipe.name
+      img(class='recipe-list__recipe-image recipe-list', alt=`Photo of ${normalizedRecipe.name}`, src=normalizedRecipe.link)
       div(class='recipe-page__buttons-container')
         div(class='save-buttons-container')
-          +saveButtons(recipe)
+          +saveButtons(normalizedRecipe)
         div(class='rating-buttons-container')
-          +ratingButtons(recipe)
+          +ratingButtons(normalizedRecipe)
       h3(class='recipe-header recipe-list') Description
-      div(class='recipe-description__recipe-description recipe-list')=recipe.description
+      div(class='recipe-description__recipe-description recipe-list')=normalizedRecipe.description
     div(class='recipe-ingredients')
       h3(class='recipe-header') Ingredients
       div(class='recipe-description__recipe-description')
-      each ingredient in recipe.ingredients
+      each ingredient in normalizedRecipe.ingredients
         div - #{ingredient}
     div(class='recipe-instructions')
       h3(class='recipe-header recipe-list') Instructions
-      div(class='recipe-description__recipe-description recipe-list')=recipe.instructions
+      div(class='recipe-description__recipe-description recipe-list')=normalizedRecipe.instructions
   div(class='recipe-ratings core-display')
     //each rating in ratings
     h3(class='recipe-ratings-title') User Ratings

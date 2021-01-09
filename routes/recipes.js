@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { asyncHandler, csrfProtection, normalizeRecipes } = require('../utils');
+const { asyncHandler, csrfProtection, normalizeRecipes, normalizeRecipe } = require('../utils');
 const { User, Recipe, sequelize, Cupboard, Rating } = require('../db/models/');
 
 router.get(
@@ -25,34 +25,13 @@ router.get(
   csrfProtection,
   asyncHandler(async (req, res) => {
     const recipeId = parseInt(req.params.id, 10);
-    const recipe = await Recipe.findOne({ where: { id: recipeId }, include: [Cupboard] });
-    const status = (() => {
-      const status = {
-        saved: false,
-        cooked: false,
-        favorited: false,
-      };
-      if (res.locals.user) {
-        for (let cupboard of recipe.Cupboards) {
-          if (cupboard.userId === res.locals.user.id) {
-            status.saved = true;
-            if (cupboard.Cupboard_Recipe.cooked) {
-              status.cooked = true;
-            }
-            if (cupboard.Cupboard_Recipe.favorited) {
-              status.favorited = true;
-            }
-          }
-        }
-      }
-      return status;
-    })();
-    recipe.status = status;
-    recipe.ingredients = splitIngredients(recipe);
-    console.log(recipe.ingredients);
+    const recipe = await Recipe.findOne({ where: { id: recipeId }, include: [Cupboard, Rating] });
+    const normalizedRecipe = normalizeRecipe(recipe, res.locals.user.id);
+    console.log(normalizedRecipe.status)
+    normalizeRecipe.ingredients = splitIngredients(normalizedRecipe, ',');
     res.render('recipe', {
-      title: recipe.name,
-      recipe,
+      title: normalizeRecipe.name,
+      normalizedRecipe,
       csrfToken: req.csrfToken(),
     });
   })
