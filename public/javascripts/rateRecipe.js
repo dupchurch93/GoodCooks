@@ -106,6 +106,11 @@ const deleteRateRecipe = async (recipeId) => {
       },
       body: JSON.stringify({ recipeId }),
     });
+    if (!res.ok) {
+      throw res;
+    }
+    const data = await res.json();
+    return data;
   } catch (err) {
     console.error('error', err);
   }
