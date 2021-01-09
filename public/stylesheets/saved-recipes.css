@@ -1,0 +1,24 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: auto;
+  grid-template-areas: 'userCol recipeCol';
+}
+
+.user-column {
+  grid-area: userCol;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 15px 1px 15px;
+  padding: 10px;
+  align-items: center;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+.main-body {
+  display: flex;
+  grid-area: recipeCol;
+  margin: 10px 15px 1px 15px;
+  padding: 10px;
+  align-items: center;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
