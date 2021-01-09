@@ -22,7 +22,7 @@ module.exports = {
           createdAt: new Date('2016-11-13'),
           updatedAt: new Date('2016-11-13'),
           link:
-            'https://media01.stockfood.com/largepreviews/MzgyMDUwMzg2/12324206-Broccoli-and-cheese-soup-topped-with-cheddar.jpg',
+            'https://media01.stockfood.com/largepreviews/MzgyOTg2Nzcy/12354412-Cheddar-cheese-soup-with-broccoli.jpg',
         },
         {
           name: 'Burger of the Gods',
