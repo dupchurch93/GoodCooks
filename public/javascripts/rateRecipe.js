@@ -1,5 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const getRecipeIdAndStarRating = (element) => {
+    const anyIsChecked = (recipeId, num) => {
+      for (let i = 1; i < num; i++) {
+        const star = document.getElementById(`recipe:${recipeId}.star:${i}`);
+        if (star.classList.contains("checked")) {
+          return true;
+        }
+      }
+      return false;
+    };
+
+    document.querySelectorAll('.rating').forEach((rating)=> {
+        const recipeId = rating.id.split(':')[1]
+        const hasRating = anyIsChecked(recipeId, 2)
+
+        if (hasRating) {
+        document.getElementById(`recipe__delete:${recipeId}`).classList.remove('hidden')
+        }
+    })
+    const getRecipeIdAndStarRating = (element) => {
     const ids = element.id.split('.');
     const recipeId = parseInt(ids[0].split(':')[1], 10);
     const starRating = parseInt(ids[1].split(':')[1], 10);
@@ -7,15 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return { recipeId, starRating };
   };
 
-  const anyIsChecked = (recipeId, num) => {
-    for (let i = 1; i < num; i++) {
-      const star = document.getElementById(`recipe:${recipeId}.star:${i}`);
-      if (star.classList.contains('checked')) {
-        return true;
-      }
-    }
-    return false;
-  };
+
 
   const fillStars = (res, recipeId, starRating) => {
     if (res) {
@@ -23,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const star = document.getElementById(`recipe:${recipeId}.star:${i}`);
         if (i <= starRating) {
           star.classList.add('checked');
+
         } else {
           star.classList.remove('checked');
         }
@@ -32,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  document.querySelectorAll('.rating__button').forEach((button) => {
+
+  document.querySelectorAll('.fa-star').forEach((button) => {
     button.addEventListener('click', async (event) => {
       const { recipeId, starRating } = getRecipeIdAndStarRating(event.target);
       if (event.target.classList.contains('checked') || anyIsChecked(recipeId, starRating)) {
@@ -41,17 +53,22 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         const res = await rateRecipe(recipeId, starRating);
         fillStars(res, recipeId, starRating);
+        //add button here
+        document.getElementById(`recipe__delete:${recipeId}`).classList.remove("hidden");
+
       }
     });
   });
 
   document.querySelectorAll('.rating__delete').forEach((button) => {
     button.addEventListener('click', async (event) => {
+        console.log(event.target)
       const recipeId = event.target.id.split(':')[1];
       const res = await deleteRateRecipe(recipeId);
 
       if (res) {
-        fillStars(recipeId, 0);
+        fillStars(res, recipeId, 0);
+        event.target.classList.add('hidden')
       } else {
         alert('Something went wrong. Please try again');
       }

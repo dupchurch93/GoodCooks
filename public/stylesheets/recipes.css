@@ -23,12 +23,13 @@
 
 .recipe-card {
   display: grid;
-  height: 300px;
+  height: 350px;
   width: 30%;
   grid-template-columns: 3fr 2fr;
   grid-template-rows: auto;
   grid-template-areas:
-    'recipeImg recipeTxt'
+    'recipeImg recipeTxt';
+  background-color: #e7e0d6;
 }
 
 .image-container {
@@ -50,6 +51,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 5px;
 }
 
 .recipe-image > img{

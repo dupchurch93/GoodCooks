@@ -17,6 +17,8 @@
   align-items: flex-start;
   margin: 20px 20px 20px 20px;
   padding: 20px 20px 0px 20px;
+  background-color: #e7e0d6;
+  border: 1px solid grey;
 }
 
 .recipe-ingredients {
@@ -24,12 +26,21 @@
   margin: 20px 20px 20px 20px;
   padding: 20px 20px 20px 20px;
   border: 1px solid grey;
+  background-color: #e7e0d6;
+  margin: 20px 20px 20px 20px;
+  padding: 20px 20px 0px 20px;
+}
+
+.recipe-list.recipe-description__recipe-description{
+  padding: 8px 0x 8px 0px;
+  margin: 8px 0px 8px 0px;
 }
 
 .recipe-instructions {
   grid-area: recipe-instructions;
   margin: 20px 20px 20px 20px;
   padding: 20px 20px 20px 20px;
+  background-color: #e7e0d6;
 }
 
 .recipe-list__recipe-title {
@@ -78,9 +89,11 @@
 .recipe-page__buttons-container{
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 .save-buttons-container > button{
   font-size: 18px;
   border-radius: 5px;
+
 }
