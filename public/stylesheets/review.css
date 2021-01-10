@@ -1,4 +1,4 @@
-body > .review__container {
+body > .review-page {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -8,19 +8,29 @@ body > .review__container {
     margin-bottom: 20px;
 }
 
-.review__container > .review-image-container{
+.review-page__review-container{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.review-page__review-container > .review-info-container {
     margin: 10px;
     padding: 10px;
+    display: flex;
 }
 
 .review-image {
-    height: 50px;
+    height: 100px;
 
 }
 
 .review-form{
-    width: 45%;
+    width: 100%;
     text-align: left;
+    margin: 10px;
+    padding: 10px;
 }
 
 .review-content__textarea {

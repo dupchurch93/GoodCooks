@@ -6,15 +6,17 @@ append head
   link(rel="stylesheet" href="/stylesheets/review.css")
 
 block content
-  div(class='review__container core-display')
-    div(class='review-image-container')
-      img(class='image review-image', src=normalizedRecipe.link)
-    form(class='review-form', action=`/recipes/${normalizedRecipe.id}/review`, method='post')
-      div
-        label(for='review-content__label') What did you think?
-      div
-        textarea(placeholder='Please leave a star rating and post your thoughts here.',class='review-content__textarea', name='review-content')
-      div
-          button(type='submit') Post Review
+  div(class='review-page core-display')
+    div(class='review-page__review-container')
+      div(class='review-info-container')
+        img(class='image review-image', src=normalizedRecipe.link)
+        div(class='review-info')  test
+      form(class='review-form', action=`/recipes/${normalizedRecipe.id}/review`, method='post')
+        div
+          label(for='review-content__label') What did you think?
+        div
+          textarea(placeholder='Please leave a star rating and post your thoughts here.',class='review-content__textarea', name='review-content')
+        div
+            button(type='submit') Post Review
   script(src='/javascripts/saveRecipe.js' type="module" defer)
   script(src='/javascripts/rateRecipe.js' type="module" defer)
