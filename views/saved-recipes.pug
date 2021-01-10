@@ -8,29 +8,18 @@ append head
 block content
   div(class='container')
     div(class='user-column core-display')
-      h2 Cupboards
-      a(class='user-column__link', href=`/cupboards/cooked`) Cooked
-      a(class='user-column__link', href=`/cupboards/uncooked`) Uncooked
-      a(class='user-column__link', href=`/cupboards/favorited`) Favorited
+      h2(class='recipe-title') Cupboards
+      div(class='user-column__container')
+        a(class='user-column__link', href=`/cupboards/saved`) View All
+        a(class='user-column__link', href=`/cupboards/cooked`) View Cooked
+        a(class='user-column__link', href=`/cupboards/uncooked`) View Uncooked
+        a(class='user-column__link', href=`/cupboards/favorited`) View Favorited
     div(class='main-body core-display')
-      table(class='saved-table')
-        thead(class='')
-          tr
-            th(scope='col') Recipe
-            th(scope='col') Title
-            th(scope='col') Author
-            th(scope='col') Rating
-            th(scope='col') Cupboards
-            th(scope='col') Review
-        tbody
-          each recipe in normalizedSavedRecipes
-            tr
-              td: a(class='recipe recipe-title', href=`/recipes/${recipe.id}`)
-                img(class='recipe recipe-image', src= recipe.link, height='50px', width='50px')
-              td: a(class='recipe recipe-title', href=`/recipes/${recipe.id}`)= recipe.name
-              td= recipe.author
-              td: +ratingButtons(recipe)
-              td: +saveButtons(recipe)
-              td: a(class='recipe recipe-title', href=`/recipes/${recipe.id}/review`)
+      if recipes.length
+        +recipeTable(recipes)
+      else
+        div(class='empty-cupboard')
+          p Add some recipes to your cupboards to see them here!
+
   script(src='/javascripts/saveRecipe.js' type="module" defer)
   script(src='/javascripts/rateRecipe.js' type="module" defer)
