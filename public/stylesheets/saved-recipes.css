@@ -14,6 +14,14 @@
   align-items: center;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
+
+.user-column__container {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  margin: 10px;
+}
+
 .main-body {
   display: flex;
   grid-area: recipeCol;
@@ -46,5 +54,8 @@
 }
 
 .empty-cupboard {
-  text-align: center;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

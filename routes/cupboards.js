@@ -55,7 +55,7 @@ router.get(
     const normalizedSavedRecipes = normalizeRecipesFromUser(savedRecipes, res.locals.user.id);
     const favoritedRecipes = [];
     normalizedSavedRecipes.forEach((recipe) => {
-      if (recipe.status.cooked) {
+      if (recipe.status.favorited) {
         favoritedRecipes.push(recipe);
       }
     });

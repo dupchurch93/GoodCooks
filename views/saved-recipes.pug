@@ -8,15 +8,18 @@ append head
 block content
   div(class='container')
     div(class='user-column core-display')
-      h2 Cupboards
-      a(class='user-column__link', href=`/cupboards/cooked`) Cooked
-      a(class='user-column__link', href=`/cupboards/uncooked`) Uncooked
-      a(class='user-column__link', href=`/cupboards/favorited`) Favorited
+      h2(class='recipe-title') Cupboards
+      div(class='user-column__container')
+        a(class='user-column__link', href=`/cupboards/saved`) View All
+        a(class='user-column__link', href=`/cupboards/cooked`) View Cooked
+        a(class='user-column__link', href=`/cupboards/uncooked`) View Uncooked
+        a(class='user-column__link', href=`/cupboards/favorited`) View Favorited
     div(class='main-body core-display')
       if recipes.length
         +recipeTable(recipes)
       else
-        div(class='empty-cupboard') Add some recipes to your cupboards to see them here!
+        div(class='empty-cupboard')
+          p Add some recipes to your cupboards to see them here!
 
   script(src='/javascripts/saveRecipe.js' type="module" defer)
   script(src='/javascripts/rateRecipe.js' type="module" defer)
