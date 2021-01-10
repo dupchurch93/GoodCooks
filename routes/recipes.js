@@ -26,10 +26,15 @@ router.get(
   asyncHandler(async (req, res) => {
     const recipeId = parseInt(req.params.id, 10);
     const recipe = await Recipe.findOne({ where: { id: recipeId }, include: [Cupboard, Rating] });
-    const normalizedRecipe = normalizeRecipe(recipe, res.locals.user.id);
+    let normalizedRecipe;
+    if(res.locals.user){
+      normalizedRecipe = normalizeRecipe(recipe, res.locals.user.id);
+    } else {
+      normalizedRecipe = normalizeRecipe(recipe);
+    }
     normalizedRecipe.ingredients = splitIngredients(normalizedRecipe, ',');
     res.render('recipe', {
-      title: normalizeRecipe.name,
+      title: normalizedRecipe.name,
       normalizedRecipe,
       csrfToken: req.csrfToken(),
     });
