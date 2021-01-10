@@ -85,3 +85,6 @@ form{
   margin: 8px 0px 8px 0px;
   box-sizing: border-box;
 }
+.hidden {
+  visibility: hidden;
+}
