@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       return false;
     };
-    
+
     document.querySelectorAll('.rating').forEach((rating)=> {
         const recipeId = rating.id.split(':')[1]
         const hasRating = anyIsChecked(recipeId, 2)
@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return { recipeId, starRating };
   };
-  
-  
+
+
 
   const fillStars = (res, recipeId, starRating) => {
     if (res) {
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Something went wrong. Please try again');
     }
   };
-  
+
 
   document.querySelectorAll('.fa-star').forEach((button) => {
     button.addEventListener('click', async (event) => {
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fillStars(res, recipeId, starRating);
         //add button here
         document.getElementById(`recipe__delete:${recipeId}`).classList.remove("hidden");
-        
+
       }
     });
   });
