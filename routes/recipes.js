@@ -57,34 +57,15 @@ router.get('/:id(\\d+)/review',
   })
 );
 
-router.post(
-  '/:id(\\d+)/review',
-  csrfProtection,
-  asyncHandler(async (req, res) => {
-    // console.log('req.body', req.body);
-    const { username, email, password } = req.body;
-    const user = User.build({ username, email });
-
-    const validatorErrors = validationResult(req);
-    console.log('ERROR!!!!', validatorErrors);
-    if (validatorErrors.isEmpty()) {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      user.hashedPassword = hashedPassword;
-      await user.save();
-      await Cupboard.create({ userId: user.id, name: 'default' })
-      loginUser(req, res, user);
-      res.redirect('/');
-    } else {
-      const errors = validatorErrors.array().map((error) => error.msg);
-      res.render('user-register', {
-        title: 'Register',
-        user,
-        errors,
-        csrfToken: req.csrfToken(),
-      });
-    }
-  })
-);
+// router.post(
+//   '/:id(\\d+)/review',
+//   csrfProtection,
+//   asyncHandler(async (req, res) => {
+//     // console.log('req.body', req.body);
+//     const recipeId = req.params.id;
+//     const recipe = await Recipe.findOne({ where: { id: recipeId }, include: [Cupboard, Rating] });
+//     }
+// );
 
 
 

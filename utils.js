@@ -205,6 +205,11 @@ const loginValidator = [
   check('password').exists({ checkFalsy: true }).withMessage('Please provide a valid password'),
 ];
 
+// const loginValidator = [
+//   check('email').exists({ checkFalsy: true }).withMessage('Please provide a valid email'),
+//   check('password').exists({ checkFalsy: true }).withMessage('Please provide a valid password'),
+// ];
+
 module.exports = {
   asyncHandler,
   csrfProtection,
