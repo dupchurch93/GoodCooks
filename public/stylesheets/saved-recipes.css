@@ -19,6 +19,32 @@
   grid-area: recipeCol;
   margin: 10px 15px 1px 15px;
   padding: 10px;
-  align-items: center;
+  justify-content: space-around;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#saved-table td,
+#saved-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#saved-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #ec4c4c;
+  color: black;
+}
+
+#saved-table {
+  width: 100%;
+}
+
+#saved-table tr:nth-child(even) {
+  background-color: #e2dcdc;
+}
+
+.empty-cupboard {
+  text-align: center;
 }

@@ -38,3 +38,23 @@ mixin ratingButtons(recipe)
       span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:3`)
       span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:2`)
       span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:1`)
+
+mixin recipeTable(recipes)
+  table(id='saved-table')
+    tbody(class='')
+      tr
+        th(scope='col') Recipe
+        th(scope='col') Title
+        th(scope='col') Author
+        th(scope='col') Rating
+        th(scope='col') Cupboards
+        th(scope='col') Review
+      each recipe in recipes
+        tr
+          td: a(class='recipe', href=`/recipes/${recipe.id}`)
+            img(class='recipe', src= recipe.link, height='50px', width='50px')
+          td: a(class='recipe', href=`/recipes/${recipe.id}`)= recipe.name
+          td= recipe.author
+          td: +ratingButtons(recipe)
+          td(class='save-cell'): +saveButtons(recipe)
+          td: a(class='recipe recipe-title', href=`/recipes/${recipe.id}/review`)

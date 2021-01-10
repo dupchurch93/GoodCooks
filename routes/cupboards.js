@@ -14,7 +14,7 @@ router.get(
     //query for user's cupboards
     const savedRecipes = await getSavedRecipes(res.locals.user.id);
     const normalizedSavedRecipes = normalizeRecipesFromUser(savedRecipes, res.locals.user.id);
-    res.render('saved-recipes', { title: 'Saved Recipes', normalizedSavedRecipes });
+    res.render('saved-recipes', { title: 'Saved Recipes', recipes: normalizedSavedRecipes });
   })
 );
 
@@ -29,7 +29,7 @@ router.get(
         cookedRecipes.push(recipe);
       }
     });
-    res.send(cookedRecipes);
+    res.render('saved-recipes', { title: 'Cooked Recipes', recipes: cookedRecipes });
   })
 );
 
@@ -44,7 +44,7 @@ router.get(
         uncookedRecipes.push(recipe);
       }
     });
-    res.send(uncookedRecipes);
+    res.render('saved-recipes', { title: 'Uncooked Recipes', recipes: uncookedRecipes });
   })
 );
 
@@ -59,7 +59,7 @@ router.get(
         favoritedRecipes.push(recipe);
       }
     });
-    res.send(favoritedRecipes);
+    res.render('saved-recipes', { title: 'Favorited Recipes', recipes: favoritedRecipes });
   })
 );
 
