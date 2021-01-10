@@ -21,18 +21,17 @@ mixin saveButtons(recipe)
         button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Favorite
 
 mixin ratingButtons(recipe)
-  if recipe.status.starRating
-    - let n = 5
-    div(class='rating')
-      span(class='rating__button rating__delete fa fa-minus-circle', id=`recipe:${recipe.id}`)
-      while n >= 1
-        if n > recipe.status.starRating
-          span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:${n}`)
-        else
-          span(class='rating__button fa fa-star checked', id=`recipe:${recipe.id}.star:${n}`)
-        - n--
-  else
-    div(class='rating')
+  div(class='rating' id=`rating:${recipe.id}`)
+    span(class=`rating__button rating__delete fa fa-minus-circle hidden rating__delete:${recipe.id}`, id=`recipe__delete:${recipe.id}`)
+    if recipe.status.starRating
+      - let n = 5
+        while n >= 1
+          if n > recipe.status.starRating
+            span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:${n}`)
+          else
+            span(class='rating__button fa fa-star checked', id=`recipe:${recipe.id}.star:${n}`)
+          - n--
+    else
       span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:5`)
       span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:4`)
       span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:3`)
