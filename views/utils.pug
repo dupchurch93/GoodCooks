@@ -60,3 +60,11 @@ mixin recipeTable(recipes)
             td: a(class='recipe', href=`/recipes/${recipe.id}/review`) Write a Review
           else
             td Rate to write a review!
+
+mixin validationErrorSummary(errors)
+  if errors
+    div(class='errors')
+      p The following error(s) occurred:
+      ul
+        each error in errors
+          li= error
