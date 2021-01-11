@@ -7,7 +7,7 @@ a {
   color: #00b7ff;
 }
 
-a:hover{
+a:hover {
   color: #ec4c4c;
 }
 
@@ -66,7 +66,7 @@ h1 {
   border-radius: 5px;
 }
 
-button{
+button {
   background-color: #ec4c4c;
   border-radius: 5px;
 }
@@ -75,19 +75,19 @@ button{
   background-color: #f4f2f3;
 }
 
-form{
+form {
   padding: 12px 0px;
   margin: 8px;
   box-sizing: border-box;
 }
 
-.form-label{
+.form-label {
   width: 20%;
   box-sizing: border-box;
   margin: 8px 0px 8px 0px;
 }
 
-.form-input{
+.form-input {
   width: 20%;
   padding: 12px 20px;
   margin: 8px 0px 8px 0px;
@@ -95,4 +95,13 @@ form{
 }
 .hidden {
   visibility: hidden;
+}
+
+.errors {
+  background-color: #f0d2d2;
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 1px solid black;
 }

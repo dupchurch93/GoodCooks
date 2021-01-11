@@ -6,7 +6,6 @@ const { User, Cupboard } = require('../db/models/');
 const bcrypt = require('bcryptjs');
 const { loginUser, logoutUser } = require('../auth');
 
-
 /* GET user registration form */
 router.get('/register', csrfProtection, function (req, res, next) {
   const user = User.build();
@@ -28,12 +27,11 @@ router.post(
     const user = User.build({ username, email });
 
     const validatorErrors = validationResult(req);
-    console.log('ERROR!!!!', validatorErrors);
     if (validatorErrors.isEmpty()) {
       const hashedPassword = await bcrypt.hash(password, 10);
       user.hashedPassword = hashedPassword;
       await user.save();
-      await Cupboard.create({ userId: user.id, name: 'default' })
+      await Cupboard.create({ userId: user.id, name: 'default' });
       loginUser(req, res, user);
       res.redirect('/');
     } else {
@@ -67,10 +65,10 @@ router.post(
   loginValidator,
   asyncHandler(async (req, res) => {
     const { email, password } = req.body;
-    const errors = [];
+    let errors = [];
 
     const validatorErrors = validationResult(req);
-    if (validatorErrors.isEmpty) {
+    if (validatorErrors.isEmpty()) {
       const user = await User.findOne({ where: { email } });
       if (user !== null) {
         const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
@@ -78,18 +76,17 @@ router.post(
           loginUser(req, res, user);
           res.redirect('/');
         }
-      } else {
-        errors.push('Login failed for the provided email address. Please try again');
       }
+      errors.push('Login failed for the provided email address. Please try again');
     } else {
-      errors = validatorErrors.array.map((error) => error.msg);
-      res.render('user-login', {
-        title: 'Login',
-        email,
-        errors,
-        csrfToken: req.csrfToken(),
-      });
+      errors = validatorErrors.array().map((error) => error.msg);
     }
+    res.render('user-login', {
+      title: 'Login',
+      email,
+      errors,
+      csrfToken: req.csrfToken(),
+    });
   })
 );
 
@@ -98,12 +95,14 @@ router.post('/logout', (req, res) => {
   res.redirect('/');
 });
 
-router.get('/login/demo', asyncHandler(async (req, res) => {
-  const user = await User.findOne({ where: { id: 1 } });
-  console.log('hello')
-  loginUser(req, res, user);
-  res.redirect('/');
-}));
+router.get(
+  '/login/demo',
+  asyncHandler(async (req, res) => {
+    const user = await User.findOne({ where: { id: 1 } });
+    loginUser(req, res, user);
+    res.redirect('/');
+  })
+);
 
 //TO DO
 // router.get('/users/:id')

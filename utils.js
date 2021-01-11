@@ -108,49 +108,49 @@ const normalizeRecipes = async (recipes, resUserId = undefined) => {
 
 const normalizeRecipe = (recipe, resUserId = undefined) => {
   const normalized = {
-      id: recipe.id,
-      name: recipe.name,
-      author: recipe.author,
-      description: recipe.description,
-      link: recipe.link,
-      ingredients: recipe.ingredients,
-      instructions: recipe.instructions,
-      status: (() => {
-        const status = {
-          saved: false,
-          cooked: false,
-          favorited: false,
-          starRating: false,
-        };
-        if (resUserId) {
-          for (let cupboard of recipe.Cupboards) {
-            if (cupboard.userId === resUserId) {
-              status.saved = true;
-              if (cupboard.Cupboard_Recipe.cooked) {
-                status.cooked = true;
-              }
-              if (cupboard.Cupboard_Recipe.favorited) {
-                status.favorited = true;
-              }
+    id: recipe.id,
+    name: recipe.name,
+    author: recipe.author,
+    description: recipe.description,
+    link: recipe.link,
+    ingredients: recipe.ingredients,
+    instructions: recipe.instructions,
+    status: (() => {
+      const status = {
+        saved: false,
+        cooked: false,
+        favorited: false,
+        starRating: false,
+      };
+      if (resUserId) {
+        for (let cupboard of recipe.Cupboards) {
+          if (cupboard.userId === resUserId) {
+            status.saved = true;
+            if (cupboard.Cupboard_Recipe.cooked) {
+              status.cooked = true;
             }
-          }
-          if (recipe.Ratings.length) {
-            for (let rating of recipe.Ratings) {
-              if (rating.userId === resUserId) {
-                status.starRating = rating.starRating;
-              }
+            if (cupboard.Cupboard_Recipe.favorited) {
+              status.favorited = true;
             }
           }
         }
-        return status;
-      })(),
-      cupboards: recipe.Cupboards.map((cupboard) => {
-        return {
-          id: cupboard.id,
-          name: cupboard.name,
-        };
-      }),
-    };
+        if (recipe.Ratings.length) {
+          for (let rating of recipe.Ratings) {
+            if (rating.userId === resUserId) {
+              status.starRating = rating.starRating;
+            }
+          }
+        }
+      }
+      return status;
+    })(),
+    cupboards: recipe.Cupboards.map((cupboard) => {
+      return {
+        id: cupboard.id,
+        name: cupboard.name,
+      };
+    }),
+  };
   return normalized;
 };
 
@@ -159,7 +159,7 @@ const getSavedRecipes = async (userId) => {
     where: {
       userId,
     },
-    include: { model: db.Recipe, include: {model: db.Rating}},
+    include: { model: db.Recipe, include: { model: db.Rating } },
   });
   const savedRecipes = new Set();
   cupboards.forEach((cupboard) => {
@@ -184,8 +184,8 @@ const normalizeRecipesFromUser = (recipes, resUserId) => {
         saved: true,
         cooked: recipe.Cupboard_Recipe.cooked,
         favorited: recipe.Cupboard_Recipe.favorited,
-        starRating: false
-      }
+        starRating: false,
+      },
     };
     if (recipe.Ratings.length) {
       for (let rating of recipe.Ratings) {
@@ -194,15 +194,17 @@ const normalizeRecipesFromUser = (recipes, resUserId) => {
         }
       }
     }
-    console.log(normalized)
+    console.log(normalized);
     return normalized;
   });
   return normalizedSavedRecipes;
-}
+};
 
 const loginValidator = [
-  check('email').exists({ checkFalsy: true }).withMessage('Please provide a valid email'),
-  check('password').exists({ checkFalsy: true }).withMessage('Please provide a valid password'),
+  check('email')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Email Address'),
+  check('password').exists({ checkFalsy: true }).withMessage('Please provide a value for Password'),
 ];
 
 // const loginValidator = [
@@ -218,5 +220,5 @@ module.exports = {
   normalizeRecipes,
   getSavedRecipes,
   normalizeRecipesFromUser,
-  normalizeRecipe
+  normalizeRecipe,
 };
