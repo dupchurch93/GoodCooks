@@ -31,11 +31,13 @@ router.post(
       const hashedPassword = await bcrypt.hash(password, 10);
       user.hashedPassword = hashedPassword;
       await user.save();
-      await Cupboard.create({ userId: user.id, name: 'default' });
+      const newCupboard = await Cupboard.build({ userId: user.id, name: 'default' });
+      await newCupboard.save();
       loginUser(req, res, user);
       res.redirect('/');
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
+      console.log(errors);
       res.render('user-register', {
         title: 'Register',
         user,

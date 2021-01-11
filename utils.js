@@ -33,7 +33,6 @@ const userValidator = [
         }
       });
     }),
-
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a password.')
@@ -194,7 +193,6 @@ const normalizeRecipesFromUser = (recipes, resUserId) => {
         }
       }
     }
-    console.log(normalized);
     return normalized;
   });
   return normalizedSavedRecipes;
