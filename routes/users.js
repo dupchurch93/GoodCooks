@@ -27,7 +27,6 @@ router.post(
     const user = User.build({ username, email });
 
     const validatorErrors = validationResult(req);
-    console.log('ERROR!!!!', validatorErrors);
     if (validatorErrors.isEmpty()) {
       const hashedPassword = await bcrypt.hash(password, 10);
       user.hashedPassword = hashedPassword;
@@ -100,7 +99,6 @@ router.get(
   '/login/demo',
   asyncHandler(async (req, res) => {
     const user = await User.findOne({ where: { id: 1 } });
-    console.log('hello');
     loginUser(req, res, user);
     res.redirect('/');
   })
