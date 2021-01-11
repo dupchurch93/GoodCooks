@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.rating__delete').forEach((button) => {
     button.addEventListener('click', async (event) => {
-      console.log(event.target);
       const recipeId = event.target.id.split(':')[1];
       const res = await deleteRateRecipe(recipeId);
 
