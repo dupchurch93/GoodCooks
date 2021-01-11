@@ -25,6 +25,58 @@ GoodCooks is inspired by [GoodReads] and allows users to browse a database of re
   - Makes use of AJAX to render elements such as ratings asynchronously
   - Includes protection from csrf attacks and performs front-end and back-end validation on forms
 
+## Code Highlights and Challenges
+  - Accessing all our recipe data was a bit of a challenge at first due to storing additional data in a joins table. To access our data in a succinct way we ended up creating a normalization function that we imported into any of our routes that needed to access ratings and cupboards.
+  ```
+  const normalizeRecipe = (recipe, resUserId = undefined) => {
+  const normalized = {
+    id: recipe.id,
+    name: recipe.name,
+    author: recipe.author,
+    description: recipe.description,
+    link: recipe.link,
+    ingredients: recipe.ingredients,
+    instructions: recipe.instructions,
+    status: (() => {
+      const status = {
+        saved: false,
+        cooked: false,
+        favorited: false,
+        starRating: false,
+      };
+      if (resUserId) {
+        for (let cupboard of recipe.Cupboards) {
+          if (cupboard.userId === resUserId) {
+            status.saved = true;
+            if (cupboard.Cupboard_Recipe.cooked) {
+              status.cooked = true;
+            }
+            if (cupboard.Cupboard_Recipe.favorited) {
+              status.favorited = true;
+            }
+          }
+        }
+        if (recipe.Ratings.length) {
+          for (let rating of recipe.Ratings) {
+            if (rating.userId === resUserId) {
+              status.starRating = rating.starRating;
+            }
+          }
+        }
+      }
+      return status;
+    })(),
+    cupboards: recipe.Cupboards.map((cupboard) => {
+      return {
+        id: cupboard.id,
+        name: cupboard.name,
+      };
+    }),
+  };
+  return normalized;
+};
+  ```
+
 ## Future Implementations
   - Manually search through recipes
   - Follow and view other users' cupboards and profiles
