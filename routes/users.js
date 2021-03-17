@@ -30,7 +30,9 @@ router.post(
     if (validatorErrors.isEmpty()) {
       const hashedPassword = await bcrypt.hash(password, 10);
       user.hashedPassword = hashedPassword;
+      console.log("user", user)
       await user.save();
+      console.log("after user save")
       const newCupboard = await Cupboard.build({ userId: user.id, name: 'default' });
       await newCupboard.save();
       loginUser(req, res, user);
