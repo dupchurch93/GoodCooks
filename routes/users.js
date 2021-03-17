@@ -26,16 +26,14 @@ router.post(
   "/register",
   csrfProtection,
   userValidator,
-  asyncHandler(async (req, res) => {
-    // console.log('req.body', req.body);
+  asyncHandler(async (req, res, next) => {
     const { username, email, password } = req.body;
-    const user = User.build({ username, email });
 
     const validatorErrors = validationResult(req);
     if (validatorErrors.isEmpty()) {
       try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        user.hashedPassword = hashedPassword;
+        user = User.build({ username, email, hashedPassword });
         await user.save();
         const newCupboard = await Cupboard.build({
           userId: user.id,
@@ -51,7 +49,7 @@ router.post(
       const errors = validatorErrors.array().map((error) => error.msg);
       res.render("user-register", {
         title: "Register",
-        user,
+        user: {username, email, password},
         errors,
         csrfToken: req.csrfToken(),
       });
@@ -68,7 +66,6 @@ router.get(
       title: "login",
       csrfToken: req.csrfToken(),
     });
-    // console.log(user);
   })
 );
 
