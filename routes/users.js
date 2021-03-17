@@ -1,16 +1,21 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { asyncHandler, csrfProtection, userValidator, loginValidator } = require('../utils');
-const { validationResult } = require('express-validator');
-const { User, Cupboard } = require('../db/models/');
-const bcrypt = require('bcryptjs');
-const { loginUser, logoutUser } = require('../auth');
+const {
+  asyncHandler,
+  csrfProtection,
+  userValidator,
+  loginValidator,
+} = require("../utils");
+const { validationResult } = require("express-validator");
+const { User, Cupboard } = require("../db/models/");
+const bcrypt = require("bcryptjs");
+const { loginUser, logoutUser } = require("../auth");
 
 /* GET user registration form */
-router.get('/register', csrfProtection, function (req, res, next) {
+router.get("/register", csrfProtection, function (req, res, next) {
   const user = User.build();
-  res.render('user-register', {
-    title: 'Register',
+  res.render("user-register", {
+    title: "Register",
     user,
     csrfToken: req.csrfToken(),
   });
@@ -18,7 +23,7 @@ router.get('/register', csrfProtection, function (req, res, next) {
 
 //add a new user
 router.post(
-  '/register',
+  "/register",
   csrfProtection,
   userValidator,
   asyncHandler(async (req, res) => {
@@ -28,20 +33,24 @@ router.post(
 
     const validatorErrors = validationResult(req);
     if (validatorErrors.isEmpty()) {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      user.hashedPassword = hashedPassword;
-      console.log("user", user)
-      await user.save();
-      console.log("after user save")
-      const newCupboard = await Cupboard.build({ userId: user.id, name: 'default' });
-      await newCupboard.save();
-      loginUser(req, res, user);
-      res.redirect('/');
+      try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        user.hashedPassword = hashedPassword;
+        await user.save();
+        const newCupboard = await Cupboard.build({
+          userId: user.id,
+          name: "default",
+        });
+        await newCupboard.save();
+        loginUser(req, res, user);
+        res.redirect("/");
+      } catch (err) {
+        next(err);
+      }
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
-      console.log(errors);
-      res.render('user-register', {
-        title: 'Register',
+      res.render("user-register", {
+        title: "Register",
         user,
         errors,
         csrfToken: req.csrfToken(),
@@ -52,11 +61,11 @@ router.post(
 
 //login an existing user
 router.get(
-  '/login',
+  "/login",
   csrfProtection,
   asyncHandler(async (req, res) => {
-    res.render('user-login', {
-      title: 'login',
+    res.render("user-login", {
+      title: "login",
       csrfToken: req.csrfToken(),
     });
     // console.log(user);
@@ -64,7 +73,7 @@ router.get(
 );
 
 router.post(
-  '/login',
+  "/login",
   csrfProtection,
   loginValidator,
   asyncHandler(async (req, res) => {
@@ -75,18 +84,23 @@ router.post(
     if (validatorErrors.isEmpty()) {
       const user = await User.findOne({ where: { email } });
       if (user !== null) {
-        const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+        const passwordMatch = await bcrypt.compare(
+          password,
+          user.hashedPassword.toString()
+        );
         if (passwordMatch) {
           loginUser(req, res, user);
-          res.redirect('/');
+          res.redirect("/");
         }
       }
-      errors.push('Login failed for the provided email address. Please try again');
+      errors.push(
+        "Login failed for the provided email address. Please try again"
+      );
     } else {
       errors = validatorErrors.array().map((error) => error.msg);
     }
-    res.render('user-login', {
-      title: 'Login',
+    res.render("user-login", {
+      title: "Login",
       email,
       errors,
       csrfToken: req.csrfToken(),
@@ -94,17 +108,17 @@ router.post(
   })
 );
 
-router.post('/logout', (req, res) => {
+router.post("/logout", (req, res) => {
   logoutUser(req, res);
-  res.redirect('/');
+  res.redirect("/");
 });
 
 router.get(
-  '/login/demo',
+  "/login/demo",
   asyncHandler(async (req, res) => {
     const user = await User.findOne({ where: { id: 1 } });
     loginUser(req, res, user);
-    res.redirect('/');
+    res.redirect("/");
   })
 );
 
