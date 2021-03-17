@@ -38,6 +38,24 @@ mixin ratingButtons(recipe)
       span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:2`)
       span(class='rating__button fa fa-star', id=`recipe:${recipe.id}.star:1`)
 
+mixin starAverage(avgRating, recipe)
+  div(class='rating')
+    span(class=`rating__button rating__delete fa fa-minus-circle hidden rating__delete:${recipe.id}`, id=`recipe__delete:${recipe.id}`)
+    if avgRating
+      - let n = 5
+        while n >= 1
+          if n > avgRating
+            span(class='rating__button fa fa-star', id=`rating__average-star`)
+          else
+            span(class='rating__button fa fa-star checked', id=`rating__average-star`)
+          - n--
+    else
+      span(class='rating__button fa fa-star')
+      span(class='rating__button fa fa-star')
+      span(class='rating__button fa fa-star')
+      span(class='rating__button fa fa-star')
+      span(class='rating__button fa fa-star')
+
 mixin recipeTable(recipes)
   table(id='saved-table')
     tbody(class='')

@@ -28,11 +28,29 @@ router.get(
   asyncHandler(async (req, res) => {
     const recipeId = parseInt(req.params.id, 10);
     const recipe = await Recipe.findOne({ where: { id: recipeId }, include: [Cupboard, Rating] });
-    for(let rating of recipe.Ratings){
-      console.log('recipe here---------', rating.starRating)
+    for (let rating of recipe.Ratings) {
+      // console.log('recipe here---------', rating);
+    }
+    let avgRating;
+    let ratings;
+    let userRating;
+    // console.log('USER', res.locals.user);
+    if (recipe.Ratings.length) {
+      // reduce the array of starRatings and divide by array length
+      avgRating = Math.floor(
+        recipe.Ratings.map((rating) => rating.starRating).reduce((acc, c) => acc + c) /
+          recipe.Ratings.length
+      );
+      // Extract the current logged-in-user's rating if available
+      if (res.locals.authenticated) {
+        ratings = recipe.Ratings.filter((rating) => rating.userId !== res.locals.user.id);
+        userRating = ratings.filter((rating) => rating.userId === res.locals.user.id);
+      } else {
+        ratings = recipe.Ratings;
+      }
     }
     let normalizedRecipe;
-    if(res.locals.user){
+    if (res.locals.user) {
       normalizedRecipe = normalizeRecipe(recipe, res.locals.user.id);
     } else {
       normalizedRecipe = normalizeRecipe(recipe);
@@ -41,13 +59,16 @@ router.get(
     res.render('recipe', {
       title: normalizedRecipe.name,
       normalizedRecipe,
+      ratings,
+      avgRating,
+      userRating,
       csrfToken: req.csrfToken(),
     });
   })
 );
 
-
-router.get('/:id(\\d+)/review',
+router.get(
+  '/:id(\\d+)/review',
   csrfProtection,
   asyncHandler(async (req, res) => {
     const recipeId = parseInt(req.params.id, 10);
@@ -71,8 +92,6 @@ router.get('/:id(\\d+)/review',
 //     const recipe = await Recipe.findOne({ where: { id: recipeId }, include: [Cupboard, Rating] });
 //     }
 // );
-
-
 
 module.exports = router;
 

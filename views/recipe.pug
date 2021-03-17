@@ -9,6 +9,7 @@ block content
   div(class='recipe-page core-display')
     div(class='recipe-page__recipe-list recipe-list')
       h1(class='recipe-list__recipe-title recipe-list')=normalizedRecipe.name
+      +starAverage(avgRating, normalizedRecipe)
       img(class='recipe-list__recipe-image recipe-list', alt=`Photo of ${normalizedRecipe.name}`, src=normalizedRecipe.link)
       div(class='recipe-page__buttons-container')
         div(class='save-buttons-container')

@@ -119,7 +119,7 @@ module.exports = {
         {
           userId: 2,
           content: 'Sorry but I hated it. Came out soggy, wish the instructions were better...',
-          starRating: 5,
+          starRating: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
           recipeId: 9,
