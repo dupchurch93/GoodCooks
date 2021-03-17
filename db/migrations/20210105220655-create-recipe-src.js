@@ -4,6 +4,6 @@ module.exports = {
     return queryInterface.addColumn('Recipes', 'link', Sequelize.STRING);
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Recipes');
+    return queryInterface.removeColumn('Recipes', 'link');
   },
 };
