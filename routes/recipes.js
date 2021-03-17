@@ -3,6 +3,7 @@ const router = express.Router();
 const { asyncHandler, csrfProtection, normalizeRecipes, normalizeRecipe } = require('../utils');
 const { User, Recipe, sequelize, Cupboard, Rating } = require('../db/models/');
 
+// returns all recipes
 router.get(
   '/',
   asyncHandler(async (req, res) => {
@@ -20,12 +21,16 @@ router.get(
   })
 );
 
+//returns a specific recipe
 router.get(
   '/:id(\\d+)',
   csrfProtection,
   asyncHandler(async (req, res) => {
     const recipeId = parseInt(req.params.id, 10);
     const recipe = await Recipe.findOne({ where: { id: recipeId }, include: [Cupboard, Rating] });
+    for(let rating of recipe.Ratings){
+      console.log('recipe here---------', rating.starRating)
+    }
     let normalizedRecipe;
     if(res.locals.user){
       normalizedRecipe = normalizeRecipe(recipe, res.locals.user.id);

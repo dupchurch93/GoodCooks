@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById(`recipe__delete:${recipeId}`).classList.remove('hidden');
     }
   });
+  
   const getRecipeIdAndStarRating = (element) => {
     const ids = element.id.split('.');
     const recipeId = parseInt(ids[0].split(':')[1], 10);
