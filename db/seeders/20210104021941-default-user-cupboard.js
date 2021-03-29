@@ -6,14 +6,12 @@ module.exports = {
       'Cupboards',
       [
         {
-          id: 1,
           userId: 1,
           name: 'Saved Recipes',
           createdAt: new Date('2021-01-05'),
           updatedAt: new Date('2021-01-05'),
         },
         {
-          id: 2,
           userId: 2,
           name: 'Saved Recipes',
           createdAt: new Date('2021-01-05'),
