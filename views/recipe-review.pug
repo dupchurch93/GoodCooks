@@ -15,11 +15,15 @@ block content
       div(class='review-rating')
         div(class="review-rating_flex-item") My rating
         +ratingButtons(normalizedRecipe)
-      form(class='review-form', action=`/recipes/${normalizedRecipe.id}/review`, method='post')
+      +validationErrorSummary(errors)
+      form(class='review-form', action=`/api/recipes/updateRateRecipe`, method='patch')
         div
           label(for='review-content__label') What did you think?
         div
           textarea(placeholder='Please leave a star rating and post your thoughts here.',class='review-content__textarea', name='review-content')=normalizedRecipe.status.review
         div
+          if normalizedRecipe.status.review
+            button(type='submit') Edit Review
+          else
             button(type='submit') Post Review
   script(src='/javascripts/rateRecipe.js' type="module" defer)

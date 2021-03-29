@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { asyncHandler } = require("../utils");
+const { asyncHandler, postReviewValidator } = require("../utils");
 const {
   User,
   Recipe,
@@ -8,6 +8,7 @@ const {
   Cupboard_Recipe,
   Rating,
 } = require("../db/models/");
+const { validationResult } = require("express-validator");
 
 router.post(
   "/recipes/saveRecipe",
@@ -122,6 +123,7 @@ router.post(
   })
 );
 
+//patch request for user clicking on a star button to change their rating
 router.patch(
   "/recipes/updateRateRecipe",
   asyncHandler(async (req, res) => {
@@ -139,6 +141,7 @@ router.patch(
     res.json({ starRating });
   })
 );
+
 router.delete(
   "/recipes/deleteRateRecipe",
   asyncHandler(async (req, res) => {
