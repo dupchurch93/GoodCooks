@@ -54,3 +54,8 @@ body > .review-page {
 .review-rating_flex-item{
     padding: 0rem 0.5rem 0rem 0rem;
 }
+
+.errors{
+    width: 50%;
+    margin: 8px 0px 8px 0px;
+}

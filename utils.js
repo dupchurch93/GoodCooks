@@ -55,12 +55,6 @@ const userValidator = [
     }),
 ];
 
-const postReviewValidator = [
-  check('starRating')
-    .exists({checkFalsy:true})
-    .withMessage("Please enter a star rating for this recipe.")
-]
-
 const normalizeRecipes = async (recipes, resUserId = undefined) => {
   const normalized = recipes.map((recipe) => {
     return {
@@ -227,5 +221,4 @@ module.exports = {
   getSavedRecipes,
   normalizeRecipesFromUser,
   normalizeRecipe,
-  postReviewValidator,
 };
