@@ -27,7 +27,8 @@ block content
           if normalizedRecipe.status.review
             div(class="review-form__button-container")
               button(type='submit') Edit Review
-              button(type="button") Delete Review
+              button(type="button" class="review__delete" id=`review-delete:${normalizedRecipe.id}`) Delete Review
           else
             button(type='submit') Post Review
   script(src='/javascripts/rateRecipe.js' type="module" defer)
+  script(src='/javascripts/reviewDelete.js' type="module" defer)

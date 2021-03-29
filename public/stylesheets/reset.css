@@ -20,6 +20,11 @@ a:hover {
   cursor: pointer;
 }
 
+button:hover{
+  color: white;
+  cursor: pointer;
+}
+
 * {
   box-sizing: border-box;
 }
