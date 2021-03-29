@@ -1,11 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const { asyncHandler, postReviewValidator } = require("../utils");
+const {
+  asyncHandler,
+  postReviewValidator,
+  csrfProtection,
+  normalizeRecipe,
+} = require("../utils");
 const {
   User,
   Recipe,
   sequelize,
   Cupboard_Recipe,
+  Cupboard,
   Rating,
 } = require("../db/models/");
 const { validationResult } = require("express-validator");
@@ -139,6 +145,41 @@ router.patch(
       }
     );
     res.json({ starRating });
+  })
+);
+
+router.post(
+  "/recipes/updateRateRecipe",
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    const { recipeId, content } = req.body;
+    console.log("recipe id", recipeId)
+    console.log("content", content)
+    const userId = res.locals.user.id;
+    const recipe = await Recipe.findOne({
+      where: { id: recipeId },
+      include: [Cupboard, Rating],
+    });
+    const normalizedRecipe = normalizeRecipe(recipe, userId);
+    if (normalizedRecipe.status.starRating) {
+      const updatedRecipe = await Rating.update(
+        { content },
+        {
+          where: {
+            recipeId,
+            userId,
+          },
+        }
+      );
+      res.redirect(`/recipes/${recipeId}`)
+    } else{
+      res.render('recipe-review', {
+        title: normalizedRecipe.name,
+        normalizedRecipe,
+        errors: ["Please leave a star rating for the recipe before leaving a review."],
+        csrfToken: req.csrfToken(),
+      });
+    }
   })
 );
 

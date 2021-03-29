@@ -16,11 +16,13 @@ block content
         div(class="review-rating_flex-item") My rating
         +ratingButtons(normalizedRecipe)
       +validationErrorSummary(errors)
-      form(class='review-form', action=`/api/recipes/updateRateRecipe`, method='patch')
+      form(class='review-form', action=`/api/recipes/updateRateRecipe`, method='post')
+        input(type='hidden', name='_csrf', value=csrfToken)
+        input(type='hidden', name='recipeId', value=normalizedRecipe.id)
         div
           label(for='review-content__label') What did you think?
         div
-          textarea(placeholder='Please leave a star rating and post your thoughts here.',class='review-content__textarea', name='review-content')=normalizedRecipe.status.review
+          textarea(placeholder='Please leave a star rating and post your thoughts here.',class='review-content__textarea', name='content')=normalizedRecipe.status.review
         div
           if normalizedRecipe.status.review
             button(type='submit') Edit Review

@@ -1,13 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const anyIsChecked = (recipeId, num) => {
-    for (let i = 1; i < num; i++) {
-      const star = document.getElementById(`recipe:${recipeId}.star:${i}`);
-      if (star.classList.contains('checked')) {
-        return true;
-      }
-    }
-    return false;
-  };
 
   document.querySelectorAll('.rating').forEach((rating) => {
     const recipeId = rating.id.split(':')[1];
@@ -17,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById(`recipe__delete:${recipeId}`).classList.remove('hidden');
     }
   });
-  
+
   const getRecipeIdAndStarRating = (element) => {
     const ids = element.id.split('.');
     const recipeId = parseInt(ids[0].split(':')[1], 10);
@@ -77,6 +68,17 @@ const handleResponse = async (res) => {
   }
   const data = await res.json();
   return data;
+};
+
+//checks if any of the stars are checked, returns true/false if they are checked (which means they have a rating)
+const anyIsChecked = (recipeId, num) => {
+  for (let i = 1; i < num; i++) {
+    const star = document.getElementById(`recipe:${recipeId}.star:${i}`);
+    if (star.classList.contains('checked')) {
+      return true;
+    }
+  }
+  return false;
 };
 
 const rateRecipe = async (recipeId, starRating, content = null) => {
