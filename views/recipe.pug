@@ -12,11 +12,14 @@ block content
       +starAverage(avgRating, normalizedRecipe)
       img(class='recipe-list__recipe-image recipe-list', alt=`Photo of ${normalizedRecipe.name}`, src=normalizedRecipe.link)
       div(class='recipe-page__buttons-container')
-        div(class='save-buttons-container')
-          +saveButtons(normalizedRecipe)
-        div(class='rating-buttons-container')
-          +ratingButtons(normalizedRecipe)
-        a(href=`/recipes/${normalizedRecipe.id}/review`) Leave A Review!
+        if user
+          div(class='save-buttons-container')
+            +saveButtons(normalizedRecipe)
+          div(class='rating-buttons-container')
+            +ratingButtons(normalizedRecipe)
+          a(href=`/recipes/${normalizedRecipe.id}/review`) Leave A Review!
+        else
+          a(href=`/users/login`) Leave A Review!
       h3(class='recipe-header recipe-list') Description
       div(class='recipe-description__recipe-description recipe-list')=normalizedRecipe.description
     div(class='recipe-ingredients')
