@@ -25,7 +25,9 @@ block content
           textarea(placeholder='Please leave a star rating and post your thoughts here.',class='review-content__textarea', name='content')=normalizedRecipe.status.review
         div
           if normalizedRecipe.status.review
-            button(type='submit') Edit Review
+            div(class="review-form__button-container")
+              button(type='submit') Edit Review
+              button(type="button") Delete Review
           else
             button(type='submit') Post Review
   script(src='/javascripts/rateRecipe.js' type="module" defer)

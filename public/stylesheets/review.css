@@ -59,3 +59,8 @@ body > .review-page {
     width: 50%;
     margin: 8px 0px 8px 0px;
 }
+
+.review-form__button-container{
+    display: flex;
+    justify-content: space-between;
+}
