@@ -55,6 +55,10 @@ const userValidator = [
     }),
 ];
 
+const postReviewValidator = [
+
+]
+
 const normalizeRecipes = async (recipes, resUserId = undefined) => {
   const normalized = recipes.map((recipe) => {
     return {
@@ -120,6 +124,7 @@ const normalizeRecipe = (recipe, resUserId = undefined) => {
         cooked: false,
         favorited: false,
         starRating: false,
+        review: null
       };
       if (resUserId) {
         for (let cupboard of recipe.Cupboards) {
@@ -137,6 +142,7 @@ const normalizeRecipe = (recipe, resUserId = undefined) => {
           for (let rating of recipe.Ratings) {
             if (rating.userId === resUserId) {
               status.starRating = rating.starRating;
+              status.review = rating.content || null;
             }
           }
         }

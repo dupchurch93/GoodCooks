@@ -19,7 +19,7 @@ block content
         div
           label(for='review-content__label') What did you think?
         div
-          textarea(placeholder='Please leave a star rating and post your thoughts here.',class='review-content__textarea', name='review-content')
+          textarea(placeholder='Please leave a star rating and post your thoughts here.',class='review-content__textarea', name='review-content')=normalizedRecipe.status.review
         div
             button(type='submit') Post Review
   script(src='/javascripts/rateRecipe.js' type="module" defer)

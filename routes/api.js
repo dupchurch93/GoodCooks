@@ -1,10 +1,16 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { asyncHandler } = require('../utils');
-const { User, Recipe, sequelize, Cupboard_Recipe, Rating } = require('../db/models/');
+const { asyncHandler } = require("../utils");
+const {
+  User,
+  Recipe,
+  sequelize,
+  Cupboard_Recipe,
+  Rating,
+} = require("../db/models/");
 
 router.post(
-  '/recipes/saveRecipe',
+  "/recipes/saveRecipe",
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId, cooked, favorited } = req.body;
     const recordsCreated = await Cupboard_Recipe.create({
@@ -18,7 +24,7 @@ router.post(
 );
 
 router.delete(
-  '/recipes/unsaveRecipe',
+  "/recipes/unsaveRecipe",
   asyncHandler(async (req, res) => {
     const { recipeId } = req.body;
     const { cupboardId } = req.body;
@@ -33,7 +39,7 @@ router.delete(
 );
 
 router.patch(
-  '/recipes/cookRecipe',
+  "/recipes/cookRecipe",
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId } = req.body;
     const recordsUpdated = await Cupboard_Recipe.update(
@@ -50,7 +56,7 @@ router.patch(
 );
 
 router.patch(
-  '/recipes/uncookRecipe',
+  "/recipes/uncookRecipe",
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId } = req.body;
     const recordsUpdated = await Cupboard_Recipe.update(
@@ -67,7 +73,7 @@ router.patch(
 );
 
 router.patch(
-  '/recipes/favoriteRecipe',
+  "/recipes/favoriteRecipe",
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId } = req.body;
     const recordsUpdated = await Cupboard_Recipe.update(
@@ -84,7 +90,7 @@ router.patch(
 );
 
 router.patch(
-  '/recipes/unfavoriteRecipe',
+  "/recipes/unfavoriteRecipe",
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId } = req.body;
     const recordsUpdated = await Cupboard_Recipe.update(
@@ -102,7 +108,7 @@ router.patch(
 
 //Rating recipes
 router.post(
-  '/recipes/rateRecipe',
+  "/recipes/rateRecipe",
   asyncHandler(async (req, res) => {
     const { recipeId, starRating, content } = req.body;
     const userId = res.locals.user.id;
@@ -117,12 +123,12 @@ router.post(
 );
 
 router.patch(
-  '/recipes/updateRateRecipe',
+  "/recipes/updateRateRecipe",
   asyncHandler(async (req, res) => {
-    const { recipeId, starRating } = req.body;
+    const { recipeId, starRating, content } = req.body;
     const userId = res.locals.user.id;
     const udpatedRating = await Rating.update(
-      { starRating: starRating },
+      { starRating: starRating, content },
       {
         where: {
           recipeId,
@@ -141,7 +147,7 @@ router.delete(
     const deleteRating = await Rating.destroy({
       where: {
         recipeId,
-        userId
+        userId,
       },
     });
     res.json({ deleteRating });
