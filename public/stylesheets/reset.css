@@ -3,6 +3,10 @@ body {
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
+input::placeholder, textarea::placeholder{
+  font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+}
+
 a {
   color: #00b7ff;
 }
@@ -13,6 +17,7 @@ a:hover {
 
 .navbar__button:hover {
   color: white;
+  cursor: pointer;
 }
 
 * {
