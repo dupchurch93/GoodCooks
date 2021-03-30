@@ -104,24 +104,16 @@ router.patch(
 //Rating recipes
 router.post(
   '/recipes/rateRecipe',
-  csrfProtection,
   asyncHandler(async (req, res) => {
     const { recipeId, starRating, content } = req.body;
-    if (!res.locals.authenticated) {
-      return res.render('user-login', {
-        title: 'login',
-        csrfToken: req.csrfToken(),
-      });
-    } else {
-      const userId = res.locals.user.id;
-      const ratingsCreated = await Rating.create({
-        recipeId,
-        starRating,
-        content,
-        userId,
-      });
-      res.json({ starRating });
-    }
+    const userId = res.locals.user.id;
+    const ratingsCreated = await Rating.create({
+      recipeId,
+      starRating,
+      content,
+      userId,
+    });
+    res.json({ starRating });
   })
 );
 

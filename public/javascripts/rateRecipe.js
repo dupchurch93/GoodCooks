@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     } else {
-      alert('Something went wrong. Please try again');
+      window.location.replace('/users/login');
     }
   };
 
@@ -40,9 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
         fillStars(res, recipeId, starRating);
       } else {
         const res = await rateRecipe(recipeId, starRating);
-        //add delete button and fill stars here only if the response is returned successfully
+        //add delete button only if the response is returned successfully
+        fillStars(res, recipeId, starRating);
         if (res) {
-          fillStars(res, recipeId, starRating);
           document.getElementById(`recipe__delete:${recipeId}`).classList.remove('hidden');
         }
       }
