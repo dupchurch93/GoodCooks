@@ -108,12 +108,17 @@
 
 .recipe-page__buttons-container{
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: flex-start ;
   align-items: center;
+  padding-top: 0.3rem;
 }
 
 .save-buttons-container > button{
   font-size: 18px;
   border-radius: 5px;
+}
 
+.save-buttons-container {
+  width: 100%;
 }
