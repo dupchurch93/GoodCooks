@@ -38,6 +38,7 @@ router.get(
       normalizedRecipe = normalizeRecipe(recipe);
     }
     normalizedRecipe.ingredients = splitIngredients(normalizedRecipe, ',');
+    normalizedRecipe.instructions = splitInstructions(normalizedRecipe)
     res.render('recipe', {
       title: normalizedRecipe.name,
       normalizedRecipe,
@@ -79,3 +80,7 @@ module.exports = router;
 const splitIngredients = (recipe) => {
   return recipe.ingredients.split(',');
 };
+
+const splitInstructions = (recipe) => {
+  return recipe.instructions.split(new RegExp("\d."))
+}
