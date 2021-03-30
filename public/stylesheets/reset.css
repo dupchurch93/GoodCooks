@@ -3,6 +3,10 @@ body {
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
+input::placeholder, textarea::placeholder{
+  font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+}
+
 a {
   color: #00b7ff;
 }
@@ -13,6 +17,12 @@ a:hover {
 
 .navbar__button:hover {
   color: white;
+  cursor: pointer;
+}
+
+button:hover{
+  color: white;
+  cursor: pointer;
 }
 
 * {
@@ -100,7 +110,7 @@ form {
 .errors {
   background-color: #f0d2d2;
   width: 20%;
-  padding: 12px 20px;
+  padding: 0.5rem;
   margin: 8px;
   box-sizing: border-box;
   border: 1px solid black;
