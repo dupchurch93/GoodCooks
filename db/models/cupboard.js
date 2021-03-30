@@ -1,10 +1,8 @@
-'use strict';
-
-const cupboard_recipe = require('./cupboard_recipe');
+"use strict";
 
 module.exports = (sequelize, DataTypes) => {
   const Cupboard = sequelize.define(
-    'Cupboard',
+    "Cupboard",
     {
       userId: DataTypes.INTEGER,
       name: DataTypes.STRING,
@@ -15,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
 
     const columnMapping = {
-      through: 'Cupboard_Recipe',
-      foreignKey: 'cupboardId',
-      otherKey: 'recipeId',
+      through: "Cupboard_Recipe",
+      foreignKey: "cupboardId",
+      otherKey: "recipeId",
     };
-    Cupboard.belongsTo(models.User, { foreignKey: 'userId' });
+    Cupboard.belongsTo(models.User, { foreignKey: "userId" });
     Cupboard.belongsToMany(models.Recipe, columnMapping);
   };
   return Cupboard;

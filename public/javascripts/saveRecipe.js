@@ -123,7 +123,6 @@ const saveRecipe = async (cupboardId, recipeId, cooked = false, favorited = fals
 
 const unsaveRecipe = async (cupboardId, recipeId) => {
   try {
-    console.log('inside save recipe');
     const res = await fetch(`/api/recipes/unsaveRecipe`, {
       method: 'DELETE',
       headers: {

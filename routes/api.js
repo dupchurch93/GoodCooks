@@ -1,10 +1,22 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { asyncHandler } = require('../utils');
-const { User, Recipe, sequelize, Cupboard_Recipe, Rating } = require('../db/models/');
+const {
+  asyncHandler,
+  csrfProtection,
+  normalizeRecipe,
+} = require("../utils");
+const {
+  User,
+  Recipe,
+  sequelize,
+  Cupboard_Recipe,
+  Cupboard,
+  Rating,
+} = require("../db/models/");
+const { validationResult } = require("express-validator");
 
 router.post(
-  '/recipes/saveRecipe',
+  "/recipes/saveRecipe",
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId, cooked, favorited } = req.body;
     const recordsCreated = await Cupboard_Recipe.create({
@@ -18,7 +30,7 @@ router.post(
 );
 
 router.delete(
-  '/recipes/unsaveRecipe',
+  "/recipes/unsaveRecipe",
   asyncHandler(async (req, res) => {
     const { recipeId } = req.body;
     const { cupboardId } = req.body;
@@ -33,7 +45,7 @@ router.delete(
 );
 
 router.patch(
-  '/recipes/cookRecipe',
+  "/recipes/cookRecipe",
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId } = req.body;
     const recordsUpdated = await Cupboard_Recipe.update(
@@ -50,7 +62,7 @@ router.patch(
 );
 
 router.patch(
-  '/recipes/uncookRecipe',
+  "/recipes/uncookRecipe",
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId } = req.body;
     const recordsUpdated = await Cupboard_Recipe.update(
@@ -67,7 +79,7 @@ router.patch(
 );
 
 router.patch(
-  '/recipes/favoriteRecipe',
+  "/recipes/favoriteRecipe",
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId } = req.body;
     const recordsUpdated = await Cupboard_Recipe.update(
@@ -84,7 +96,7 @@ router.patch(
 );
 
 router.patch(
-  '/recipes/unfavoriteRecipe',
+  "/recipes/unfavoriteRecipe",
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId } = req.body;
     const recordsUpdated = await Cupboard_Recipe.update(
@@ -102,7 +114,7 @@ router.patch(
 
 //Rating recipes
 router.post(
-  '/recipes/rateRecipe',
+  "/recipes/rateRecipe",
   asyncHandler(async (req, res) => {
     const { recipeId, starRating, content } = req.body;
     const userId = res.locals.user.id;
@@ -116,13 +128,14 @@ router.post(
   })
 );
 
+//patch request for user clicking on a star button to change their rating
 router.patch(
-  '/recipes/updateRateRecipe',
+  "/recipes/updateRateRecipe",
   asyncHandler(async (req, res) => {
-    const { recipeId, starRating } = req.body;
+    const { recipeId, starRating, content } = req.body;
     const userId = res.locals.user.id;
     const udpatedRating = await Rating.update(
-      { starRating: starRating },
+      { starRating: starRating, content },
       {
         where: {
           recipeId,
@@ -133,6 +146,42 @@ router.patch(
     res.json({ starRating });
   })
 );
+
+router.post(
+  "/recipes/updateRateRecipe",
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    const { recipeId, content } = req.body;
+    console.log("recipe id", recipeId)
+    console.log("content", content)
+    const userId = res.locals.user.id;
+    const recipe = await Recipe.findOne({
+      where: { id: recipeId },
+      include: [Cupboard, Rating],
+    });
+    const normalizedRecipe = normalizeRecipe(recipe, userId);
+    if (normalizedRecipe.status.starRating) {
+      const updatedRecipe = await Rating.update(
+        { content },
+        {
+          where: {
+            recipeId,
+            userId,
+          },
+        }
+      );
+      res.redirect(`/recipes/${recipeId}`)
+    } else{
+      res.render('recipe-review', {
+        title: normalizedRecipe.name,
+        normalizedRecipe,
+        errors: ["Please leave a star rating for the recipe before leaving a review."],
+        csrfToken: req.csrfToken(),
+      });
+    }
+  })
+);
+
 router.delete(
   "/recipes/deleteRateRecipe",
   asyncHandler(async (req, res) => {
@@ -141,7 +190,7 @@ router.delete(
     const deleteRating = await Rating.destroy({
       where: {
         recipeId,
-        userId
+        userId,
       },
     });
     res.json({ deleteRating });
