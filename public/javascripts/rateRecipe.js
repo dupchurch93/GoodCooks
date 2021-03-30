@@ -32,21 +32,23 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   document.querySelectorAll('.fa-star').forEach((button) => {
-    button.addEventListener('click', async (event) => {
-      const { recipeId, starRating } = getRecipeIdAndStarRating(event.target);
-      // star buttons update the current rating if one already exists (if any star is checked)
-      if (event.target.classList.contains('checked') || anyIsChecked(recipeId, starRating)) {
-        const res = await updateRateRecipe(recipeId, starRating);
-        fillStars(res, recipeId, starRating);
-      } else {
-        const res = await rateRecipe(recipeId, starRating);
-        //add delete button only if the response is returned successfully
-        fillStars(res, recipeId, starRating);
-        if (res) {
-          document.getElementById(`recipe__delete:${recipeId}`).classList.remove('hidden');
+    if (!button.classList.contains('avg-star')) {
+      button.addEventListener('click', async (event) => {
+        const { recipeId, starRating } = getRecipeIdAndStarRating(event.target);
+        // star buttons update the current rating if one already exists (if any star is checked)
+        if (event.target.classList.contains('checked') || anyIsChecked(recipeId, starRating)) {
+          const res = await updateRateRecipe(recipeId, starRating);
+          fillStars(res, recipeId, starRating);
+        } else {
+          const res = await rateRecipe(recipeId, starRating);
+          //add delete button only if the response is returned successfully
+          fillStars(res, recipeId, starRating);
+          if (res) {
+            document.getElementById(`recipe__delete:${recipeId}`).classList.remove('hidden');
+          }
         }
-      }
-    });
+      });
+    }
   });
 
   document.querySelectorAll('.rating__delete').forEach((button) => {
