@@ -31,6 +31,26 @@
   padding: 20px 20px 0px 20px;
 }
 
+.recipe-ingredients__ingredient{
+  padding: 0.2rem 0rem 0.2rem 0rem;
+}
+
+.recipe_step{
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.step_checkbox_container{
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.step_checkbox, .recipe_step{
+  padding: 0.2rem;
+  margin: 0rem 0.3rem 0rem 0.3rem;
+}
+
 .recipe-list.recipe-description__recipe-description{
   padding: 8px 0x 8px 0px;
   margin: 8px 0px 8px 0px;
@@ -88,12 +108,17 @@
 
 .recipe-page__buttons-container{
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: flex-start ;
   align-items: center;
+  padding-top: 0.3rem;
 }
 
 .save-buttons-container > button{
   font-size: 18px;
   border-radius: 5px;
+}
 
+.save-buttons-container {
+  width: 100%;
 }
