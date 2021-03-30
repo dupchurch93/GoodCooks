@@ -44,16 +44,16 @@ mixin starAverage(avgRating, recipe)
       - let n = 5
         while n >= 1
           if n > avgRating
-            span(class='fa fa-star avg-star')
+            span(class='rating__button fa fa-star checked avg-star')
           else
-            span(class='fa fa-star checked avg-star')
+            span(class='rating__button fa fa-star avg-star')
           - n--
     else
-      span(class='fa fa-star avg-star')
-      span(class='fa fa-star avg-star')
-      span(class='fa fa-star avg-star')
-      span(class='fa fa-star avg-star')
-      span(class='fa fa-star avg-star')
+      span(class='rating__button fa fa-star avg-star')
+      span(class='rating__button fa fa-star avg-star')
+      span(class='rating__button fa fa-star avg-star')
+      span(class='rating__button fa fa-star avg-star')
+      span(class='rating__button fa fa-star avg-star')
 
 mixin recipeTable(recipes)
   table(id='saved-table')

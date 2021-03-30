@@ -138,13 +138,6 @@
 }
 
 .recipe-ratings {
-  /* display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: auto;
-  grid-template-areas:
-    'title title'
-    'user rating'
-    'user rating'; */
   width: 50%;
   margin: auto;
   margin-top: 40px;
@@ -175,4 +168,12 @@
 
 .save-buttons-container {
   width: 100%;
+}
+
+.avg-rating {
+  margin: 1rem 1rem;
+}
+
+.recipe-ratings__individual-rating-content > .avg-rating {
+  margin-left: 0;
 }
