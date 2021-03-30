@@ -248,20 +248,18 @@ li {
 }
 .save-cook-favorite-buttons {
   display: flex;
- 
+
 }
 
 .recipe-save {
-  margin: 5px;
-  width: 70px;
+  margin: 0.2rem;
+  width: 75px;
 }
 .recipe-cooked {
-  margin: 5px;
-  width: 70px;
-  height: 50px;
+  margin: 0.2rem;
+  width: 75px;
 }
 .recipe-favorited {
-  margin: 5px;
-  width: 70px;
-  height: 50px
+  margin: 0.2rem;
+  width: 75px;
 }
