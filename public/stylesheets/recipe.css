@@ -40,8 +40,15 @@
   text-decoration: underline;
 }
 
-.step_checkbox{
-  margin: 1;
+.step_checkbox_container{
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.step_checkbox, .recipe_step{
+  padding: 0.2rem;
+  margin: 0rem 0.3rem 0rem 0.3rem;
 }
 
 .recipe-list.recipe-description__recipe-description{

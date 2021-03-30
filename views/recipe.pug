@@ -27,8 +27,8 @@ block content
     div(class='recipe-instructions')
       h3(class='recipe-header recipe-list') Instructions
       each instruction, index in normalizedRecipe.instructions
-        div(class="step_checkbox")
-          input(type="checkbox", name=instruction)
+        div(class="step_checkbox_container")
+          input(class="step_checkbox", type="checkbox", name=instruction)
           label(class='recipe_step', for=instruction) Step #{index+1}
         div(class='recipe-description__recipe-description recipe-list') #{instruction}
   div(class='recipe-ratings core-display')
