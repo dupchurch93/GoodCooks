@@ -23,12 +23,17 @@ block content
       div(class='recipe-description__recipe-description recipe-list')=normalizedRecipe.description
     div(class='recipe-ingredients')
       h3(class='recipe-header') Ingredients
-      div(class='recipe-description__recipe-description')
       each ingredient in normalizedRecipe.ingredients
-        div - #{ingredient}
+        div(class="recipe-ingredients__ingredient")
+          input(type="checkbox", name=ingredient)
+          label(for=ingredient)=ingredient
     div(class='recipe-instructions')
       h3(class='recipe-header recipe-list') Instructions
-      div(class='recipe-description__recipe-description recipe-list')=normalizedRecipe.instructions
+      each instruction, index in normalizedRecipe.instructions
+        div(class="step_checkbox_container")
+          input(class="step_checkbox", type="checkbox", name=instruction)
+          label(class='recipe_step', for=instruction) Step #{index+1}
+        div(class='recipe-description__recipe-description recipe-list') #{instruction}
     div(class='recipe-separator') -
     div(class='recipe-avg')
       div Avg. Rating
