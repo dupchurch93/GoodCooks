@@ -1,22 +1,11 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const {
-  asyncHandler,
-  csrfProtection,
-  normalizeRecipe,
-} = require("../utils");
-const {
-  User,
-  Recipe,
-  sequelize,
-  Cupboard_Recipe,
-  Cupboard,
-  Rating,
-} = require("../db/models/");
-const { validationResult } = require("express-validator");
+const { asyncHandler, csrfProtection, normalizeRecipe } = require('../utils');
+const { User, Recipe, sequelize, Cupboard_Recipe, Cupboard, Rating } = require('../db/models/');
+const { validationResult } = require('express-validator');
 
 router.post(
-  "/recipes/saveRecipe",
+  '/recipes/saveRecipe',
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId, cooked, favorited } = req.body;
     const recordsCreated = await Cupboard_Recipe.create({
@@ -30,7 +19,7 @@ router.post(
 );
 
 router.delete(
-  "/recipes/unsaveRecipe",
+  '/recipes/unsaveRecipe',
   asyncHandler(async (req, res) => {
     const { recipeId } = req.body;
     const { cupboardId } = req.body;
@@ -45,7 +34,7 @@ router.delete(
 );
 
 router.patch(
-  "/recipes/cookRecipe",
+  '/recipes/cookRecipe',
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId } = req.body;
     const recordsUpdated = await Cupboard_Recipe.update(
@@ -62,7 +51,7 @@ router.patch(
 );
 
 router.patch(
-  "/recipes/uncookRecipe",
+  '/recipes/uncookRecipe',
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId } = req.body;
     const recordsUpdated = await Cupboard_Recipe.update(
@@ -79,7 +68,7 @@ router.patch(
 );
 
 router.patch(
-  "/recipes/favoriteRecipe",
+  '/recipes/favoriteRecipe',
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId } = req.body;
     const recordsUpdated = await Cupboard_Recipe.update(
@@ -96,7 +85,7 @@ router.patch(
 );
 
 router.patch(
-  "/recipes/unfavoriteRecipe",
+  '/recipes/unfavoriteRecipe',
   asyncHandler(async (req, res) => {
     const { recipeId, cupboardId } = req.body;
     const recordsUpdated = await Cupboard_Recipe.update(
@@ -114,23 +103,31 @@ router.patch(
 
 //Rating recipes
 router.post(
-  "/recipes/rateRecipe",
+  '/recipes/rateRecipe',
+  csrfProtection,
   asyncHandler(async (req, res) => {
     const { recipeId, starRating, content } = req.body;
-    const userId = res.locals.user.id;
-    const ratingsCreated = await Rating.create({
-      recipeId,
-      starRating,
-      content,
-      userId,
-    });
-    res.json({ starRating });
+    if (!res.locals.authenticated) {
+      return res.render('user-login', {
+        title: 'login',
+        csrfToken: req.csrfToken(),
+      });
+    } else {
+      const userId = res.locals.user.id;
+      const ratingsCreated = await Rating.create({
+        recipeId,
+        starRating,
+        content,
+        userId,
+      });
+      res.json({ starRating });
+    }
   })
 );
 
 //patch request for user clicking on a star button to change their rating
 router.patch(
-  "/recipes/updateRateRecipe",
+  '/recipes/updateRateRecipe',
   asyncHandler(async (req, res) => {
     const { recipeId, starRating, content } = req.body;
     const userId = res.locals.user.id;
@@ -148,12 +145,12 @@ router.patch(
 );
 
 router.post(
-  "/recipes/updateRateRecipe",
+  '/recipes/updateRateRecipe',
   csrfProtection,
   asyncHandler(async (req, res) => {
     const { recipeId, content } = req.body;
-    console.log("recipe id", recipeId)
-    console.log("content", content)
+    console.log('recipe id', recipeId);
+    console.log('content', content);
     const userId = res.locals.user.id;
     const recipe = await Recipe.findOne({
       where: { id: recipeId },
@@ -170,12 +167,12 @@ router.post(
           },
         }
       );
-      res.redirect(`/recipes/${recipeId}`)
-    } else{
+      res.redirect(`/recipes/${recipeId}`);
+    } else {
       res.render('recipe-review', {
         title: normalizedRecipe.name,
         normalizedRecipe,
-        errors: ["Please leave a star rating for the recipe before leaving a review."],
+        errors: ['Please leave a star rating for the recipe before leaving a review.'],
         csrfToken: req.csrfToken(),
       });
     }
@@ -183,7 +180,7 @@ router.post(
 );
 
 router.delete(
-  "/recipes/deleteRateRecipe",
+  '/recipes/deleteRateRecipe',
   asyncHandler(async (req, res) => {
     const { recipeId } = req.body;
     const userId = res.locals.user.id;

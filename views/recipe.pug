@@ -9,7 +9,6 @@ block content
   div(class='recipe-page core-display')
     div(class='recipe-page__recipe-list recipe-list')
       h1(class='recipe-list__recipe-title recipe-list')=normalizedRecipe.name
-      +starAverage(avgRating, normalizedRecipe)
       img(class='recipe-list__recipe-image recipe-list', alt=`Photo of ${normalizedRecipe.name}`, src=normalizedRecipe.link)
       div(class='recipe-page__buttons-container')
         if user
@@ -30,10 +29,11 @@ block content
     div(class='recipe-instructions')
       h3(class='recipe-header recipe-list') Instructions
       div(class='recipe-description__recipe-description recipe-list')=normalizedRecipe.instructions
-  div(class='recipe-ratings core-display')
-    //each rating in ratings
-    h3(class='recipe-ratings-title') User Ratings
-    div(class='recipe-user') User
-    div(class='recipe-rating') Rating
+    div(class='recipe-separator') -
+    div(class='recipe-ratings__user-rating') User Rating
+      +starAverage(avgRating, normalizedRecipe)
+    div(class='recipe-ratings__individual-rating') Ratings
+      each rating in ratings
+          div Hello
   script(src='/javascripts/saveRecipe.js' type="module" defer)
   script(src='/javascripts/rateRecipe.js' type="module" defer)
