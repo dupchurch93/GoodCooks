@@ -31,6 +31,19 @@
   padding: 20px 20px 0px 20px;
 }
 
+.recipe-ingredients__ingredient{
+  padding: 0.2rem 0rem 0.2rem 0rem;
+}
+
+.recipe_step{
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.step_checkbox{
+  margin: 1;
+}
+
 .recipe-list.recipe-description__recipe-description{
   padding: 8px 0x 8px 0px;
   margin: 8px 0px 8px 0px;
