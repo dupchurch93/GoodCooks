@@ -14,10 +14,14 @@ module.exports = {
         4 cups low-sodium chicken broth, 4 cups broccoli florets from about 1 head,
         2 bay leaves, 1/4 teaspoon freshly grated nutmeg, Kosher salt and freshly ground pepper,
         1 large russet potato about 8 ounces, 8 ounces mild yellow Cheddar, shredded about 2 cups, plus more for serving`,
-          instructions: `Melt the butter in a large saucepan or Dutch oven over medium-high heat. Add the onion, carrot and garlic and cook, stirring occasionally, until just tender, about 5 minutes. Whisk in the flour and cook until golden, 3 to 4 minutes, then gradually whisk in the half-and-half until smooth. Add the chicken broth, broccoli, bay leaves, nutmeg, 1/2 teaspoon salt and few grinds of black pepper Bring to a boil, then reduce to medium-low and simmer, uncovered and stirring occasionally, until the broth has thickened and the broccoli is very tender, about 15 minutes
-        Meanwhile, prick the potato all over with a fork and put on a microwave-safe plate. Microwave on high until tender, flipping halfway through, about 6 minutes. Let cool, then peel. Use a fork or potato masher to mash until crumbly.
-        Reserve 2 cups of the soup in a liquid measuring cup and discard the bay leaves. Let the remaining hot soup cool for 5 minutes or so, then transfer it to a blender, filling no more than halfway. Add the mashed potato. Remove the center cap from the lid and place it on the blender. Cover the lid with a folded kitchen towel to catch splatters, and pulse until very smooth.
-        Stir the pureed soup and reserved 2 cups of soup back into the pot. Whisk in the cheese until melted and smooth. Season with salt and pepper. Ladle into serving bowls and top with more shredded Cheddar.`,
+          instructions: `1. Melt the butter in a large saucepan or Dutch oven over medium-high heat.
+          2. Add the onion, carrot and garlic and cook, stirring occasionally, until just tender, about 5 minutes.
+          3. Whisk in the flour and cook until golden, 3 to 4 minutes, then gradually whisk in the half-and-half until smooth.
+          4. Add the chicken broth, broccoli, bay leaves, nutmeg, 1/2 teaspoon salt and few grinds of black pepper Bring to a boil, then reduce to medium-low and simmer, uncovered and stirring occasionally, until the broth has thickened and the broccoli is very tender, about 15 minutes
+          5. Prick the potato all over with a fork and put on a microwave-safe plate. Microwave on high until tender, flipping halfway through, about 6 minutes. Let cool, then peel. Use a fork or potato masher to mash until crumbly.
+          6. Reserve 2 cups of the soup in a liquid measuring cup and discard the bay leaves. Let the remaining hot soup cool for 5 minutes or so, then transfer it to a blender, filling no more than halfway.
+          7. Add the mashed potato. Remove the center cap from the lid and place it on the blender. Cover the lid with a folded kitchen towel to catch splatters, and pulse until very smooth.
+          8. Stir the pureed soup and reserved 2 cups of soup back into the pot. Whisk in the cheese until melted and smooth. Season with salt and pepper. Ladle into serving bowls and top with more shredded Cheddar.`,
           author: 'Kelly Senyei',
           createdAt: new Date('2016-11-13'),
           updatedAt: new Date('2016-11-13'),
@@ -29,8 +33,9 @@ module.exports = {
           description:
             'Great simple burger recipe. Use fresh, good quality grass-fed ground beef for best results.',
           ingredients: `8 ounces chuck, trimmed, cut into 1 1/2-inch cubes, 8 ounces sirloin, trimmed, cut into 1 1/2-inch cubes, 1/2 teaspoon kosher salt`,
-          instructions: `In separate batches, pulse the chuck and the sirloin in a food processor 10 times. Combine the chuck, sirloin, and kosher salt in a large bowl. Form the meat into 5-ounce patties.
-         Heat a cast iron skillet or griddle over medium-high heat for 2 to 3 minutes. Place the hamburger patties in the pan. For medium-rare burgers, cook the patties for 4 minutes on each side. For medium burgers, cook the patties for 5 minutes on each side. Flip the burgers only once during cooking.`,
+          instructions: `1. In separate batches, pulse the chuck and the sirloin in a food processor 10 times.
+          2. Combine the chuck, sirloin, and kosher salt in a large bowl. Form the meat into 5-ounce patties.
+          3. Heat a cast iron skillet or griddle over medium-high heat for 2 to 3 minutes. Place the hamburger patties in the pan. For medium-rare burgers, cook the patties for 4 minutes on each side. For medium burgers, cook the patties for 5 minutes on each side. Flip the burgers only once during cooking.`,
           author: 'Alton Brown',
           createdAt: new Date('2014-09-03'),
           updatedAt: new Date('2014-09-03'),
@@ -59,11 +64,11 @@ module.exports = {
           Pinch of salt,Tiny pinch of cinnamon,1/4 cup water 60 ml,
           2 tablespoons 30 ml melted butter, or neutral oil,1/8 teaspoon vanilla extract,
           1 small scoop of ice cream or 1 or 2 teaspoons heavy whipping cream to serve`,
-          instructions: `1 Add the dry ingredients to the mug and stir: Place flour, sugar, cocoa, salt, and cinnamon in a microwave safe ceramic mug. Stir with a fork or spoon to mix well and break up any clumps.
-         2 Add the wet ingredients and stir: Add the butter or oil, water, and vanilla to the cup and stir until the mixture is smooth and there are no lumps.
-         3 Zap in microwave: Place in microwave and heat on high until the mixture is cooked through, about a 1 minute and 40 seconds for a 1000 watt microwave, or 1 minute 10 seconds on a 1650 watt microwave.
+          instructions: `1. Add the dry ingredients to the mug and stir: Place flour, sugar, cocoa, salt, and cinnamon in a microwave safe ceramic mug. Stir with a fork or spoon to mix well and break up any clumps.
+         2. Add the wet ingredients and stir: Add the butter or oil, water, and vanilla to the cup and stir until the mixture is smooth and there are no lumps.
+         3. Zap in microwave: Place in microwave and heat on high until the mixture is cooked through, about a 1 minute and 40 seconds for a 1000 watt microwave, or 1 minute 10 seconds on a 1650 watt microwave.
          You may have to experiment and adjust the time for less or more powerful microwaves. If you don't know the power level on your microwave, start with 60 seconds and increase until the brownie is done. It should still be moist when cooked through, not dry.
-         4 Top with ice cream! Let cool for a minute and serve with a scoop of vanilla ice cream or a teaspoon or two of whipping cream poured over.`,
+         4. Top with ice cream! Let cool for a minute and serve with a scoop of vanilla ice cream or a teaspoon or two of whipping cream poured over.`,
           author: 'Elsie Bauer',
           createdAt: new Date('2014-09-03'),
           updatedAt: new Date('2014-09-03'),
@@ -75,10 +80,10 @@ module.exports = {
           description:
             'These eggs look as good piled high on a piece of toast as they do alongside sausage and hash browns or sautéed spinach and avocado.',
           ingredients: `2 large eggs, 1 tablespoon whole milk, 1/2 tablespoon butter, 1/8 teaspoon salt, Fresh cracked pepper`,
-          instructions: `1 Melt butter in a small skillet over medium heat.
-         2 Whisk the eggs: Crack two eggs into a small mixing bowl. Add milk and salt. Aggressively whisk the mixture until it is uniform in color, texture, and slightly foamy. You want the whites and yolks fully combined.
+          instructions: `1. Melt butter in a small skillet over medium heat.
+         2. Whisk the eggs: Crack two eggs into a small mixing bowl. Add milk and salt. Aggressively whisk the mixture until it is uniform in color, texture, and slightly foamy. You want the whites and yolks fully combined.
          3. Scramble the eggs: Add the eggs to hot skillet and immediately reduce the heat to medium low. Use a rubber spatula to push the eggs from one end of the skillet to the other.
-         4 Serve immediately: Remove eggs from pan when the eggs are set but still glisten with moisture, and transfer to a plate. Finish with freshly cracked pepper. Garnish with fresh herbs, if using.`,
+         4. Serve immediately: Remove eggs from pan when the eggs are set but still glisten with moisture, and transfer to a plate. Finish with freshly cracked pepper. Garnish with fresh herbs, if using.`,
           author: 'Summer Miller',
           createdAt: new Date('2014-09-03'),
           updatedAt: new Date('2014-09-03'),
