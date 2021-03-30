@@ -60,9 +60,10 @@
 /* other user's rating */
 .recipe-ratings__individual-rating {
   grid-area: recipe-individual;
+  display: flex;
+  flex-direction: column;
 }
 
-/* my rating */
 .recipe-ratings__user-rating {
   grid-area: recipe-ratings;
   display: flex;
@@ -75,12 +76,14 @@
   justify-content: space-between;
 }
 
-.recipe-ratings__user-rating-content {
+.recipe-ratings__user-rating-content,
+.recipe-ratings__individual-rating-content {
   display: flex;
   align-items: center;
 }
 
-.recipe-ratings__user-rating-content > .rating {
+.recipe-ratings__user-rating-content > .rating,
+.recipe-ratings__individual-rating-content > .rating {
   padding-left: 0;
 }
 

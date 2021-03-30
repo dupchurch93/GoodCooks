@@ -27,7 +27,10 @@ router.get(
   csrfProtection,
   asyncHandler(async (req, res) => {
     const recipeId = parseInt(req.params.id, 10);
-    const recipe = await Recipe.findOne({ where: { id: recipeId }, include: [Cupboard, Rating] });
+    const recipe = await Recipe.findOne({
+      where: { id: recipeId },
+      include: [Cupboard, Rating],
+    });
     for (let rating of recipe.Ratings) {
       // console.log('recipe here---------', rating);
     }
@@ -55,7 +58,7 @@ router.get(
     } else {
       normalizedRecipe = normalizeRecipe(recipe);
     }
-    console.log(userRating);
+    console.log(ratings);
     normalizedRecipe.ingredients = splitIngredients(normalizedRecipe, ',');
     res.render('recipe', {
       title: normalizedRecipe.name,
