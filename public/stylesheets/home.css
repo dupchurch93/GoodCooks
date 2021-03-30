@@ -270,3 +270,7 @@ li {
   width: 30px;
   border-radius: 12px;
 }
+.github_link {
+  display: flex;
+  align-items: center;
+}
