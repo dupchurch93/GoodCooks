@@ -174,6 +174,7 @@
   margin: 1rem 1rem;
 }
 
-.recipe-ratings__individual-rating-content > .avg-rating {
+.recipe-ratings__individual-rating-content > .avg-rating,
+.recipe-ratings__user-rating-content > .avg-rating {
   margin-left: 0;
 }
