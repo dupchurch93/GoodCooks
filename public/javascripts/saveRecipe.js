@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', async (event) => {
       const { recipeId, cupboardId } = getId(event.target)
       //save or unsave to the cupboard if it's already saved or not
-      if (event.target.innerText === 'Unsave Recipe') {
+      if (event.target.innerText === 'Saved') {
         const res = await unsaveRecipe(cupboardId, recipeId);
         if (res) {
-          event.target.innerText = 'Save Recipe';
-          document.getElementById(`cookedrecipe:${recipeId}.cupboard:${cupboardId}`).innerText = 'Add to Cooked';
+          event.target.innerText = 'Save';
+          document.getElementById(`cookedrecipe:${recipeId}.cupboard:${cupboardId}`).innerText = 'Cook';
           document.getElementById(`favoriterecipe:${recipeId}.cupboard:${cupboardId}`).innerText = 'Favorite';
         } else {
           alert('Something went wrong. Please try again.');
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         const res = await saveRecipe(cupboardId, recipeId);
         if (res) {
-          event.target.innerText = 'Unsave Recipe';
+          event.target.innerText = 'Saved';
         } else {
           alert('Something went wrong. Please try again.');
         }
@@ -45,23 +45,23 @@ document.addEventListener('DOMContentLoaded', () => {
       const { recipeId, cupboardId } = getId(event.target)
       //save or unsave to the cupboard if it's already saved or not
       const saveButton = document.getElementById(`recipe:${recipeId}.cupboard:${cupboardId}`);
-      if (saveButton.innerText === 'Save Recipe') {
+      if (saveButton.innerText === 'Save') {
         const res = await saveRecipe(cupboardId, recipeId, true);
         if (res) {
-          event.target.innerText = 'Remove from Cooked';
-          saveButton.innerText = 'Unsave Recipe';
+          event.target.innerText = 'Cooked';
+          saveButton.innerText = 'Saved';
         }
-      } else if (event.target.innerText === 'Remove from Cooked') {
+      } else if (event.target.innerText === 'Cooked') {
         const res = await uncookRecipe(cupboardId, recipeId);
         if (res) {
-          event.target.innerText = 'Add to Cooked';
+          event.target.innerText = 'Cook';
         } else {
           alert('Something went wrong. Please try again.');
         }
       } else {
         const res = await cookRecipe(cupboardId, recipeId);
         if (res) {
-          event.target.innerText = 'Remove from Cooked';
+          event.target.innerText = 'Cooked';
         } else {
           alert('Something went wrong. Please try again.');
         }
@@ -75,11 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const { recipeId, cupboardId } = getId(event.target)
       //save or unsave to the cupboard if it's already saved or not
       const saveButton = document.getElementById(`recipe:${recipeId}.cupboard:${cupboardId}`);
-      if (saveButton.innerText === 'Save Recipe') {
+      if (saveButton.innerText === 'Save') {
         const res = await saveRecipe(cupboardId, recipeId, false, true);
         if (res) {
           event.target.innerText = 'Unfavorite';
-          saveButton.innerText = 'Unsave Recipe';
+          saveButton.innerText = 'Unsave';
         }
       } else if (event.target.innerText === 'Unfavorite') {
         const res = await unfavoriteRecipe(cupboardId, recipeId);
