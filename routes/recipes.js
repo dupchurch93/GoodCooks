@@ -44,7 +44,7 @@ router.get(
       // Extract the current logged-in-user's rating if available
       if (res.locals.authenticated) {
         ratings = recipe.Ratings.filter((rating) => rating.userId !== res.locals.user.id);
-        userRating = ratings.filter((rating) => rating.userId === res.locals.user.id);
+        userRating = recipe.Ratings.filter((rating) => rating.userId === res.locals.user.id)[0];
       } else {
         ratings = recipe.Ratings;
       }
@@ -55,6 +55,7 @@ router.get(
     } else {
       normalizedRecipe = normalizeRecipe(recipe);
     }
+    console.log(userRating);
     normalizedRecipe.ingredients = splitIngredients(normalizedRecipe, ',');
     res.render('recipe', {
       title: normalizedRecipe.name,

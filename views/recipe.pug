@@ -30,10 +30,21 @@ block content
       h3(class='recipe-header recipe-list') Instructions
       div(class='recipe-description__recipe-description recipe-list')=normalizedRecipe.instructions
     div(class='recipe-separator') -
-    div(class='recipe-ratings__user-rating') User Rating
+    div(class='recipe-avg')
+      div Avg. Rating
       +starAverage(avgRating, normalizedRecipe)
+    if userRating
+      div(class='recipe-ratings__user-rating')
+        div(class='recipe-ratings__user-rating-title')
+          div My Rating
+          a(href=`/recipes/${normalizedRecipe.id}/review`) Edit my review
+        div(class='recipe-ratings__user-rating-content')
+          +starAverage(userRating.starRating, normalizedRecipe)
+          div= userRating.content
+
     div(class='recipe-ratings__individual-rating') Ratings
       each rating in ratings
-          div Hello
+        +starAverage(rating.starRating, normalizedRecipe)
+        div= rating.content
   script(src='/javascripts/saveRecipe.js' type="module" defer)
   script(src='/javascripts/rateRecipe.js' type="module" defer)

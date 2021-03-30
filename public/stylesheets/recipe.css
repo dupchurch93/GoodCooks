@@ -6,6 +6,7 @@
     'recipe-list recipe-ingredients'
     'recipe-instructions recipe-instructions'
     'recipe-separator recipe-separator'
+    'recipe-avg recipe-avg'
     'recipe-ratings recipe-ratings'
     'recipe-individual recipe-individual';
   width: 50%;
@@ -42,6 +43,12 @@
 .recipe-instructions {
   grid-area: recipe-instructions;
 }
+.recipe-avg {
+  grid-area: recipe-avg;
+  display: flex;
+  align-items: center;
+  margin: 20px 20px 0px 20px;
+}
 
 .recipe-separator {
   grid-area: recipe-separator;
@@ -50,12 +57,31 @@
   display: block;
 }
 
+/* other user's rating */
 .recipe-ratings__individual-rating {
   grid-area: recipe-individual;
 }
 
+/* my rating */
 .recipe-ratings__user-rating {
   grid-area: recipe-ratings;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-ratings__user-rating-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recipe-ratings__user-rating-content {
+  display: flex;
+  align-items: center;
+}
+
+.recipe-ratings__user-rating-content > .rating {
+  padding-left: 0;
 }
 
 .recipe-instructions,
