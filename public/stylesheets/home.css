@@ -268,7 +268,7 @@ li {
 
 .github_image {
   width: 30px;
-  border-radius: 12px;
+  border-radius: 12px; 
 }
 .github_link {
   display: flex;
