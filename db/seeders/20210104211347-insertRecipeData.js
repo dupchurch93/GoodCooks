@@ -9,11 +9,11 @@ module.exports = {
           name: 'The Best Broccoli-Cheddar Soup',
           description:
             'This outstanding broccoli-cheddar soup is rich, cheesy and packed with flavor. We decided to puree just over half the soup which makes it extra thick and creamy, and left the remainder chunky so there are broccoli bits in every bite. Gild the lily with more shredded cheese on top to satisfy your comfort food craving.',
-          ingredients: `4 tablespoons unsalted butter, 1 medium yellow onion, diced,
-        1 large carrot, diced, 2 cloves garlic, minced, 1/4 cup all-purpose flour, 2 cups half and half,
-        4 cups low-sodium chicken broth, 4 cups broccoli florets from about 1 head,
-        2 bay leaves, 1/4 teaspoon freshly grated nutmeg, Kosher salt and freshly ground pepper,
-        1 large russet potato about 8 ounces, 8 ounces mild yellow Cheddar, shredded about 2 cups, plus more for serving`,
+          ingredients: ` 4 tablespoons unsalted butter: 1 medium yellow onion, diced:
+        1 large carrot, diced: 2 cloves garlic, minced: 1/4 cup all-purpose flour: 2 cups half and half:
+        4 cups low-sodium chicken broth: 4 cups broccoli florets from about 1 head:
+        2 bay leaves: 1/4 teaspoon freshly grated nutmeg: Kosher salt and freshly ground pepper:
+        1 large russet potato about 8 ounces: 8 ounces mild yellow Cheddar, shredded about 2 cups, plus more for serving`,
           instructions: `1. Melt the butter in a large saucepan or Dutch oven over medium-high heat.
           2. Add the onion, carrot and garlic and cook, stirring occasionally, until just tender, about 5 minutes.
           3. Whisk in the flour and cook until golden, 3 to 4 minutes, then gradually whisk in the half-and-half until smooth.
@@ -32,7 +32,7 @@ module.exports = {
           name: 'Burger of the Gods',
           description:
             'Great simple burger recipe. Use fresh, good quality grass-fed ground beef for best results.',
-          ingredients: `8 ounces chuck, trimmed, cut into 1 1/2-inch cubes, 8 ounces sirloin, trimmed, cut into 1 1/2-inch cubes, 1/2 teaspoon kosher salt`,
+          ingredients: ` 8 ounces chuck, trimmed, cut into 1 1/2-inch cubes: 8 ounces sirloin, trimmed, cut into 1 1/2-inch cubes: 1/2 teaspoon kosher salt`,
           instructions: `1. In separate batches, pulse the chuck and the sirloin in a food processor 10 times.
           2. Combine the chuck, sirloin, and kosher salt in a large bowl. Form the meat into 5-ounce patties.
           3. Heat a cast iron skillet or griddle over medium-high heat for 2 to 3 minutes. Place the hamburger patties in the pan. For medium-rare burgers, cook the patties for 4 minutes on each side. For medium burgers, cook the patties for 5 minutes on each side. Flip the burgers only once during cooking.`,
@@ -46,7 +46,7 @@ module.exports = {
           name: 'Air Fryer Mozzarella Sticks',
           description:
             'Delicious and fried til golden, this is a savory treat best served hot and with a side of marinara.',
-          ingredients: `1 large egg, 1 teaspoon Italian seasoning, 1/2 teaspoon salt, 1 cup panko breadcrumbs, 8 whole milk or low-fat mozzarella sticks`,
+          ingredients: ` 1 large egg: 1 teaspoon Italian seasoning: 1/2 teaspoon salt: 1 cup panko breadcrumbs: 8 whole milk or low-fat mozzarella sticks`,
           instructions: `1. Line a rimmed baking sheet with wax paper. Lightly beat the egg in a wide, shallow bowl. Combine the Italian seasoning, salt, and breadcrumbs in a second wide, shallow bowl.
                         2. Coat the mozzarella sticks and freeze them: Dip a mozzarella stick into the beaten egg and coat it completely. Dip the stick into the bowl with the breadcrumbs and coat completely. This will be messy. It’s okay.
                         3. Coat the mozzarella sticks again, and freeze them, again. Pull the mozzarella sticks out of the freezer, dip them into the egg and then the breadcrumb mix, and then freeze them for another 1/2 hour minimum, 1 hour maximum.
@@ -60,7 +60,7 @@ module.exports = {
         {
           name: 'Microwave mug cake',
           description: 'Great simple treat that can be ready to eat in just 5 minutes',
-          ingredients: `1/4 cup flour 30 g,1/4 cup sugar 50 g,2 tablespoons 13 g cocoa natural, unsweetened,
+          ingredients: ` 1/4 cup flour 30 g: 1/4 cup sugar 50 g: 2 tablespoons 13 g cocoa natural, unsweetened,
           Pinch of salt,Tiny pinch of cinnamon,1/4 cup water 60 ml,
           2 tablespoons 30 ml melted butter, or neutral oil,1/8 teaspoon vanilla extract,
           1 small scoop of ice cream or 1 or 2 teaspoons heavy whipping cream to serve`,
@@ -79,7 +79,7 @@ module.exports = {
           name: 'Best Scrambled Eggs',
           description:
             'These eggs look as good piled high on a piece of toast as they do alongside sausage and hash browns or sautéed spinach and avocado.',
-          ingredients: `2 large eggs, 1 tablespoon whole milk, 1/2 tablespoon butter, 1/8 teaspoon salt, Fresh cracked pepper`,
+          ingredients: `2 large eggs: 1 tablespoon whole milk: 1/2 tablespoon butter: 1/8 teaspoon salt: Fresh cracked pepper`,
           instructions: `1. Melt butter in a small skillet over medium heat.
          2. Whisk the eggs: Crack two eggs into a small mixing bowl. Add milk and salt. Aggressively whisk the mixture until it is uniform in color, texture, and slightly foamy. You want the whites and yolks fully combined.
          3. Scramble the eggs: Add the eggs to hot skillet and immediately reduce the heat to medium low. Use a rubber spatula to push the eggs from one end of the skillet to the other.
@@ -93,11 +93,11 @@ module.exports = {
         {
           name: 'Grilled cheese',
           description: 'Great simple grilled cheese recipe that is ready to eat in 10 minutes',
-          ingredients: `3 ounces about 2/3 to 1 cup shredded cheddar, swiss, jack, or fontina cheese,
-         2 slices sandwich bread, preferably 1/2-inch thick,
+          ingredients: ` 3 ounces about 2/3 to 1 cup shredded cheddar, swiss, jack, or fontina cheese:
+         2 slices sandwich bread, preferably 1/2-inch thick:
          2 teaspoons mayonnaise or butter`,
           instructions: `1. Preheat the Pan and grate the cheese
-        2.Butter the bread evenly
+        2. Butter the bread evenly
         3. Add the cheese and let it melt: Distribute the cheese evenly over both slices of bread. If you have a lid for your skillet, put it on; this will help the cheese melt more evenly.
         4. After 2-3 minutes close the sandwhich and finish grilling`,
           author: 'Sara Bir',
@@ -109,7 +109,7 @@ module.exports = {
         {
           name: 'Peanut butter and jelly',
           description: 'Great simple PB&J recipe that is ready to eat in 5 minutes',
-          ingredients: '2 pieces of the bread of your choosing, Peanut butter, Jelly',
+          ingredients: ' 2 pieces of the bread of your choosing: Peanut butter: Jelly',
           instructions:
             '1. Spread jelly on one of the pieces of bread and peanut butter on the other 2. Put the pieces of bread together and cut the sandwich into halves',
           author: 'Ronald Jones',
@@ -121,10 +121,10 @@ module.exports = {
         {
           name: 'Hot Chocolate',
           description: 'Sweet chocolate drink that will keep you warm in the winter',
-          ingredients: `4 cups whole milk or another nondairy milk,
-         8 ounces dark, semi-sweet, or bittersweet chocolate 60% cacao, preferably,
-         3 teaspoons powdered sugar,
-         1 teaspoon vanilla extract,
+          ingredients: ` 4 cups whole milk or another nondairy milk:
+         8 ounces dark, semi-sweet, or bittersweet chocolate 60% cacao, preferably:
+         3 teaspoons powdered sugar:
+         1 teaspoon vanilla extract:
          1/8 teaspoon salt`,
           instructions: `1. Chop the chocolate: Finely chop the chocolate into small pieces. The pieces have to be able to dissolve easily in the liquid.
          2. Warm the milk: Place the milk into a small, thick-bottomed pot on low heat and bring to a low simmer. Whisk once in a while to ensure that the milk doesn't stick to the bottom of the pan.
@@ -141,9 +141,9 @@ module.exports = {
           name: 'French Toast',
           description:
             'Thick slices of bread, soaked in a mixture of beaten eggs with milk and cinnamon, toasted in a frying pan, and served with butter and maple syrup',
-          ingredients: `4 eggs, 2/3 cup milk, 2 teaspoons of cinnamon,
-         8 thick slices of 2-day-old bread better if slightly stale,
-         Butter can sub vegetable oil, Maple syrup`,
+          ingredients: ` 4 eggs: 2/3 cup milk: 2 teaspoons of cinnamon:
+         8 thick slices of 2-day-old bread better if slightly stale:
+         Butter can sub vegetable oil: Maple syrup`,
           instructions: `1. Make the egg mixture: In a medium bowl, whisk together the eggs, milk, and cinnamon. Stir in the orange zest and/or Triple Sec if using. Whisk the mixture until well blended and pour into a shallow bowl, wide enough to place a slice of the bread you will be using.
          2. Soak bread slices in egg mixture: Place each slice of bread into the milk egg mixture, allowing the bread to soak in some of it.
          3. Fry the french toast: Melt some butter in a large skillet over medium high heat. Shake off the excess egg mixture from the bread, and place the bread slices onto the hot skillet. Fry the French toast until browned on one side, then flip and brown the other side.
@@ -157,8 +157,8 @@ module.exports = {
         {
           name: 'Chocolate covered pretzels',
           description: 'Sweet and salty snack that everyone will love',
-          ingredients: `12 ounces semi-sweet chocolate chips,
-         12 ounces white chocolate chips see headnote above,
+          ingredients: ` 12 ounces semi-sweet chocolate chips:
+         12 ounces white chocolate chips see headnote above:
          4 ounces 72 individual mini pretzel twists`,
           instructions: `1. Melt the white chocolate and the semi-sweet chocolate in seperate bowls and stir until smooth,
          2. Dip the pretzels in the semi-sweet chocolate until they are fully coated.

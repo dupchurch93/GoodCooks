@@ -70,7 +70,7 @@ router.get('/:id(\\d+)/review',
 module.exports = router;
 
 const splitIngredients = (recipe) => {
-  return recipe.ingredients.split(',');
+  return recipe.ingredients.split(':');
 };
 
 const splitInstructions = (recipe) => {
