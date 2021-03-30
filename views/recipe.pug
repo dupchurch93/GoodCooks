@@ -25,8 +25,8 @@ block content
         div - #{ingredient}
     div(class='recipe-instructions')
       h3(class='recipe-header recipe-list') Instructions
-      each instruction in normalizedRecipe.instructions
-        div(class='recipe-description__recipe-description recipe-list')=instruction
+      each instruction, index in normalizedRecipe.instructions
+        div(class='recipe-description__recipe-description recipe-list') #{index+1}. #{instruction}
   div(class='recipe-ratings core-display')
     //each rating in ratings
     h3(class='recipe-ratings-title') User Ratings

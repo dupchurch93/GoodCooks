@@ -37,8 +37,11 @@ router.get(
     } else {
       normalizedRecipe = normalizeRecipe(recipe);
     }
+    //split the ingredients list
     normalizedRecipe.ingredients = splitIngredients(normalizedRecipe, ',');
+    //split the instructions list on the numbers and remove the first empty string
     normalizedRecipe.instructions = splitInstructions(normalizedRecipe)
+    console.log(normalizedRecipe.instructions)
     res.render('recipe', {
       title: normalizedRecipe.name,
       normalizedRecipe,
@@ -63,17 +66,6 @@ router.get('/:id(\\d+)/review',
   })
 );
 
-// router.post(
-//   '/:id(\\d+)/review',
-//   csrfProtection,
-//   asyncHandler(async (req, res) => {
-//     // console.log('req.body', req.body);
-//     const recipeId = req.params.id;
-//     const recipe = await Recipe.findOne({ where: { id: recipeId }, include: [Cupboard, Rating] });
-//     }
-// );
-
-
 
 module.exports = router;
 
@@ -82,5 +74,7 @@ const splitIngredients = (recipe) => {
 };
 
 const splitInstructions = (recipe) => {
-  return recipe.instructions.split(new RegExp("\d."))
+  const instructions = recipe.instructions.split(/\d\. /);
+  instructions.shift();
+  return instructions;
 }
