@@ -14,13 +14,23 @@ module.exports = (sequelize, DataTypes) => {
     hashedPassword: {
       type: DataTypes.STRING.BINARY,
       allowNull: false
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: new Date()
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: new Date()
     }
   }, {});
   User.associate = function(models) {
     // associations can be defined here
     User.hasMany(models.Cupboard, { foreignKey: 'userId' })
     User.hasMany(models.Rating, { foreignKey: 'userId' });
-    
+
   };
   return User;
 };
