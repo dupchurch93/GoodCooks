@@ -31,10 +31,25 @@ block content
           input(class="step_checkbox", type="checkbox", name=instruction)
           label(class='recipe_step', for=instruction) Step #{index+1}
         div(class='recipe-description__recipe-description recipe-list') #{instruction}
-  div(class='recipe-ratings core-display')
-    //each rating in ratings
-    h3(class='recipe-ratings-title') User Ratings
-    div(class='recipe-user') User
-    div(class='recipe-rating') Rating
+    div(class='recipe-separator') -
+    div(class='recipe-avg')
+      div Avg. Rating
+      +starAverage(avgRating, normalizedRecipe)
+    if userRating
+      div(class='recipe-ratings__user-rating')
+        div(class='recipe-ratings__user-rating-title')
+          div My Review
+          a(href=`/recipes/${normalizedRecipe.id}/review`) Edit my review
+        div(class='recipe-ratings__user-rating-content')
+          +starAverage(userRating.starRating, normalizedRecipe)
+          div= userRating.content
+
+    div(class='recipe-ratings__individual-rating')
+      div(class='recipe-ratings__individual-rating-title')
+        div Other User's Reviews
+      each rating in ratings
+        div(class='recipe-ratings__individual-rating-content')
+          +starAverage(rating.starRating, normalizedRecipe)
+          div= rating.content
   script(src='/javascripts/saveRecipe.js' type="module" defer)
   script(src='/javascripts/rateRecipe.js' type="module" defer)

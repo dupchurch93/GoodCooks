@@ -4,7 +4,11 @@
   grid-template-rows: auto;
   grid-template-areas:
     'recipe-list recipe-ingredients'
-    'recipe-instructions recipe-instructions';
+    'recipe-instructions recipe-instructions'
+    'recipe-separator recipe-separator'
+    'recipe-avg recipe-avg'
+    'recipe-ratings recipe-ratings'
+    'recipe-individual recipe-individual';
   width: 50%;
   margin: auto;
   margin-top: 40px;
@@ -31,33 +35,82 @@
   padding: 20px 20px 0px 20px;
 }
 
-.recipe-ingredients__ingredient{
+.recipe-ingredients__ingredient {
   padding: 0.2rem 0rem 0.2rem 0rem;
 }
 
-.recipe_step{
+.recipe_step {
   font-weight: bold;
   text-decoration: underline;
 }
 
-.step_checkbox_container{
+.step_checkbox_container {
   margin-top: 1rem;
   display: flex;
   align-items: center;
 }
 
-.step_checkbox, .recipe_step{
+.step_checkbox,
+.recipe_step {
   padding: 0.2rem;
   margin: 0rem 0.3rem 0rem 0.3rem;
 }
 
-.recipe-list.recipe-description__recipe-description{
+.recipe-list.recipe-description__recipe-description {
   padding: 8px 0x 8px 0px;
   margin: 8px 0px 8px 0px;
 }
 
 .recipe-instructions {
   grid-area: recipe-instructions;
+}
+.recipe-avg {
+  grid-area: recipe-avg;
+  display: flex;
+  align-items: center;
+  margin: 20px 20px 0px 20px;
+}
+
+.recipe-separator {
+  grid-area: recipe-separator;
+  background-color: #e7e0d6;
+  color: #e7e0d6;
+  display: block;
+}
+
+/* other user's rating */
+.recipe-ratings__individual-rating {
+  grid-area: recipe-individual;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-ratings__user-rating {
+  grid-area: recipe-ratings;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-ratings__user-rating-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recipe-ratings__user-rating-content,
+.recipe-ratings__individual-rating-content {
+  display: flex;
+  align-items: center;
+}
+
+.recipe-ratings__user-rating-content > .rating,
+.recipe-ratings__individual-rating-content > .rating {
+  padding-left: 0;
+}
+
+.recipe-instructions,
+.recipe-ratings__user-rating,
+.recipe-ratings__individual-rating {
   margin: 20px 20px 20px 20px;
   padding: 20px 20px 20px 20px;
   background-color: #e7e0d6;
@@ -85,16 +138,10 @@
 }
 
 .recipe-ratings {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: auto;
-  grid-template-areas:
-    'title title'
-    'user rating'
-    'user rating';
   width: 50%;
   margin: auto;
   margin-top: 40px;
+  margin-bottom: 40px;
 }
 .recipe-ratings-title {
   grid-area: title;
@@ -106,19 +153,28 @@
   grid-area: rating;
 }
 
-.recipe-page__buttons-container{
+.recipe-page__buttons-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start ;
+  justify-content: flex-start;
   align-items: center;
   padding-top: 0.3rem;
 }
 
-.save-buttons-container > button{
+.save-buttons-container > button {
   font-size: 18px;
   border-radius: 5px;
 }
 
 .save-buttons-container {
   width: 100%;
+}
+
+.avg-rating {
+  margin: 1rem 1rem;
+}
+
+.recipe-ratings__individual-rating-content > .avg-rating,
+.recipe-ratings__user-rating-content > .avg-rating {
+  margin-left: 0;
 }
