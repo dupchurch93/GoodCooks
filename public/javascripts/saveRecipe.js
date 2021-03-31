@@ -102,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const saveRecipe = async (cupboardId, recipeId, cooked = false, favorited = false) => {
   try {
-    console.log('inside save recipe');
     const res = await fetch(`/api/recipes/saveRecipe`, {
       method: 'POST',
       headers: {
