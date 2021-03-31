@@ -7,18 +7,21 @@ append head
 
 block content
   div(class='main-body core-display')
-    each recipe in normalizedRecipes
-      div(class='recipe recipe-card recipes-page')
-        div(class='image-container')
-          a(class='recipe recipe-image', href=`/recipes/${recipe.id}`)
-            img(class='recipe', alt= recipe.name, src= recipe.link)
-          div(class='image-container__recipe-save')
-            +saveButtons(recipe)
-            +ratingButtons(recipe)
-        div(class='recipe recipe-content')
-          h3: a(class='recipe recipe-title', href=`/recipes/${recipe.id}`)= recipe.name
-          h2(class='recipe-content__recipe-author') by #{recipe.author}
-          p(class='recipe recipe-description')= recipe.description
-        //- To do: include pictures of each recipe
+    if normalizedRecipes.length>0
+      each recipe in normalizedRecipes
+        div(class='recipe recipe-card recipes-page')
+          div(class='image-container')
+            a(class='recipe recipe-image', href=`/recipes/${recipe.id}`)
+              img(class='recipe', alt= recipe.name, src= recipe.link)
+            div(class='image-container__recipe-save')
+              +saveButtons(recipe)
+              +ratingButtons(recipe)
+          div(class='recipe recipe-content')
+            h3: a(class='recipe recipe-title', href=`/recipes/${recipe.id}`)= recipe.name
+            h2(class='recipe-content__recipe-author') by #{recipe.author}
+            p(class='recipe recipe-description')= recipe.description
+          //- To do: include pictures of each recipe
+    else
+      div(class="no_recipes") No recipes matched your search. Please try again or browse for the recipe you want.
   script(src='/javascripts/saveRecipe.js' type="module" defer)
   script(src='/javascripts/rateRecipe.js' type="module" defer)

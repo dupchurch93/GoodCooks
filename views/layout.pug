@@ -15,7 +15,7 @@ html
             div(class='navbar__text') Welcome #{user.username}!
         div(class='navbar__container navbar__container-middle')
           form(class='searchForm' action="/recipes/search")
-            input(class='navbar__link searchbar',type='text',id='searchBar' placeholder='Find Recipes')
+            input(class='navbar__link searchbar', type='text', name="search", id='searchBar' placeholder='Find Recipes')
             button(class='navbar__link searchbar', id='searchIcon',type='submit')
               i(class="fas fa-search")
         if locals.authenticated
