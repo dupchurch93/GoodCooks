@@ -47,10 +47,18 @@ block content
     div(class='recipe-ratings__individual-rating')
       div(class='recipe-ratings__individual-rating-title')
         div Other User's Reviews
+<<<<<<< HEAD
       each rating in ratings
         div(class='recipe-ratings__individual-rating-content')
           div(class='recipe-ratings__individual-rating-username')= rating.User.username
           +starAverage(rating.starRating, normalizedRecipe)
           div= rating.content
+=======
+      if ratings
+        each rating in ratings
+          div(class='recipe-ratings__individual-rating-content')
+            +starAverage(rating.starRating, normalizedRecipe)
+            div= rating.content
+>>>>>>> main
   script(src='/javascripts/saveRecipe.js' type="module" defer)
   script(src='/javascripts/rateRecipe.js' type="module" defer)
