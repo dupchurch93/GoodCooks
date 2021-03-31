@@ -1,4 +1,35 @@
-'use strict';
+"use strict";
+
+const randomComments = [
+  "Amazing, definitely recommend",
+  "Does not come out as good as it looks",
+  "Seriously tasty",
+  "Can't wait to have again",
+  "This chef is a genius",
+  "I think I did something wrong or the recipe has too much salt",
+  "Wowza, just fantastic",
+  "You have to be really careful cooking this to follow the instructions exactly the way they are specific but if you do that you treated to one tasty treat.",
+  "Great for a BBQ",
+  "Make for a picnic and enjoy",
+  "Add some mayo and this is great.",
+  "Sounds weird, but add mustard when serving. Trust me.",
+  "Too spicy",
+  "Too sweet",
+  "Not amazing, but not terrible. Solid",
+  "A breeze to make!"
+];
+
+const randomRatings = [];
+for(let i = 0; i < 100; i++){
+  randomRatings.push({
+    userId: Math.floor(Math.random() * (30-1) + 1),
+    content: randomComments[Math.floor(Math.random() * randomComments.length)],
+    starRating: Math.floor(Math.random() * (5 -1) + 1),
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    recipeId: Math.floor(Math.random() * (10 - 1) + 1)
+  })
+}
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -9,11 +40,11 @@ module.exports = {
       Example:*/
     // userId, content, starRating, createdAt, updatedAt, recipeId
     return queryInterface.bulkInsert(
-      'Ratings',
+      "Ratings",
       [
         {
           userId: 1,
-          content: 'Tasted like food from the gods.',
+          content: "Tasted like food from the gods.",
           starRating: 5,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -21,7 +52,7 @@ module.exports = {
         },
         {
           userId: 1,
-          content: 'I love a good burger!',
+          content: "I love a good burger!",
           starRating: 5,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -30,7 +61,7 @@ module.exports = {
         {
           userId: 1,
           content:
-            'Honestly, who knew it was so easy to solve a chocolate cake craving? A slight chewiness, but gets the job done.',
+            "Honestly, who knew it was so easy to solve a chocolate cake craving? A slight chewiness, but gets the job done.",
           starRating: 5,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -45,7 +76,8 @@ module.exports = {
         },
         {
           userId: 1,
-          content: 'I just air fried frozen mozzarella sticks from the store. No regrets.',
+          content:
+            "I just air fried frozen mozzarella sticks from the store. No regrets.",
           starRating: 5,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -53,7 +85,7 @@ module.exports = {
         },
         {
           userId: 2,
-          content: 'So warm and hearty!',
+          content: "So warm and hearty!",
           starRating: 5,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -85,7 +117,7 @@ module.exports = {
         },
         {
           userId: 2,
-          content: 'Try it with a bit of salsa on top!',
+          content: "Try it with a bit of salsa on top!",
           starRating: 5,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -93,7 +125,7 @@ module.exports = {
         },
         {
           userId: 2,
-          content: 'I wish I liked grilled cheese more, oh well!',
+          content: "I wish I liked grilled cheese more, oh well!",
           starRating: 3,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -110,7 +142,8 @@ module.exports = {
         },
         {
           userId: 2,
-          content: 'I added a bit of peppermint to mine. So good on a cold night.',
+          content:
+            "I added a bit of peppermint to mine. So good on a cold night.",
           starRating: 4,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -118,7 +151,8 @@ module.exports = {
         },
         {
           userId: 2,
-          content: 'Sorry but I hated it. Came out soggy, wish the instructions were better...',
+          content:
+            "Sorry but I hated it. Came out soggy, wish the instructions were better...",
           starRating: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -126,12 +160,14 @@ module.exports = {
         },
         {
           userId: 2,
-          content: 'I do not really like pretzels, but my kids ate these up in a heartbeat!',
+          content:
+            "I do not really like pretzels, but my kids ate these up in a heartbeat!",
           starRating: 5,
           createdAt: new Date(),
           updatedAt: new Date(),
           recipeId: 10,
         },
+        ...randomRatings
       ],
       {}
     );
@@ -144,6 +180,6 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.bulkDelete('Ratings', null, {});
+    return queryInterface.bulkDelete("Ratings", null, {});
   },
 };
