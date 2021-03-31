@@ -23,7 +23,7 @@
 
 .recipe-card {
   display: grid;
-  height: 18.5rem;
+  height: 350px;
   width: 30%;
   grid-template-columns: 3fr 2fr;
   grid-template-rows: auto;
@@ -34,12 +34,11 @@
 
 .image-container {
   grid-area: recipeImg;
-  margin: 10px 0px 0px 0px;
   text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .image-container__recipe-save > .rating {
@@ -74,8 +73,4 @@
 
 .recipe-content__recipe-author {
   margin: 4px;
-}
-
-.no_recipes{
-  margin: auto;
 }
