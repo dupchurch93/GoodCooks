@@ -248,29 +248,22 @@ li {
 }
 .save-cook-favorite-buttons {
   display: flex;
- 
+
 }
 
 .recipe-save {
-  margin: 5px;
-  width: 70px;
+  margin: 0.2rem;
+  width: 4.6rem;
 }
 .recipe-cooked {
-  margin: 5px;
-  width: 70px;
-  height: 50px;
+  margin: 0.2rem;
+  width: 4.6rem;
 }
 .recipe-favorited {
-  margin: 5px;
-  width: 70px;
-  height: 50px
+  margin: 0.2rem;
+  width: 4.6rem;
 }
-
 .github_image {
   width: 30px;
-  border-radius: 12px; 
-}
-.github_link {
-  display: flex;
-  align-items: center;
+  border-radius: 10px;
 }

@@ -8,13 +8,13 @@ mixin saveButtons(recipe)
   if locals.authenticated
     div(class='save-cook-favorite-buttons')
       if recipe.status.saved
-        button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Unsave Recipe
+        button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Unsave
       else
-        button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Save Recipe
+        button(class='recipe-save button', id=`recipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Save
       if recipe.status.cooked
-        button(class='recipe-cooked button', id=`cookedrecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Remove from Cooked
+        button(class='recipe-cooked button', id=`cookedrecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Cook
       else
-        button(class='recipe-cooked button', id=`cookedrecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Add to Cooked
+        button(class='recipe-cooked button', id=`cookedrecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit')  Cooked
       if recipe.status.favorited
         button(class='recipe-favorited button', id=`favoriterecipe:${recipe.id}.cupboard:${user.Cupboards[0].id}`, type='submit') Unfavorite
       else
