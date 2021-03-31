@@ -267,3 +267,7 @@ li {
   width: 30px;
   border-radius: 10px;
 }
+
+.connect-link{
+  display: flex;
+}
