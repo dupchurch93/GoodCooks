@@ -49,6 +49,7 @@ block content
         div Other User's Reviews
       each rating in ratings
         div(class='recipe-ratings__individual-rating-content')
+          div(class='recipe-ratings__individual-rating-username')= rating.User.username
           +starAverage(rating.starRating, normalizedRecipe)
           div= rating.content
   script(src='/javascripts/saveRecipe.js' type="module" defer)

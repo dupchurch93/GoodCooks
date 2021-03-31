@@ -101,6 +101,11 @@
 .recipe-ratings__individual-rating-content {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+}
+
+.recipe-ratings__individual-rating-username {
+  margin-right: 1rem;
 }
 
 .recipe-ratings__user-rating-content > .rating,

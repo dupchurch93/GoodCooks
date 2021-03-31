@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // console.log('dom content loaded');
   //grab save buttons and add event listeners to them
 
   const getId = (element) => {
@@ -11,20 +10,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const recipeId = parseInt(ids[0].split(':')[1], 10);
     const cupboardId = parseInt(ids[1].split(':')[1], 10);
 
-    return {recipeId, cupboardId};
-  }
+    return { recipeId, cupboardId };
+  };
 
   //Save event listeners
   document.querySelectorAll('.recipe-save').forEach(async (button) => {
     button.addEventListener('click', async (event) => {
-      const { recipeId, cupboardId } = getId(event.target)
+      const { recipeId, cupboardId } = getId(event.target);
       //save or unsave to the cupboard if it's already saved or not
       if (event.target.innerText === 'Saved') {
         const res = await unsaveRecipe(cupboardId, recipeId);
         if (res) {
           event.target.innerText = 'Save';
-          document.getElementById(`cookedrecipe:${recipeId}.cupboard:${cupboardId}`).innerText = 'Cook';
-          document.getElementById(`favoriterecipe:${recipeId}.cupboard:${cupboardId}`).innerText = 'Favorite';
+          document.getElementById(`cookedrecipe:${recipeId}.cupboard:${cupboardId}`).innerText =
+            'Cook';
+          document.getElementById(`favoriterecipe:${recipeId}.cupboard:${cupboardId}`).innerText =
+            'Favorite';
         } else {
           alert('Something went wrong. Please try again.');
         }
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //Add to Cooked event listeners
   document.querySelectorAll('.recipe-cooked').forEach(async (button) => {
     button.addEventListener('click', async (event) => {
-      const { recipeId, cupboardId } = getId(event.target)
+      const { recipeId, cupboardId } = getId(event.target);
       //save or unsave to the cupboard if it's already saved or not
       const saveButton = document.getElementById(`recipe:${recipeId}.cupboard:${cupboardId}`);
       if (saveButton.innerText === 'Save') {
@@ -72,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //Favorite event listeners
   document.querySelectorAll('.recipe-favorited').forEach(async (button) => {
     button.addEventListener('click', async (event) => {
-      const { recipeId, cupboardId } = getId(event.target)
+      const { recipeId, cupboardId } = getId(event.target);
       //save or unsave to the cupboard if it's already saved or not
       const saveButton = document.getElementById(`recipe:${recipeId}.cupboard:${cupboardId}`);
       if (saveButton.innerText === 'Save') {
@@ -102,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const saveRecipe = async (cupboardId, recipeId, cooked = false, favorited = false) => {
   try {
-    console.log('inside save recipe');
     const res = await fetch(`/api/recipes/saveRecipe`, {
       method: 'POST',
       headers: {
@@ -116,7 +116,6 @@ const saveRecipe = async (cupboardId, recipeId, cooked = false, favorited = fals
     const data = await res.json();
     return data;
   } catch (err) {
-    // console.log('in the catch block');
     console.error('error', err);
   }
 };

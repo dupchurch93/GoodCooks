@@ -141,8 +141,6 @@ router.post(
   csrfProtection,
   asyncHandler(async (req, res) => {
     const { recipeId, content } = req.body;
-    console.log('recipe id', recipeId);
-    console.log('content', content);
     const userId = res.locals.user.id;
     const recipe = await Recipe.findOne({
       where: { id: recipeId },

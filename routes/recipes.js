@@ -29,11 +29,8 @@ router.get(
     const recipeId = parseInt(req.params.id, 10);
     const recipe = await Recipe.findOne({
       where: { id: recipeId },
-      include: [Cupboard, Rating],
+      include: [Cupboard, { model: Rating, include: [User] }],
     });
-    for (let rating of recipe.Ratings) {
-      // console.log('recipe here---------', rating);
-    }
     let avgRating;
     let ratings;
     let userRating;
@@ -62,7 +59,6 @@ router.get(
     normalizedRecipe.ingredients = splitIngredients(normalizedRecipe, ',');
     //split the instructions list on the numbers and remove the first empty string
     normalizedRecipe.instructions = splitInstructions(normalizedRecipe);
-    console.log(normalizedRecipe.instructions);
     res.render('recipe', {
       title: normalizedRecipe.name,
       normalizedRecipe,
