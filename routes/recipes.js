@@ -26,7 +26,6 @@ router.get(
     res.render("recipes", {
       title: "Browse Recipes",
       normalizedRecipes,
-      csrfToken: req.csrfToken(),
     });
   })
 );
@@ -107,14 +106,13 @@ router.get(
 
 
 router.get(
-  "/search?search=test",
+  "/search",
   asyncHandler(async (req, res) => {
-    console.log("req.query.search", req.query.search)
-    res.redirect("/")
+    const {search} = req.query;
     const recipes = await Recipe.findAll({
       where: {
         name: {
-          [Op.like]: `%${search}%`,
+          [Op.iLike]: `%${search}%`,
         },
       },
       include: [Cupboard, Rating],
@@ -126,7 +124,6 @@ router.get(
       normalizedRecipes = await normalizeRecipes(recipes);
     }
     if (normalizedRecipes) {
-      console.log("Normalized recipesasfsdf----------", normalizedRecipes)
       res.render("recipes", {
         title: "Browse Recipes",
         normalizedRecipes,
