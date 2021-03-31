@@ -12,6 +12,9 @@ router.get(
       limit: 4,
       include: [Cupboard, Rating],
     });
+    // const topRecipes = await Recipe.findAll({
+    //   attributes: [[sequelize.fn('COUNT', sequelize.col(''))]],
+    // });
     let normalizedRecipes;
     // Need: everything from recipe. cupboardId (eventually favorite and cooked from joins table)
     if (res.locals.user) {
