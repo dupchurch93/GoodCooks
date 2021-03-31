@@ -8,7 +8,7 @@ module.exports = {
         {
           name: 'The Best Broccoli-Cheddar Soup',
           description:
-            'This outstanding broccoli-cheddar soup is rich, cheesy and packed with flavor. We decided to puree just over half the soup which makes it extra thick and creamy, and left the remainder chunky so there are broccoli bits in every bite. Gild the lily with more shredded cheese on top to satisfy your comfort food craving.',
+            'This outstanding broccoli-cheddar soup is rich, cheesy and packed with flavor. Gild the lily with more shredded cheese on top to satisfy your comfort food craving.',
           ingredients: ` 4 tablespoons unsalted butter: 1 medium yellow onion, diced:
         1 large carrot, diced: 2 cloves garlic, minced: 1/4 cup all-purpose flour: 2 cups half and half:
         4 cups low-sodium chicken broth: 4 cups broccoli florets from about 1 head:
