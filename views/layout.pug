@@ -15,7 +15,7 @@ html
             div(class='navbar__text') Welcome #{user.username}!
         div(class='navbar__container navbar__container-middle')
           form(class='searchForm' action="/recipes/search")
-            input(class='navbar__link searchbar',type='text',id='searchBar' placeholder='Find Recipes')
+            input(class='navbar__link searchbar', type='text', name="search", id='searchBar' placeholder='Find Recipes')
             button(class='navbar__link searchbar', id='searchIcon',type='submit')
               i(class="fas fa-search")
         if locals.authenticated
@@ -59,11 +59,24 @@ html
             a(class="footer__link" href="#") Apps
     div(class='footer__div')
       h3(class='footer__h3') Connect
-        a(class="footer__link" href="#")
-          img(src='https://s.gr-assets.com/assets/site_footer/footer_facebook-ea4ab848f8e86c5f5c98311bc9495a1b.svg')
-        a(class="footer__link" href="#")
-          img(src='https://s.gr-assets.com/assets/site_footer/footer_twitter-126b3ee80481a763f7fccb06ca03053c.svg')
-        a(class="footer__link" href="#")
-          img(src='https://s.gr-assets.com/assets/site_footer/footer_instagram-d59e3887020f12bcdb12e6c539579d85.svg')
-        a(class="footer__link" href="#")
-          img(src='https://s.gr-assets.com/assets/site_footer/footer_linkedin-5b820f4703eff965672594ef4d10e33c.svg')
+        ul 
+          li
+            img(class='github_image' src='https://avatars.githubusercontent.com/u/48411650?v=4')
+            a(class="footer__link" href="https://github.com/dupchurch93")
+              
+              a(class="footer__link" href='https://www.linkedin.com/in/daniel-upchurch-058899205/') LinkedIn  
+              a(class="footer__link" href="https://github.com/dupchurch93") Github
+          li
+            img(class='github_image' src='https://avatars.githubusercontent.com/u/71684444?v=4')
+            a(class="footer__link" href="https://github.com/TranJohnny")
+              
+              a(class="footer__link" href='https://www.linkedin.com/in/thejohnnytran/') LinkedIn  
+              a(class="footer__link" href="https://github.com/TranJohnny") Github
+          li
+            div(class='github-link')
+              img(class='github_image' src='https://avatars.githubusercontent.com/u/67128124?v=4')
+              a(class="footer__link" href="https://github.com/bparsons17")
+                a(class="footer__link" href='https://www.linkedin.com/in/brandon-parsons-26115bb9/') LinkedIn  
+                a(class="footer__link" href="https://github.com/bparsons17") Github
+              
+      

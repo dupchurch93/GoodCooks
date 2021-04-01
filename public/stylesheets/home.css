@@ -263,3 +263,7 @@ li {
   margin: 0.2rem;
   width: 4.6rem;
 }
+.github_image {
+  width: 30px;
+  border-radius: 10px;
+}
