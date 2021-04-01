@@ -34,12 +34,11 @@
 
 .image-container {
   grid-area: recipeImg;
-  margin: 10px 0px 0px 0px;
   text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-evenly;
 }
 
 .image-container__recipe-save > .rating {
@@ -74,8 +73,4 @@
 
 .recipe-content__recipe-author {
   margin: 4px;
-}
-
-.no_recipes{
-  margin: auto;
 }

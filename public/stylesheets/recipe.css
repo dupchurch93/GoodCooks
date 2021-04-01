@@ -176,5 +176,12 @@
 
 .recipe-ratings__individual-rating-content > .avg-rating,
 .recipe-ratings__user-rating-content > .avg-rating {
-  margin-left: 0;
+  display: flex;
+}
+
+.recipe-ratings__individual-rating-content{
+  background-color: #f4f2f3;
+  margin: 0.3rem;
+  padding: 0rem 0.2rem 0rem 0.2rem;
+  box-shadow: 1px 1px 1px grey;
 }
