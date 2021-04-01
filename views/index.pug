@@ -39,13 +39,15 @@ block content
       h4 Best Recipes, cooks and more!
       div Our Most Rated Recipes
       each topRecipe in mostRatedRecipes
-        div(class='recipe top-recipe-card top-recipe-title')
-          a(class='recipe top-recipe-image', href=`/recipes/${topRecipe.id}`)
+        div(class='top-recipe-card')
+          a(as='div' class='top-recipe-image', href=`/recipes/${topRecipe.id}`)
             img(class='recipe', width= '200px', height= '150px', alt= topRecipe.name, src= topRecipe.link)
-          div(class='recipe top-recipe-content')
-            h1: a(class='recipe recipe-title', href=`/recipes/${topRecipe.id}`)= topRecipe.name
-            h2 by #{topRecipe.author}
+          div(class='top-recipe-content')
+            a(class='top-recipe-title', href=`/recipes/${topRecipe.id}`)= topRecipe.name
+            h2(class='top-recipe-author') by #{topRecipe.author}
             +starAverage(5, normalizedRecipe)
+            div(class='top-recipe-button')
+              button: a(href=`recipes/${topRecipe.id}` class='top-recipe-button') See Recipe
       a(href='/recipes') Browse all recipes >
   script(src='/javascripts/saveRecipe.js' type="module" defer)
   script(src='/javascripts/rateRecipe.js' type="module" defer)
