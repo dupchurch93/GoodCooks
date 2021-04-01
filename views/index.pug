@@ -37,8 +37,17 @@ block content
             +ratingButtons(recipe)
     div(class='main-body__news-column main-body__main-column core-display')
       h4 Best Recipes, cooks and more!
-      div Recipe of 2020
-      div Worst recipe of 2020? Find out here
-      div Our editor's favorite chefs
+      div Our Most Rated Recipes
+      each topRecipe in mostRatedRecipes
+        div(class='top-recipe-card')
+          a(as='div' class='top-recipe-image', href=`/recipes/${topRecipe.id}`)
+            img(class='recipe', width= '200px', height= '150px', alt= topRecipe.name, src= topRecipe.link)
+          div(class='top-recipe-content')
+            a(class='top-recipe-title', href=`/recipes/${topRecipe.id}`)= topRecipe.name
+            h2(class='top-recipe-author') by #{topRecipe.author}
+            +starAverage(5, normalizedRecipe)
+            div(class='top-recipe-button')
+              button: a(href=`recipes/${topRecipe.id}` class='top-recipe-button') See Recipe
+      a(href='/recipes') Browse all recipes >
   script(src='/javascripts/saveRecipe.js' type="module" defer)
   script(src='/javascripts/rateRecipe.js' type="module" defer)

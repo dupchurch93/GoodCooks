@@ -179,7 +179,16 @@
   display: flex;
 }
 
-.recipe-ratings__individual-rating-content{
+.recipe-ratings__individual-rating-username {
+  margin-left: 10px;
+  min-width: 150px;
+}
+.recipe-ratings__individual-rating-separator {
+  margin-left: 20px;
+  color: lightgray;
+}
+
+.recipe-ratings__individual-rating-content {
   background-color: #f4f2f3;
   margin: 0.3rem;
   padding: 0rem 0.2rem 0rem 0.2rem;
