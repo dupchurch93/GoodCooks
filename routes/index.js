@@ -12,7 +12,7 @@ router.get(
       limit: 4,
       include: [Cupboard, Rating],
     });
-    const topRecipes = await Recipe.findAll({
+    const mostRatedRecipes = await Recipe.findAll({
       attributes: [
         'id',
         'name',
@@ -29,9 +29,8 @@ router.get(
       include: [{ model: Rating }],
       group: ['Recipe.id'],
       order: [[sequelize.literal('"numRatings"'), 'DESC']],
-      limit: 1,
+      limit: 3,
     });
-    console.log(topRecipes[0]);
     let normalizedRecipes;
     // Need: everything from recipe. cupboardId (eventually favorite and cooked from joins table)
     if (res.locals.user) {
@@ -42,6 +41,7 @@ router.get(
     res.render('index', {
       title: 'a/A Express Skeleton Home',
       normalizedRecipes,
+      mostRatedRecipes,
     });
   })
 );
